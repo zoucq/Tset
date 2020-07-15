@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<title></title>
+	<script src="./js/rem.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<style type="text/css" media="screen">
+
+		body{
+			width: 100%;
+			height: auto;
+			background:rgba(240,240,240,1);
+		}
+
+		.container{
+			display: block;
+			width: 100%;
+			background:rgba(240,240,240,1);
+			padding-bottom: 0.98rem;
+		}
+		.container .header{
+			width: 100%;
+			height: 0.88rem;
+			text-align: center;
+			line-height: 0.88rem;
+			background:rgba(48,48,48,1);
+			font-size:0.4rem;
+			color:rgba(255,255,255,1);
+			font-weight: 500;
+		}
+		.banner{
+			height: 4rem;
+			width: 100%;
+			display: block;
+		}
+		.banner img{
+			height: 100%;
+			width: 100%;
+		}
+
+		.sub_nav{
+			width: 100%;
+			padding: 0.24rem 0;
+			box-sizing: border-box;
+			background: #fff;
+			display: block;
+			margin-bottom: 0.2rem;
+		}
+		.sub_nav ul{
+			width: 100%;
+			display: flex;
+		}
+		.sub_nav .n_item{
+			flex: 1;
+			/* display: inline-block;
+			width: 24.8%; */
+			text-align: center;
+		}
+		.sub_nav .n_item img{
+			display: block;
+			width: 100%;
+			margin: 0 auto;
+			width: 1rem;height: 1rem;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+		.sub_nav .n_item span{
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-size:0.28rem;
+			color:rgba(2,2,2,1);
+			padding-top: 0.12rem;
+		}
+
+		.main{
+			display: block;
+			width: 100%;
+		}
+		.main .title{
+			padding: 0.28rem 0.28rem 0;
+			background: #fff;
+			font-size:0.32rem;
+			color:rgba(2,2,2,1);
+			text-align: center;
+		}
+		.main .house_list{
+			display: block;
+			width: 100%;
+		}
+		.main .house_list .item{
+			display: block;
+			margin-bottom: 0.16rem;
+			position: relative;
+			background: #fff;
+			padding: 0.32rem;
+			box-sizing: border-box;
+		}
+		.main .house_list .item .item_top{
+			display: block;
+			width: 100%;
+			position: relative;
+		}
+		.main .house_list .item .item_top img{
+			width: 100%;
+			height: 3rem;
+			display: block;
+		}
+		.main .house_list .item .item_top .desc{
+			display: block;
+			padding: 0.14rem 0.2rem;
+			background:rgba(241,236,226,1);
+			text-align: left;
+			font-size:0.26rem;
+			color:rgba(159,137,96,1);
+		}
+
+		.main .house_list .item .item_bottom{
+			display: block;
+			background: #fff;
+			padding: 0.24rem 0 0;
+			width: 100%;
+			box-sizing: border-box;
+		} 
+		.main .house_list .item .item_bottom .name{
+			background: #fff;
+			margin-bottom: 0.04rem;
+			overflow: hidden;
+			clear: both;
+		}
+		.main .house_list .item .item_bottom .name_left{
+			display: inline-block;
+			font-size:0.32rem;
+			color:rgba(2,2,2,1);
+			float: left;
+		}
+		.main .house_list .item .item_bottom .name_right{
+			font-size:0.28rem;
+			color:rgba(140,140,140,1);
+			float: right;
+			display: inline-block;
+		}
+		.main .house_list .item .item_bottom .name_right > img{
+			display: inline-block;
+			width:0.22rem;
+			height:0.28rem;
+			vertical-align: middle;
+		}
+		.main .house_list .item .item_bottom .name_right > span{
+			display: inline-block;
+			vertical-align: middle;
+			height: 0.4rem;
+			line-height: 0.4rem;
+		}
+		.main .house_list .item .price{
+			display: block;
+			font-size:0.32rem;
+			color:rgba(180,37,54,1);
+			margin-bottom: 0.24rem;
+		}
+		.main .house_list .item .bq{
+			display: block;
+		}
+		.main .house_list .item .bq span{
+			display: inline-block;
+			padding: 0 0.14rem;
+			height:0.3rem;
+			line-height: 0.3rem;
+			text-align: center;
+			background:rgba(80,184,186,1);
+			border-radius:0.04rem;
+			font-size:0.2rem;
+			color:rgba(255,255,255,1);
+			margin-right: 0.12rem;
+		}
+		.main .house_list .item .bq .color2{
+			background:rgba(198,159,107,1);
+		}
+		.main .house_list .item .bq .color3{
+			background:rgba(87,115,203,1);
+		}
+		.main .house_list .item .dijia{
+			position: absolute;
+			right: 0.32rem;
+			bottom: 0.32rem;
+			display: inline-block;
+			width:1.6rem;
+			height:0.64rem;
+			text-align: center;
+			line-height: 0.64rem;
+			background:rgba(180,37,54,1);
+			border-radius:0.04rem;
+			border: 0;
+			font-size:0.28rem;
+			color:rgba(255,255,255,1);
+		}
+
+
+		.nav-fixed{
+			position: fixed;
+			left: 0;bottom: 0;
+			height: 0.98rem;
+			line-height: 0.98rem;
+			width: 100%;
+			box-sizing: border-box;
+			background:rgba(245,245,245,1);
+			display: block;
+		}
+		.nav-fixed ul{
+			width: 100%;
+			height: 100%;
+			display: flex;
+		}
+		.nav-fixed .n_item{
+			flex: 1;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.nav-fixed .n_item img{
+			display: block;
+			width: auto;
+			height: 0.4rem;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.nav-fixed .n_item span{
+			display: block;
+			width: 100%;
+			height: 0.34rem;
+			line-height: 0.34rem;
+			text-align: center;
+			font-size:0.24rem;
+			color:rgba(2,2,2,1);
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="header">
+			广州楼盘优选
+		</div>
+
+		<div class="banner">
+			<img src="imgs/test.png" alt="">
+		</div>
+
+		<div class="sub_nav">
+			<ul>
+				<li class="n_item">
+					<img src="imgs/logo.png" />
+					<span>低总价</span>
+				</li>
+				<li class="n_item">
+					<img src="imgs/logo.png" />
+					<span>低总价</span>
+				</li> 
+				<li class="n_item">
+					<img src="imgs/logo.png" />
+					<span>低总价</span>
+				</li>
+				<li class="n_item">
+					<img src="imgs/logo.png" />
+					<span>低总价</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="main">
+			<div class="title">为您推荐</div>
+			<ul class="house_list">
+				<li class="item">
+					<div class="item_top">
+						<img src="imgs/test.png" />
+						<span class="desc">高层86折，洋房83折</span>
+					</div>
+					<div class="item_bottom">
+						<div class="name">
+							<div class="name_left">
+								华夏四季
+							</div>
+							<div class="name_right">
+								<img src="imgs/addr.png" alt="">
+								<span>增城</span>
+							</div>
+						</div>
+						<div class="price">
+							均价：15000元/㎡
+						</div>
+						<div class="bq">
+							<span>住宅</span>
+							<span class="color2">别墅</span>
+							<span class="color3">酒店式公寓</span>
+						</div>
+					</div>
+					<div class="dijia">查低价</div>
+				</li>
+				<li class="item">
+					<div class="item_top">
+						<img src="imgs/test.png" />
+						<span class="desc">高层86折，洋房83折</span>
+					</div>
+					<div class="item_bottom">
+						<div class="name">
+							<div class="name_left">
+								华夏四季
+							</div>
+							<div class="name_right">
+								<img src="imgs/addr.png" alt="">
+								<span>增城</span>
+							</div>
+						</div>
+						<div class="price">
+							均价：15000元/㎡
+						</div>
+						<div class="bq">
+							<span>住宅</span>
+							<span class="color2">别墅</span>
+							<span class="color3">酒店式公寓</span>
+						</div>
+					</div>
+					<div class="dijia">查低价</div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+
+
+	<div class="nav-fixed">
+		<ul>
+			<li class="n_item">
+				<img src="imgs/nav1.png" />
+				<span>首页</span>
+			</li>
+			<li class="n_item">
+				<img src="imgs/nav2.png" />
+				<span>查低价</span>
+			</li> 
+			<li class="n_item">
+				<img src="imgs/nav3.png" />
+				<span>个人</span>
+			</li>
+		</ul>
+	</div>
+
+
+
+	<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+
+
+
+
+
+
+	
+</body>
+</html>

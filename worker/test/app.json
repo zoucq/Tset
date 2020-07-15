@@ -1,0 +1,22 @@
+{
+    "pages":[
+        "pages/index/index",
+        
+        "pages/detail2/index",
+        
+        "pages/activity/index",
+        "pages/kanfang/index",
+        "pages/my-redpacket/index",
+        "pages/house-list/index",
+        "pages/detail/index",
+        "pages/room-type/index"
+
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle":"black",
+        "backgroundColor": "#eeeeee"
+    }
+}

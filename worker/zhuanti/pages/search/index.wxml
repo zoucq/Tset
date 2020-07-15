@@ -1,0 +1,24 @@
+<!--logs.wxml-->
+<view class="search">
+
+    <view class='from'>
+        <input type="text" placeholder='请输入关键词' class='txt' bindinput='handleInput' bindfocus='handleTrim' value="{{txt}}" />
+        <button class='btn'>搜索</button>
+    </view>
+
+    <view class='history'>
+        <view class='title'>最近搜索</view>
+        <view class='list'>
+            <block wx:for="{{list}}" wx:key="list">
+                <view bindtap="handleKeywords" data-word="{{item}}">{{item}}</view>
+            </block>
+        </view>     
+    </view>
+
+    <view class='alert' wx:if="{{search}}">
+        <block wx:for="{{alert}}" wx:key="alert">
+            <view>{{item}}</view>
+        </block>
+    </view>
+
+</view>

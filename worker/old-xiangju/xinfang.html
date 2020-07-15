@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+
+	
+	<script>
+
+        var arr=[
+            {name:'list',value:true},
+            {name:'my',value:false},
+            {name:'list',value:true},
+            {name:'list',value:true}
+        ]
+
+		// let that = this;
+        // let arrs = [];
+        // let arr2 = [];
+        // let arr3 = JSON.parse(JSON.stringify(that.data.rooms));
+        // that.data.rooms.map((v, i) => {
+        //     // arrs = arrs.concat(v.photos);
+        //     if (that.data.rooms[i].photos.length >= 2) {
+        //         let index=i;
+        //         that.data.rooms[i].photos.map((vv, ii) => {
+        //             arr2.push(v);
+        //         });
+        //         console.log(arr3.splice(index,1));
+
+        //         that.setData({
+        //             arrs: arr2.concat(arr3)
+        //         });
+        //         console.log(that.data.arrs)
+        //     }
+        // });
+        // console.log(this.data.rooms)
+
+
+
+        // let arrs=[];
+        // let arr2 = [];
+        // let arr3 = JSON.parse(JSON.stringify(that.data.rooms));
+        // that.data.rooms.map((v,i)=>{
+        //     let index=i;
+        //     arrs=arrs.concat(v.photos);
+        //     if (v.photos.length>=2){    
+        //         v.photos.map((vv,ii)=>{
+        //            arr2.push(v);                             
+        //         });
+        //         arr3.splice(index, 1)
+        //         that.setData({
+        //             arrs: arr2.concat(arr3)
+        //         });
+        //         console.log(that.data.arrs);
+        //     }
+        // });
+        // that.setData({
+        //     imgUrls: arrs
+        // });
+
+
+    // 
+    // getHuxingData() {
+    //     let that = this;
+    //     that.setData({
+    //         load: true
+    //     });
+    //     api.req.get(api.api.detail.index, { id: this.data.id })
+    //     .then((res) => {
+    //         if (res.data.ret == 0) {
+    //             console.log('列表', res.data.data.rooms);
+    //             that.setData({
+    //                 load: false,
+    //                 rooms: res.data.data.rooms
+    //             });
+    //         } else {
+    //             console.log(res.data.msg);
+    //         }
+    //     }, (err) => {
+    //         console.log(err);
+    //     });
+    // },
+        
+        // <scroll-view class="scroll-view_H" scroll-x scroll-with-animation="true" scroll-left="{{srollLeft}}"  style="width: 100%;" bindscroll="scroll" wx:if="{{false}}">   
+        // <view class='q-ul' bindtouchstart='touchStart' bindtouchmove='touchMove'>
+
+        //     <view class='q-li '>
+        //         <view class='title'>
+        //             你觉得这个楼盘怎么样？
+        //         </view>
+        //         <view class='desc'>
+        //             去看过，还不错，在2号线边上，小区环境不错。
+        //         </view>
+        //         <view class='users'>
+        //             <view class='boxs'>
+        //                 <view class='avtor'>
+        //                     <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+        //                 </view>
+        //                 <view class='info'>
+        //                     <text class='info-name'>朱佳</text>
+        //                     <text class='info-date'>2017年12月20日</text>
+        //                 </view>
+        //             </view>
+        //             <view class='love'>
+        //                 <icon class='iconfont icon-xihuan'></icon>234
+        //             </view>
+        //         </view>
+        //     </view>
+
+        //     <view class='q-li active'>
+        //         <view class='title'>
+        //             你觉得这个楼盘怎么样？
+        //         </view>
+        //         <view class='desc'>
+        //             去看过，还不错，在2号线边上，小区环境不错。附近吃喝都很多，离三中很近，打算买在这里。
+        //         </view>
+        //         <view class='users'>
+        //             <view class='boxs'>
+        //                 <view class='avtor'>
+        //                     <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+        //                 </view>
+        //                 <view class='info'>
+        //                     <text class='info-name'>朱佳</text>
+        //                     <text class='info-date'>2017年12月20日</text>
+        //                 </view>
+        //             </view>
+        //             <view class='love'>
+        //                 <icon class='iconfont icon-xihuan'></icon>23
+        //             </view>
+        //         </view>
+        //     </view>
+
+        //     <view class='q-li'>
+        //         <view class='title'>
+        //             你觉得这个楼盘怎么样？
+        //         </view>
+        //         <view class='desc'>
+        //             去看过，还不错，在2号线边上
+        //         </view>
+        //         <view class='users'>
+        //             <view class='boxs'>
+        //                 <view class='avtor'>
+        //                     <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+        //                 </view>
+        //                 <view class='info'>
+        //                     <text class='info-name'>朱佳</text>
+        //                     <text class='info-date'>2017年12月20日</text>
+        //                 </view>
+        //             </view>
+        //             <view class='love'>
+        //                 <icon class='iconfont icon-xihuan'></icon>2
+        //             </view>
+        //         </view>
+        //     </view>
+            
+        // </view> 
+        
+        // </scroll-view>  
+
+        // <!--户型图  -->
+// <view class='huxing-img' wx:if='{{huxingShow}}'>
+//     <view class='hx-bg'></view>
+//     <view class='hx-content'>
+//         <view class='top'>
+//             <view><text>1/8</text></view>
+//             <view>两室一厅</view>
+//             <view bindtap="handleShowHuxing">X</view>
+//         </view>
+//         <swiper indicator-dots="{{indicatorDots}}"
+//             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+//             bindchange="handleSlider" current="{{current}}" > 
+//             <block wx:for="{{rooms}}" wx:key="imgs" wx:for-item="i">
+//                 <swiper-item wx:for="{{i.photos}}" wx:key="imgs-box" data-index="{{index}}" data-name="{{i.name}}" >
+//                     <image src="{{item}}" class="slide-image" />
+//                 </swiper-item>
+//             </block>
+//             <view class='dots'>
+//                 <block wx:for="{{arrs}}" wx:key="imgs-dots"> 
+//                     <text class='{{current==index?"active":""}}'></text>
+//                 </block>
+//             </view>
+//         </swiper>
+
+//         <view class='boxs'>
+//             <block wx:for="{{arrs}}" wx:key="huxing" >
+//             <view class='item' data-current="{{current}}"  
+//                     wx:key="boxs" wx:if="{{current==index}}">
+//                 <view class='price'>
+//                     <text>价格</text>
+//                     <text class='red'>约{{(50*item.price)/10000}}万</text>（{{item.price}}元/㎡）
+//                 </view>
+//                 <view class='area'>
+//                     <text>面积</text>
+//                     <text>{{item.area}}㎡</text>
+//                 </view>
+//                 <view class='type'>
+//                     <text>户型</text>
+//                     <text>{{item.habitable}}居</text>
+//                 </view>
+//                 <view class='time'>
+//                     <text>更新时间</text>
+//                     <text>{{item.mtime}}</text>
+//                 </view>
+//             </view>
+//             </block>
+
+//         </view>
+//     </view>
+// </view> 
+
+
+        
+// const req={
+//     get: function (opt) {
+//         opt.method = 'GET';
+//         fn(opt);
+//     },
+//     post: function (opt) {
+//         opt.method = 'POST';
+//         fn(opt);
+//     }
+// }
+
+// function fn(opt={}){
+//     wx.request({
+//         url: opt.url,
+//         method: opt.method,
+//         data: opt.data,
+//         header: {
+//             'content-type': 'application/json' // 默认值
+//         },
+//         dataType: 'json',// 默认值
+//         responseType: 'text',// 默认值     
+//         success: opt.success,
+//         fail: opt.fail,
+//         complete: () => {
+//             // wx.hideLoading();
+//         }
+//     });
+// }
+
+
+    // <swiper bindchange='ban_change' class='q-ul' wx:if="{{false}}">
+    //         <swiper-item wx:for="{{data.lastQuestions}}" wx:key="qs">
+    //             <view class='q-li' animation="{{index!=currentSwiper?ani:ani2}}">
+    //                 <view class='title'>
+    //                     {{item.Body}}
+    //                 </view>
+    //                 <view class='desc'>
+    //                     {{item.lastAnswer.Body}}
+    //                 </view>
+    //                 <view class='users'>
+    //                     <view class='boxs'>
+    //                         <view class='avtor'>
+    //                             <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+    //                         </view>
+    //                         <view class='info'>
+    //                             <text class='info-name'>朱佳</text>
+    //                             <text class='info-date'>{{item.Mtime}}</text>
+    //                         </view>
+    //                     </view>
+    //                     <view class='love'>
+    //                         <icon class='iconfont icon-xihuan'></icon>234
+    //                     </view>
+    //                 </view>
+    //             </view>
+    //         </swiper-item>
+    //     </swiper>
+
+
+    const request = (url, method='POST',data,success,fail)=>{
+        // wx.showLoading({
+        //     title: '加载中'
+        // });
+        wx.request({
+            url: url, 
+            method:method,
+            data: data,
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            dataType: 'json',// 默认值
+            responseType: 'text',// 默认值     
+            success: success,
+            fail:fail,
+            complete: () => {
+                // wx.hideLoading();
+            }    
+        });
+    }
+
+    //户型图 
+
+    //     <view wx:if='{{false}}'>
+    // <swiper indicator-dots="{{indicatorDots}}"
+    //     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+    //     bindchange="handleSlider" current="{{current}}"> 
+    //     <block wx:for="{{rooms}}" wx:key="imgs" wx:for-item="i">
+    //         <swiper-item wx:for="{{i.photos}}" wx:key="imgs-box" data-index="{{index}}" data-name="{{i.name}}" >
+    //             <image src="{{item}}" class="slide-image" />
+    //         </swiper-item>
+    //     </block>
+    // </swiper>
+
+    // <view class='boxs'>
+    //     <block wx:for="{{arrs}}" wx:key="roomsss" >
+    //     <view class='item' data-current="{{current}}"  wx:key="boxs" wx:if="{{current==index}}">
+    //         <view class='title'>
+    //             {{item.name}}
+    //             <text wx:if="{{item.status==0}}">在售</text>
+    //             <text wx:elif="{{item.status==1}}">待售</text>
+    //             <text wx:else="{{item.status==2}}">售罄</text>
+    //         </view>
+    //         <view class='price'>
+    //             <text>价格</text>
+    //             <text class='red'>约{{(50*item.price)/10000}}万</text>（{{item.price}}元/㎡）
+    //         </view>
+    //         <view class='area'>
+    //             <text>面积</text>
+    //             <text>{{item.area}}㎡</text>
+    //         </view>
+    //         <view class='type'>
+    //             <text>户型</text>
+    //             <text>{{item.habitable}}居</text>
+    //         </view>
+    //         <view class='time'>
+    //             <text>更新时间</text>
+    //             <text>{{item.mtime}}</text>
+    //         </view>
+    //     </view>
+    //     </block>
+    // </view>
+    // </view>
+
+
+    // 页面下拉刷新
+    // onPullDownRefresh() {
+    //     if(this.getData()){
+    //         wx.stopPullDownRefresh();
+    //     }
+    // }
+
+
+    // "enablePullDownRefresh":true
+
+
+    // 登录
+        // wx.login({
+        //     success: res => {
+        //         console.log(res);
+        //         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        //         api.req.get(api.api.user.login, { code: res.code })
+        //         .then((res) => {
+        //             console.log(res);
+        //         }, (err) => {
+        //             console.log(err);
+        //         });
+        //     }
+        // });
+        
+        // 获取用户信息
+        // wx.getSetting({
+        //     success: res => {
+        //         console.log('setting',res);
+        //         if (res.authSetting['scope.userInfo']) {
+        //             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+        //             wx.getUserInfo({
+        //                 success: res => {
+        //                     console.log(res)
+        //                     // 可以将 res 发送给后台解码出 unionId
+        //                     this.globalData.userInfo = res.userInfo
+
+        //                     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        //                     // 所以此处加入 callback 以防止这种情况
+        //                     if (this.userInfoReadyCallback) {
+        //                         this.userInfoReadyCallback(res)
+        //                     }
+        //                     console.log('app',this.globalData.userInfo);
+                            
+        //                 }
+        //             });
+        //         }else{
+        //             wx.authorize({
+        //                 scope: 'scope.userInfo',
+        //                 success() {
+        //                     wx.getUserInfo({
+        //                         success:res=>{
+        //                             console.log('author',res);
+        //                         }
+        //                     });
+        //                 }
+        //             });
+        //         }
+        //     }
+        // })
+
+
+        // <radio-group wx:if="{{filter==1}}" class="radio-group" bindchange="radioChange">
+        //     <label class="radio" >
+        //         <text class='circle'></text>江干
+        //     </label>
+        //     <label class="radio" >
+        //         <text class='circle'></text>江干
+        //     </label>
+        //     <label class="radio" >
+        //         <text class='circle'></text>江干
+        //     </label>   
+        // </radio-group>
+        // <radio-group wx:if="{{filter==2}}" class="radio-group" bindchange="radioChange">
+        //     <label class="radio" >
+        //         海南
+        //     </label>
+        //     <label class="radio" >
+        //         海南
+        //     </label>
+        //     <label class="radio" >
+        //         海南
+        //     </label>   
+        // </radio-group>
+
+
+        // .filter-content .addr .ad-boxs .right .radio,
+        // .filter-content .addr .ad-boxs .right view{
+        //     display: flex;
+        //     justify-content: center;
+        //     width: 100%;
+        //     font-size: 28rpx;
+        //     box-sizing: border-box;
+        // }
+        // .filter-content .addr .ad-boxs .right view:not(:first-child){
+        //     padding-top: 40rpx;
+        // }
+        // .filter-content .addr .ad-boxs .right .radio-group{
+        //     display: flex;
+        //     flex-direction: column;
+        //     width: 100%;
+        // }
+        // .filter-content .addr .ad-boxs .right .radio-group radio{
+        //     padding-left: 20rpx;
+        // }
+
+
+        // api.req.get(api.api.index.search,{name:opt.words})
+        // .then((res)=>{
+        //     console.log('关键词搜索',res.data.data);
+        //     let datas=res.data;
+        //     if(datas.ret==0){
+        //         datas.data.map((v, i) => {
+        //             let status = v.Status;
+        //             for (let vv in api.statusAll.house_status) {
+        //                 if (status == vv) {
+        //                     v.Status = api.statusAll.house_status[vv];
+        //                 }
+        //             }
+        //             let Renovation = v.RenovationStatus;
+        //             for (let vv in api.statusAll.house_renovation_type) {
+        //                 if (Renovation == vv) {
+        //                     v.RenovationStatus = api.statusAll.house_renovation_type[vv];
+        //                 }
+        //             }
+        //             let Property = v.PropertyType;
+        //             for (let vv in api.statusAll.house_property_type) {
+        //                 if (Renovation == vv) {
+        //                     v.PropertyType = api.statusAll.house_property_type[vv];
+        //                 }
+        //             }
+        //             let Architectural = v.ArchitecturalType;
+        //             for (let vv in api.statusAll.house_architectural_type) {
+        //                 if (Renovation == vv) {
+        //                     v.ArchitecturalType = api.statusAll.house_architectural_type[vv];
+        //                 }
+        //             }
+        //         });
+        //         that.setData({
+        //             list:datas.data
+        //         });
+        //     }
+        // },(err)=>{
+        //     console.log(err)
+        // });
+
+
+        // 页面下拉
+        // onPullDownRefresh: function () {
+        //     this.setData({
+        //         page:1,
+        //         list:[]
+        //     });
+        //     this.getData();
+        //     // wx.stopPullDownRefresh();
+        //     setTimeout(() => {
+        //         wx.stopPullDownRefresh();
+        //     }, 1000);
+        // },
+
+
+        // let that = this;
+        // for (let i = 0; i < this.data.list.length; i++) {
+        //     if (i == 0){
+        //         this.data.list[i].show = true;
+        //     }else{        
+        //         this.data.list[i].show = false;       
+        //     }
+        //     this.data.list[i].id = i + 1;
+        // }
+        // this.setData({
+        //     list: this.data.list
+        // }); 
+        // console.log(this.data.list);
+
+
+
+        // console.log(e.scrollTop);
+        // let _this = this;
+        // let imgH = 160;
+        // let index = parseInt(e.scrollTop / imgH);
+        // _this.data.list[index].show = true;
+        // _this.setData({
+        //     list: _this.data.list
+        // });
+        // this.fadeIn('in2', 1); 
+        // console.log(this.data.list);
+
+
+
+        /****** 通讯录接口 ******/
+
+        // api.req.get(api.api.user.phoneList,{})
+        // .then((res) => {   
+        //     let datas=res.data;
+        //     console.log(datas);
+        //     if(datas.ret==0){
+        //         console.log(datas.data);
+        //     }
+        // },(err)=>{
+        //     console.log(err);
+        // }); 
+
+
+        
+
+	</script>
+</body>
+</html>

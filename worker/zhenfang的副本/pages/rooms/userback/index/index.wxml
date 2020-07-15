@@ -1,0 +1,24 @@
+<view class="container">
+
+    <block wx:if="{{list.length>0}}">
+    <!-- <scroll-view scroll-y style='height:{{boxHeight}};' > -->
+        <view class='f-ul' >
+            <block wx:for="{{list}}" wx:key="backs">
+                <view class='f-li' data-id="{{item.Id}}">
+                    <view class='title'>{{item.Body}}</view>
+                    <view class='row'>
+                        <view class='author'>该信息由<text>{{item.user.username}}</text>反馈，感谢</view>
+                        <!-- 2017年12月20日 -->
+                        <view class='date'> {{item.Ctime}}</view>
+                    </view>
+                </view>
+            </block>
+            <view wx:if="{{noMore}}" class='noMore'>无更多数据~~</view>
+        </view>
+        
+    <!-- </scroll-view> -->
+    </block>
+    
+    <view class='noList' wx:else>暂无数据~~</view>
+
+</view>

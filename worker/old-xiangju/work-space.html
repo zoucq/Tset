@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+	
+	// http://admin.zcq.test.91xiangju.com/activity/add?activity_id=7
+	$(".nav-tabs li").on('click',function(){
+        var index=$(this).index();
+        $(this).addClass('active').siblings('li').removeClass('active');
+        $('.tab-content .tab-pane').eq(index).addClass('active').siblings('.tab-pane').removeClass('active');
+    });
+
+    $(".nav-tabs li a").on("dblclick",function(e){
+        console.log('focus');
+        $(this).attr('contentEditable',true);
+
+//        var oldht=$(this).html();
+//        var strs="<input type='text' class='edits' style='width:60px;' >";
+//        $(this).html(strs);
+//        $('.edits').focus().val(oldht);
+    });
+
+    $(".nav-tabs li a").on("blur",function(e) {
+        $(this).attr('contentEditable',false);
+        var indexs=$(this).index();
+        var newht=$(this).text();
+        $(this).attr('href','#'+$.md5(newht));
+        $('.tab-content .tab-pane').eq(indexs).attr('id',$.md5(newht)).attr('type_name',newht);
+        $('.tab-content .tab-pane').eq(indexs).find('.house-name').attr('name','house['+newht+'][items][0][name]');
+        $('.tab-content .tab-pane').eq(indexs).find('.house-name').next().attr('name','house['+newht+'][items][0][name]');
+        $('.tab-content .tab-pane').eq(indexs).find('.editable').attr('data-tags-input-name','house['+newht+'][items][0][tag]');
+        $('.tab-content .tab-pane').eq(indexs).find('.editable').find('input:hidden').attr('name','house['+newht+'][items][0][tag][]');
+        $('.tab-content .tab-pane').eq(indexs).find('.banner').attr('name','house['+newht+'][items][0][name]');
+    });
+
+
+//    $(".nav-tabs").on("blur",'.edits',function(){
+//        //console.log('edit');
+//        var objs=$(this).parent();
+//        var indexs=objs.index();
+//        var newht=$(this).val();
+//        objs.html(newht).attr('href','#'+$.md5(newht));
+//        $('.tab-content .tab-pane').eq(indexs).attr('id',$.md5(newht)).attr('type_name',newht);
+//
+//        $('.tab-content .tab-pane').eq(indexs).find('.house-name').attr('name','house['+newht+'][items][0][name]');
+//        $('.tab-content .tab-pane').eq(indexs).find('.house-name').next().attr('name','house['+newht+'][items][0][name]');
+//        $('.tab-content .tab-pane').eq(indexs).find('.editable').attr('data-tags-input-name','house['+newht+'][items][0][tag]');
+//        $('.tab-content .tab-pane').eq(indexs).find('.editable').find('input:hidden').attr('name','house['+newht+'][items][0][tag][]');
+//        $('.tab-content .tab-pane').eq(indexs).find('.banner').attr('name','house['+newht+'][items][0][name]');
+//
+//    });
+
+	//        var obj=$('.tab-content .tab-pane').eq(indexs);
+//        var obj2=obj.find('.house-name');
+//        var obj3=obj.find('.editable');
+//
+//        console.log(obj2);
+//        obj.find('.house-name').attr('name','house['+newht+'][items]['+obj2.parents('.hr2').index()+'][name]');
+//        obj.find('.house-name').next().attr('name','house['+newht+'][items]['+obj2.parents('.hr2').index()+'][id]');
+//
+//        console.log(obj3);
+//        obj.find('.editable').attr('data-tags-input-name','house['+newht+'][items]['+obj3.parents('.hr2').index()+'][tag]');
+//        obj.find('.editable').find('input:hidden').attr('name','house['+newht+'][items]['+obj3.parents('.hr2').index()+'][tag][]');
+
+
+
+	
+
+
+	</script>
+	
+</body>
+</html>

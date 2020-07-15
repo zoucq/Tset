@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+	.mbl {
+	    width: 20em;
+	    height: 20em;
+	    background: url(img/banner.png);
+	    background-size: cover;
+	    overflow: hidden;
+	    margin: 30px;
+	}
+
+	.text {
+	    width: 18em;
+	    height: 18em;
+	    margin: 1em;
+	    background: hsla(0, 0%, 100%, .4);
+	    color: black;
+	    text-align: center;
+	    overflow: hidden;
+	    position: relative;
+	}
+
+	.text::before {
+	    position: absolute;
+	    background: url(img/banner.png);
+	    background-size: cover;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    content: '';
+	    filter: blur(20px);
+	    /*    background: rgba(225, 0, 0, 0.5);*/
+	}
+
+	.text blockquote {
+	   height: inherit;
+	    width: inherit;
+	    display: table-cell;
+	    vertical-align: middle;
+	    position: relative;
+	}
+	</style>
+</head>
+<body>
+	<div class="mbl">
+        <div class="text">
+            <blockquote>
+                所爱穿山海 山海皆可平
+            </blockquote>
+        </div>
+    </div>
+    
+    <script>
+
+// --
+
+ //    var a = [1,2,3];
+	// a.join = a.shift;
+	// console.log(a==1);
+	// console.log(a==2);
+	// console.log(a == 1 && a == 2 && a == 3);
+
+
+	// const a = {
+	//   i: 1,
+	//   toString: function () {
+	//     return a.i++;
+	//   }
+	// }
+
+	// if(a == 1 && a == 2 && a == 3) {
+	//   console.log('Hello World!');
+	// }
+
+
+	var a= 1;
+	var a‍= 2; //one zero-width character
+	var a‍‍= 3; //two zero-width characters (or you can use the other one)
+	if(a==1&&a‍==2&&a‍‍==3) {
+	    console.log("Why hello there!")
+	}
+
+
+	    // for(var i=0;i<3;i++){
+	    // 	test(i,0)
+	    // }
+
+	    // function test(index,now){
+	    // 	console.log(index,now);
+	    // 	setTimeout(function(){
+	    // 		test(index,now+2);
+	    // 	},200);
+	    // }
+
+
+    	// function f(){console.log('out-side')}
+
+    	// (function(){
+    	// 	if(false){
+    	// 		function f(){console.log('con-side')}
+    	// 	}
+    	// 	f();
+
+    	// }());
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0}
+		body{
+			background: rgb(14,28,44);
+			margin: 50px;
+		}
+		.box{
+			position: relative;
+			height: 300px; width: 300px;
+			display: flex; justify-content: center; align-items: center;
+		}
+		.box .circle{
+			height: 200px; width: 200px;
+			border-radius: 50%;
+			border: 10px solid yellow;
+			filter: drop-shadow(0 0 10px white);
+			animation: shrink 1s infinite;
+		}
+		.box .btn{
+			position: absolute; 
+			top: 50%; left: 50%; transform: translate(-50%,-50%); padding:3rem;
+			background:green; color: white; border-radius: 50%;
+		}
+		@keyframes shrink{
+			100%{
+				height: 10px; width: 10px;
+			}
+		}
+
+		li{
+			display: inline-block; height: 200px; width: 150px;
+			background: url(http://www.imaoda.com/s/img/github/sgs.jpg);
+			background-size: 100%;
+			box-shadow: 0 2px 2px #222222;
+			border: 2px solid transparent;
+			border-radius: 5px;
+			filter: brightness(.7);
+			cursor: pointer;
+			transition: all .2s
+		}
+		li:hover{
+			box-shadow: 0 0 30px yellow;
+			border: 2px solid yellow;
+			transform: translate(0,-10%);
+			filter: brightness(1);
+		}
+
+
+		.blur-box{
+			position: relative; height:200px; width:300px;
+			background:url(http://www.imaoda.com/s/img/github/21.jpg) 0 0;
+			overflow: hidden;
+		}
+		.blur-modal{
+			position: absolute; height:50px; width:300px;
+			top: 150px;
+			background:url(http://www.imaoda.com/s/img/github/21.jpg) 0 0;
+			filter:blur(1rem);
+		}
+		.black-modal{
+			position: absolute; height:50px; width:300px;
+			top: 150px;
+			background: rgba(0,0,0,.2);
+			color: white
+		}
+
+
+		.suit{
+			position: relative
+		}
+		.figure{
+			background: url(http://www.imaoda.com/s/img/github/21.jpg);
+			background-size: 200%;
+			height: 200px; width: 400px;
+			filter: blur(16px)
+		}
+		.modal{
+			position: absolute;
+			height: 200px; width: 400px; top: 0px; left: 0px; 
+			background: rgba(0,0,0,.5);
+			color: white; text-align: center
+		}
+
+
+		.btn_1{
+			height: 100px; width: 300px; background: green; margin: 2rem;
+			box-shadow: 0 0 1rem gray;
+			cursor: pointer;
+			transition: all .3s;
+			border-radius: 50px;
+			outline: none;
+		}
+		.btn_1:active{
+			box-shadow: 0 0 0px gray; transform: scale(0.99)
+		}
+
+
+		.boxs{
+			height: 3rem; width: 3rem; 
+			line-height: 2.8rem; text-align: center; 
+			color: white; 
+			text-shadow: 1px 1px 5px black;
+			font-weight: bold;
+			font-size: 2rem;
+			border-radius: .5rem;
+			background: linear-gradient(225deg, rgb(31,89,146),rgb(31,89,146) 10% ,rgb(35,175,230) 60%,rgb(35,175,230) 70%,rgb(29,136,203) );
+			box-shadow: 0 0 5px black
+		}
+		.boxs:hover{
+			box-shadow: 0 0 5px gray inset;
+			transform: scale(.95)
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+
+	<div class='box'>
+		<div class='circle'></div>
+		<div class='btn'>开始</div>
+	</div>
+
+	<br>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+	<br>
+
+	<div class='blur-box'>
+		<div class='blur-modal'></div>
+		<div class='black-modal'> 描述文字 </div>
+	</div>
+
+
+	<div class='suit' >
+		<div class='figure'></div>
+		<div class='modal'>
+			功夫熊猫
+		</div>
+	</div>
+
+
+	<button class="btn_1"></button>
+
+
+	<div class="boxs">
+		
+	</div>
+
+	<script>
+			
+		var sum = 9;
+		var single = [1,2,3];
+		var total = [];
+
+		/*
+
+		1. 1+1+1+1+1+1+1+1+1 
+		2. 1+1+1+1+1+1+1+2
+		3. 1+1+1+1+1+1+3
+
+		x+y=4;
+
+		0+4
+		1+3
+		2+2
+		3+1
+		4+0
+
+		2n+1
+
+		*/
+
+
+		var arr = [1,1,1,1,1,1,1,1,1];
+
+		for(var i=0;i<=arr.length;i++){
+			for(var j=0;j<=arr.length;j++){
+				if(i>=1 && i<=3 && j>=1 && j<=3 && i+j==9){
+				console.log(i,j)
+
+				}
+			}
+		}
+
+
+		console.log(total);
+
+
+	</script>
+	
+
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+
+		.wrapper{
+			margin: 0 auto;
+			width: 355px;height: 244px;
+			position: relative;
+		}
+		.wrapper .bg{
+			width: 100%;height: 100%;
+			position: absolute;
+			left: 0;top: 0;
+			z-index: 99;
+		}
+		.wrapper .bg .imgs{			
+			z-index: 1;
+			display: inline-block;
+			width: 355px;height: 244px;
+		}
+		.wrapper:hover .bg{
+			filter: blur(4px);
+		}
+		
+
+
+		.wrapper .box{
+			width: 355px;height: 244px;
+			position: absolute;
+			z-index: 999;
+		}
+		.wrapper .box .item{
+			position: absolute;
+			left: 0;right: 0;top: 0;bottom: 0;
+			margin: auto;
+
+			width: 80%;
+			height: 80%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.wrapper .box .item::before {
+		 	content: " ";
+		 	position: absolute;
+		 	left: 50%;
+		 	top: 0;
+		 	width: 0;
+		 	height: 100%;
+		 	border: 3px solid #fff;
+		 	border-left: none;
+		 	border-right: none;
+		 	transition: all 0.8s;
+		 	box-sizing:border-box;
+		}
+		.wrapper .box .item::after {
+		 	content: " ";
+		 	position: absolute;
+		 	left: 0;
+		 	top: 50%;
+		 	width: 100%;
+		 	height: 0;
+		 	border: 3px solid #fff;
+		 	border-top: none;
+		 	border-bottom: none;
+		 	transition: all 0.8s;
+		 	box-sizing:border-box;
+		}
+		.wrapper .box .item .title{
+			display: block;
+			font-size: 30px;
+			text-align: center;
+		   font-family: '微软雅黑';
+		   background-image: -webkit-linear-gradient(left, yellow, red 25%, yellow 50%, red 75%, yellow 100%);
+		   -webkit-background-clip: text;
+		   -webkit-text-fill-color: transparent;
+		   animation: moveBg 4s infinite linear;
+		   background-size: 200% 100%;
+		   opacity: 0;
+		   transition: all 0.5s;
+		}
+
+		.box:hover .item::before{
+			width: 100%;
+			left: 0;
+		}
+		.box:hover .item::after{
+			height: 100%;
+			top: 0;
+		}
+		
+		.box:hover .item .title{
+			opacity: 1;
+			transition: all 0.5s;
+		}
+
+		@keyframes moveBg
+		{
+			from {background-position: 0 0;}
+			to {background-position: -100% 0;}
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="bg">	
+			<img class="imgs" src="../img/ccc.png" alt="">
+		</div>
+		<div class="box">
+			<div class="item">
+				<h1 class="title">Hello World！</h1>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style media="screen">
+		*{margin:0;padding: 0;box-sizing: border-box;}
+		ul{
+			list-style: none;
+		}
+		 
+		.container{
+			width: 100%;
+			height: auto;
+		}
+
+		 .nav{
+			width: 100%;
+			height: 80px;
+			border-bottom: 1px solid #ccc;
+			background: #eee;
+			padding-left: 200px;
+			box-sizing: border-box;
+		 }
+		 .nav > ul{
+			display: flex;
+			width: 100%;height: 100%;
+		 }
+		 .nav .item{
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-right: 1px solid #ccc;
+			position: relative;
+		 }
+		 .nav .item .sub-item{
+			position: absolute;
+			top: 80px;
+			left: 50%;
+			display: none;
+		 }
+		.nav .item .sub-item > li{
+			width: 200px;
+			height: 36px;
+			background: #1f7aff;
+			text-align: center;
+			line-height: 36px;
+			border-bottom: 1px solid blue;
+		}
+		.nav .item .sub-item.show{
+			display: block;
+		}
+
+
+		.slider-left{
+			width: 200px;
+			height: 100%;
+			border: 1px solid #ccc;
+			position: fixed;
+			left: 0;
+			top: 20px;
+			background: #cbedff;
+		}
+
+		.slider-left.active{
+			display: none;
+		}
+		.nav.active{
+			padding-left: 0;
+		}
+
+
+		.box{
+			width: 600px;
+			height: 600px;
+			background: rgba(255,0,0,0.5);
+		}
+		.sub-box{
+			width: 400px;
+			height: 400px;
+			background: rgba(0,255,0,0.5);
+		}
+		.min-box{
+			width: 200px;
+			height: 200px;
+			background: rgba(0,0,255,0.5);
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<button class="btn">open</button>
+
+	<div class="container">
+		
+		<div class="slider-left">
+			<ul>
+				<li>导航1</li>
+				<li>导航1</li>
+				<li>导航1</li>
+				<li>导航1</li>
+			</ul>
+		</div>
+
+		<div class="nav">
+			<ul>
+				<li class="item">
+					<span>加点</span>
+					<ul class="sub-item">
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+					</ul>
+				</li>
+				<li class="item">
+					<span>加点</span>
+					<ul class="sub-item">
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+						<li>1</li>
+					</ul>
+				</li>
+
+			</ul>
+
+			<div class="box">
+				<div class="sub-box">
+					<div class="min-box">
+						
+					</div>
+				</div>  
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			$('.item').on('click',function(e){
+				$(this).find('.sub-item').toggleClass('show');
+				return false;
+			});
+
+			$(document).on('click',function(){
+				$('.sub-item').removeClass('show');
+			});
+
+			$('.btn').on('click',function(){
+				$('.slider-left').toggleClass('active');
+				$('.nav').toggleClass('active');
+			});
+
+			$('.min-box').on('click',function(e){
+				alert('min');
+				e.stopPropagation();
+			});
+			$('.box').on('click',function(){
+				alert('box');
+			});
+
+
+		});
+
+
+	</script>
+
+
+</body>
+</html>

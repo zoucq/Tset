@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <input type="file" accept="video/*" />
+    <p id="progress"></p>
+
+    <canvas width="480" height="480" id="canvas">
+    
+    </canvas>
+    <img src="" id="result">
+
+    <div class='img_list' id='imgBox'>
+        
+    </div>
+
+
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script type="text/javascript" src="https://imgss.github.io/demo/gif/gif.js"></script>
+    <script >
+        
+        document.querySelector('input').addEventListener('change', extractFrames, false);
+
+        function extractFrames() {
+            console.log('extractFrames')
+          var video = document.createElement('video');
+          var array = [];
+          var canvas = document.createElement('canvas');
+          var ctx = canvas.getContext('2d');
+          var pro = document.querySelector('#progress');
+
+          var img_list = document.querySelector('.img_list');
+            var imgObjList = [],count = 0;
+
+        var canvas2 = document.getElementById('canvas');
+        var ctx2 = canvas.getContext('2d');
+          let gif = new GIF({
+                workers: 4,
+                quality: 30,
+                workerScript:'https://imgss.github.io/demo/gif/gif.worker.js'
+                // transparent: "#fff",
+                // background: '#ffffff',
+            });
+            gif.on("finished",function(blob){
+                console.log(URL.createObjectURL(blob));
+                var file = new FileReader();
+                file.readAsDataURL(blob);
+                file.onload = function(){
+                    document.getElementById("result").setAttribute("src", file.result)
+                }
+            })
+
+          function initCanvas(e) {
+            console.log('initCanvas')
+            canvas.width = this.videoWidth;
+            canvas.height = this.videoHeight;
+          }
+
+          function drawFrame(e) {
+            console.log('drawFrame')
+            this.pause();
+            ctx.drawImage(this, 0, 0);
+            /* 
+            this will save as a Blob, less memory consumptive than toDataURL
+            a polyfill can be found at
+            https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
+            */
+            canvas.toBlob(saveFrame, 'image/jpeg');
+            pro.innerHTML = ((this.currentTime / this.duration) * 100).toFixed(2) + ' %';
+            console.log('drawFrame',this.currentTime,this.duration,((this.currentTime / this.duration) * 100).toFixed(2))
+            
+            if (this.currentTime < this.duration) {
+              this.play();
+            }
+            if (((this.currentTime / this.duration) * 100).toFixed(2) >= 1) {
+              onend();
+            }
+          }
+
+          function saveFrame(blob) {
+            array.push(blob);
+          }
+
+          function revokeURL(e) {
+            URL.revokeObjectURL(this.src);
+            count++;
+             if (count === imgObjList.length ){
+                    generateGif(imgObjList);
+                }
+          }
+          
+          function onend(e) {
+            console.log('onend',array)
+            var img;
+            // do whatever with the frames
+            for (var i = 0; i < array.length; i++) {
+              img = new Image();
+              imgObjList.push(img);
+              img.onload = revokeURL;
+              img.src = URL.createObjectURL(array[i]);
+              img_list.appendChild(img);
+            }
+            // we don't need the video's objectURL anymore
+            URL.revokeObjectURL(this.src);
+
+            // var imgs = document.querySelectorAll('.my_list img');
+            // var arr = []
+            // imgs.forEach(function(i,v){
+            //     console.log(i,v)
+            //     arr.push(v)
+            // })
+            // gifInit( imgs,[document.querySelector('#imgaaa')] );
+
+          }
+
+          function generateGif(imgObjList) {
+
+            for (let i=0;i<imgObjList.length;i++){
+                ctx2.save();
+                ctx2.drawImage(imgObjList[i],0,0,canvas2.width,canvas2.height);
+                ctx2.restore();
+                gif.addFrame(canvas2,{copy:true,delay:300})
+                ctx2.clearRect(0,0,canvas2.width,canvas2.height)
+            }
+            gif.render();
+        }
+          
+          video.muted = true;
+
+          video.addEventListener('loadedmetadata', initCanvas, false);
+          video.addEventListener('timeupdate', drawFrame, false);
+          video.addEventListener('ended', onend, false);
+
+          video.src = URL.createObjectURL(this.files[0]);
+          video.play();
+        }
+
+    </script>
+
+    <script>
+
+        // //要转换为图片的dom对象
+        // var element = document.querySelector('.img_list img');
+        // //要显示图片的img标签
+        // var image = document.querySelector('#imgaaa');
+        // var imageccc = document.querySelector('#imgccc');
+
+        // html2canvas(element,{allowTaint: true}).then(function(canvas) { 
+
+            // var imageData = canvas.toDataURL(1);
+            // image.src = imageData;
+
+            // var arr=[
+            //     image,
+            //     imageccc
+            // ];
+
+            // setTimeout(function(){
+
+            //     //调用gif对象方法
+            //     var gif = new window.GIF({
+            //         workers: 2,
+            //         quality: 10,
+            //         workerScript:'https://imgss.github.io/demo/gif/gif.worker.js'
+            //     });
+
+            //     //遍历图片对象
+            //     arr.map(item=>{
+            //         gif.addFrame(item, {delay: 1000});
+            //     });
+
+            //     gif.on('finished', function(blob) {
+
+            //     //下载动作
+            //     var el = document.createElement('a');
+            //         el.href = URL.createObjectURL(blob);
+            //         el.download = 'demo-name'; //设置下载文件名称
+            //         document.body.appendChild(el);
+            //         var evt = document.createEvent("MouseEvents");
+            //         evt.initEvent("click", false, false);
+            //         el.dispatchEvent(evt);
+            //         document.body.removeChild(el);
+            //     });
+
+            //     gif.render();
+
+            //  },1000)
+
+        // })
+
+</script>
+    
+</body>
+</html>

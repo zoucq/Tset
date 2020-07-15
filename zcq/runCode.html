@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+	// <![CDATA[
+	function runCode(obj) { 
+	  var winname = window.open('', "_blank", ''); 
+	  winname.document.open('text/html', 'replace'); 
+	  winname.document.write(obj.value); 
+	  winname.document.close(); 
+	}
+	// ]]>
+	</script>
+	<p> 
+		<textarea rows="10" id="code1" style="width: 80%;"> 
+		这里是要输入的内容
+		</textarea><br /> 
+		<input onclick="runCode(document.getElementById('code1'))" 
+		value="运行" type="button" />
+	</p>
+	<script>
+		var arr=[
+			{id:0,name:'aaa'},
+			{id:1,name:'ccc'},
+			{id:0,name:'bbb'},
+			{id:0,name:'ddd'},
+			{id:2,name:'ddd'},
+			{id:1,name:'ddd'}
+		];
+
+		// 实现
+		var news = [
+		  {
+		    "id": 0,
+		    "name": [
+		      "aaa",
+		      "bbb",
+		      "ddd"
+		    ]
+		  },
+		  {
+		    "id": 1,
+		    "name": [
+		      "ccc",
+		      "ddd"
+		    ]
+		  },
+		  {
+		    "id": 2,
+		    "name": "ddd"
+		  }
+		]
+
+		console.log(arr);
+		
+		var data2 = {};
+		arr.forEach(function (item, i) {
+		    if (!data2[item.id]) {
+		        data2[item.id] = item;
+		    } else {
+		        data2[item.id].name += ',' + item.name;
+		        data2[item.id].name=data2[item.id].name.split(',');
+		    }
+		});
+		console.log(arr);
+		console.log(data2);
+
+		console.log(JSON.stringify(data2,null,2));
+
+
+
+        var demo = [
+	        {
+	        	id:'01',
+	        	type:'新房源',
+	        	times:'2018-02-24 17:16:04',
+	        	room:{
+	        		house_id: 1, house_name: "哈佛剑桥牛津清华北大家里蹲1", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'011',
+	        	type:'新房源',
+	        	times:'2018-02-24 12:16:04',
+	        	room:{
+	        		house_id: 1, house_name: "哈佛剑桥牛津清华北大家里蹲2", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'02',
+	        	type:'新房源',
+	        	times:'2018-02-25 12:16:04',
+	        	room:{
+	        		house_id: 2, house_name: "哈佛剑桥牛津清华北大家里蹲", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'03',
+	        	type:'新房源',
+	        	times:'2018-02-14 12:16:04',
+	        	room:{
+	        		house_id: 1, house_name: "哈佛剑桥牛津清华北大家里蹲3", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'04',
+	        	type:'新房源',
+	        	times:'2018-02-26 12:16:04',
+	        	room:{
+	        		house_id: 3, house_name: "哈佛剑桥牛津清华北大家里蹲", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'05',
+	        	type:'新房源',
+	        	times:'2018-02-22 12:16:04',
+	        	room:{
+	        		house_id: 2, house_name: "哈佛剑桥牛津清华北大家里蹲", area: "45"
+	        	}
+	        },
+	        {
+	        	id:'06',
+	        	type:'动态',
+	        	times:'2018-02-23 12:16:04',
+	        	room:{
+	        		house_id: 1, house_name: "哈佛剑桥牛津清华北大家里蹲", area: "45"
+	        	}
+	        }
+        ];
+        var test=[
+        	{
+                "id":"01","type":"新房源","room":[
+        			{"house_id":1,"house_name":"哈佛剑桥牛津清华北大家里蹲1","area":"45"},
+        			{"house_id":1,"house_name":"哈佛剑桥牛津清华北大家里蹲2","area":"45"},
+        			{"house_id":1,"house_name":"哈佛剑桥牛津清华北大家里蹲3","area":"45"}
+        		]
+        	},
+        	{
+                "id":"02","type":"新房源","room":[{"house_id":2,"house_name":"哈佛剑桥牛津清华北大家里蹲","area":"45"},{"house_id":2,"house_name":"哈佛剑桥牛津清华北大家里蹲","area":"45"}]
+            },
+        	{
+                "id":"04","type":"新房源","room":[{"house_id":3,"house_name":"哈佛剑桥牛津清华北大家里蹲","area":"45"}]
+            }
+    	]
+
+        let obj2 = {};
+        let arr2=[];
+
+        let objArr=JSON.parse(JSON.stringify(demo));
+
+
+        objArr.forEach(function (item, i) {
+        	let d=[];
+        	d.push(item.room);
+        	item.room=d;
+            if (item.type =='新房源'){    
+                if (!obj2[item.room[0].house_id]) {
+                    obj2[item.room[0].house_id]=item;
+                } else {
+                    obj2[item.room[0].house_id].room=obj2[item.room[0].house_id].room.concat(item.room);
+                }
+               
+            }
+        });
+
+        console.log(obj2);
+        console.log(arr2);
+
+        for(let i in obj2){
+        	arr2.push(obj2[i]);
+        }
+        console.log(arr2);
+
+        let mm={};
+        let index;
+        let on=true;
+        arr2.map((v,i)=>{  
+            let id = v.room.house_id;   
+            objArr.map((vv,ii)=>{
+                if (vv.type == '新房源') {
+                    if(on){
+                        mm = vv;
+                        index = ii;
+                    }  
+                    objArr.splice(ii,1);
+                    on=false;
+                }
+            });
+        });
+
+        console.log('ddddd', objArr);
+
+        objArr=objArr.concat(arr2);
+
+        objArr.sort((a,b)=>{
+        	a=new Date(a.times);
+        	b=new Date(b.times);
+        	return a>b;
+        })
+        
+        console.log('eeee', objArr);
+        
+
+
+        // let data2 = {};
+        // let arr=[];
+
+        // let objArr=JSON.parse(JSON.stringify(datas.data));
+
+        // objArr.forEach(function (item, i) {
+        //     if (item.type =='新房源'){ 
+        //         if (item.room && !data2[item.room.house_id]) {
+        //             data2[item.room.house_id]=item;
+        //             arr.push(data2[item.room.house_id].room);
+        //         } else {
+        //             arr.push(item.room);
+        //         }
+        
+        //     }
+        // });
+
+        // let mm={};
+        // let index;
+        // let on=true;
+        // arr.map((v,i)=>{  
+        //     let id = arr[0].house_id;   
+        //     objArr.map((vv,ii)=>{
+        //         if (vv.type == '新房源' && vv.room.house_id == id) {
+        //             if(on){
+        //                 mm = vv;
+        //                 index = ii;
+        //             }  
+        //             objArr.splice(ii,1);
+        //             on=false;
+        //         }
+        //     });
+        // });
+
+        // // console.log('ddddd', objArr);
+
+        // // console.log(mm);
+        // mm.room=arr;
+        // // console.log(mm);
+        // objArr.splice(index,0,mm);
+        
+        // console.log('eeee', objArr);
+
+
+
+        // let obj2 = {};
+        // let arr2 = [];
+
+        // let objArr = JSON.parse(JSON.stringify(datas.data));
+
+        // objArr.forEach(function (item, i) {
+        //     let d = [];
+        //     d.push(item.room);
+        //     item.room = d;
+        //     if (item.type == '新房源') {
+        //         if (item.room && !obj2[item.room[0].house_id]) {
+        //             obj2[item.room[0].house_id] = item;
+        //         } else {
+        //             obj2[item.room[0].house_id].room = obj2[item.room[0].house_id].room.concat(item.room);
+        //         }
+
+        //     }
+        // });
+
+        // console.log(obj2);
+        // console.log(arr2);
+
+        // for (let i in obj2) {
+        //     arr2.push(obj2[i]);
+        // }
+        // console.log(arr2);
+
+        // let index;
+        // let on = true;
+        // arr2.map((v, i) => {
+        //     let id = v.room.house_id;
+        //     objArr.map((vv, ii) => {
+        //         if (vv.type == '新房源') {
+        //             if (on) {
+        //                 index = ii;
+        //             }
+        //             objArr.splice(ii, 1);
+        //             on = false;
+        //         }
+        //     });
+        // });
+
+        // console.log('ddddd', objArr);
+
+        
+
+        
+         
+
+        // console.log(index)
+        // // objArr = objArr.concat(arr2);
+        // // arr2.reverse();
+        // objArr = arr2.concat(objArr);
+        // // objArr.splice(index, 0, arr2[0]);
+
+        
+        // objArr.map((v,i)=>{
+        //     that.data.list.unshift(v);
+        // });
+
+        // objArr.sort(function (a, b) {
+        //     console.log(a)
+        //     a.times = a.times.replace(/-/g, '/');
+        //     b.times = b.times.replace(/-/g,'/');
+        //     a = new Date(a.times);
+        //     b = new Date(b.times);
+        //     return a > b; 
+        // });
+
+
+
+	</script>
+</body>
+</html>

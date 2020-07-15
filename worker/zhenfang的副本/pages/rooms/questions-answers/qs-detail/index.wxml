@@ -1,0 +1,60 @@
+<view class="container">
+    <loading wx:if="{{load}}">加载中</loading> 
+    
+    <view class='question'>
+        <view class='item' bindtap='handleGo' data-go='../qs-detail/index?id=1'>
+            <view class='title'><text>问题：</text>{{question.Body}}</view>
+            <view class='info'>
+                <view class='user'>
+                    <view class='avtor'>
+                        <image wx:if="{{question.user.headimg}}" src='{{question.user.headimg}}' />
+                        <image wx:else="" src='https://img.xiaopiu.com/userImages/img215969455ab0.jpg' />
+                    </view>
+                    <view class='username'>{{question.user.username}}</view>
+                    <view class='time'>{{question.Ctime}}</view>
+                </view>
+                <view class='huida'>回答（{{question.answer_count}}）</view>
+            </view>
+            <view class='like'>
+                <button type='primary'>关注</button>
+            </view>
+        </view>
+    </view>
+
+    <!-- <scroll-view></scroll-view> -->
+    <view class='answer' wx:if='{{list.length>0}}'>
+        <block wx:for="{{list}}"  wx:key="ques">
+        <view class='item' >
+            <view class='title'>{{item.Body}}</view>
+            <view class='info'>
+                <view class='user'>
+                    <view class='avtor'>
+                        <image wx:if="{{item.user.headimg}}" src='{{item.user.headimg}}' />
+                        <image wx:else="" src='https://img.xiaopiu.com/userImages/img215969455ab0.jpg' />
+                    </view>
+                    <view class='username'>
+                        {{item.user.username}}
+                    </view>
+                    <view class='bj' hidden="{{item.user.record_name=='未标记'}}">{{item.user.record_name}}</view>
+                    <view class='time'>{{item.Ctime}}</view>
+                </view>
+                <view class='huida'>
+                    <icon class='iconfont icon-xihuan'></icon>
+                    <text>有用（{{item.Zan}}）</text>
+                </view>
+            </view>
+        </view>
+        </block>
+        <view class='noMore' wx:if='{{noMore}}'>我也是有底线的~~</view>
+
+    </view>
+    <view class='noList' wx:else>暂无数据~</view>
+
+    <form bindsubmit="formSubmit">
+        <view class='bottom'>
+            <input type='text' name='answer' class='txt' placeholder='请输入您的回答' value='{{content}}'></input>
+            <button class='btn' formType="submit">确定</button>
+        </view>
+    </form>
+
+</view>

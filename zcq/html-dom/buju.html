@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+		ul,ol{list-style: none;}
+
+		div{
+			border: 1px solid #ccc;box-sizing: border-box;
+		}
+
+		/*
+			float+margin
+			缺点是：
+			1. 当包裹box宽度小于左右两边box宽度之和时，右侧栏会被挤下去；
+			2. html的结构不正确
+		*/
+		.wrapper{
+			width: 600px;height: 300px;margin: 10px;
+		}
+		.wrapper .left{
+			float: left;width: 200px;height: 100%;
+		}
+		.wrapper .right{
+			float: right;width: 200px;height: 100%;
+		}
+		.wrapper .middle{
+			height: 100%;margin-left: 210px;margin-right: 210px;background:#eee;
+		}
+
+
+		/*
+			position+margin
+			好处是：html结构正常。
+			缺点时：当父元素有内外边距时，会导致中间栏的位置出现偏差
+		*/
+		.wrapper2{
+			width: 600px;height: 300px;position: relative;margin: 10px;
+		}
+		.wrapper2 .left{
+			position:absolute;width: 200px;height: 100%;top: 0;left: 0;
+		}
+		.wrapper2 .right{
+			position:absolute;width: 200px;height: 100%;top: 0;right: 0;
+		}
+		.wrapper2 .middle{
+			height: 100%;margin-left: 210px;margin-right: 210px;background:#eee;
+		}
+
+
+		.wrapper3{
+			width: 600px;height: 300px;margin: 10px;
+		}
+		.wrapper3 .left{
+			float: left;width: 200px;height: 100%;margin-left: -100%;
+		}
+		.wrapper3 .right{
+			float: left;width: 200px;height: 100%;margin-left: -200px;
+		}
+		.wrapper3 .middle{
+			float:left;width: 100%;border: 0;
+		}
+		.wrapper3 .middle .main{
+			margin-left: 210px;margin-right: 210px;background:#eee;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<!-- 必须这样布局 -->
+	<div class="wrapper">
+		<div class="left">float</div>
+		<div class="right">float+margin</div>
+		<div class="middle">float</div>
+	</div>
+
+	<!-- 正常布局 -->
+	<div class="wrapper2">
+		<div class="left">position</div>
+		<div class="middle">position+margin</div>
+		<div class="right">position</div>
+	</div>
+
+	<!-- 必须这样布局 -->
+	<div class="wrapper3">
+		<div class="middle">
+			<div class="main">
+				margin
+			</div>
+		</div>
+		<div class="left">float+(margin-100%)</div>
+		<div class="right">float+(margin-(box-width))</div>
+	</div>
+
+	
+</body>
+</html>

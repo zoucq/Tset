@@ -1,0 +1,344 @@
+<loading wx:if="{{load}}">加载中</loading> 
+<!--主要内容  -->
+<view class="container">
+    <view class='header'>
+        <view class='h-up'>
+            <view class='up-left'>
+                <view class='title'>{{data.house_attrs.Name}}</view>
+                <view class='biaoqian' >
+                    <!-- 状态1 -->
+                    <text wx:if="{{data.house_attrs.Status!=0}}">{{data.house_attrs.Status}}</text>
+                    <!-- 状态2 -->
+                    <text wx:if="{{data.house_attrs.RenovationStatus!=0}}">{{data.house_attrs.RenovationStatus}}</text>
+                    <!-- 状态3 -->
+                    <text wx:if="{{data.house_attrs.ArchitecturalType!=0}}">{{data.house_attrs.ArchitecturalType}}</text>
+                </view>
+            </view>
+            <view class='up-right'>
+                {{data.house_attrs.Ctime}}更新
+            </view>
+        </view>
+        <view class='h-center'>
+            <view class='c-left'>
+                <view class='addr' bindtap="handleGo" 
+                data-go="../map/index?name={{data.house_attrs.Name}}&&addr={{data.house_attrs.Address}}&&lat={{data.house_attrs.Lat}}&&lon={{data.house_attrs.Lon}}" >
+                    <icon class="iconfont icon-weizhi"></icon>{{data.house_attrs.Address}}
+                </view>
+                <view class='price' wx:if="{{data.house_attrs.Price!=0}}">
+                    均价：<text>{{data.house_attrs.Price}}</text>{{data.house_attrs.PriceUnit}}
+                </view>
+                <text class='price' wx:else>价格待定</text>
+                <view class='start-time' wx:if="{{data.house_attrs.OpenTime}}">
+                    开盘时间：预计{{data.house_attrs.OpenTime}}
+                </view>
+                <view class='start-time' wx:else>
+                    暂无时间
+                </view>
+                <view class='end-time' wx:if="{{data.house_attrs.ApartmentTime}}">
+                    交房时间：预计{{data.house_attrs.ApartmentTime}}
+                </view>
+                <view class='end-time' wx:else>
+                    暂无时间
+                </view>
+                <view class='detail' bindtap='handleGo' 
+                        data-go="../room-info/index?id={{id}}">
+                    <icon class='iconfont icon-chankangengduo'></icon>查看详情
+                </view>
+            </view>
+            <view class='c-right' bindtap="handleGo" data-go='../photos/index/index?house_id={{id}}'>
+                <view class='picture'>
+                    <icon class="iconfont icon-xiangce"></icon>
+                    <text>相册</text>
+                </view>
+            </view>
+        </view>
+        <view class="h-down">
+            <text bindtap="handleGo" data-go="../userback/submit/index?house_id={{id}}">帮助纠错</text>
+        </view>
+    </view>
+
+    <view class='margin-bottom'></view>
+
+    <view class='rooms' wx:if="{{data.rooms.length>0}}">
+        <view class='r-top'>
+            <view class='title new'>在售房源</view>
+            <view class='more' bindtap="handleGo" data-go="../room-type/index?house_id={{id}}">
+                更多<icon class='iconfont icon-gengduo'></icon> 
+            </view>
+        </view>
+        <view class='r-ul'>
+            <block wx:for="{{data.rooms}}" wx:key="rooms">
+            <view class='r-li'>
+                <view>{{item.title}}</view>
+                <view>{{item.area}}㎡</view>
+                <view class='total'>
+                    <block wx:if="{{item.price_unit!=-1 && item.price_unit=='元/m²'}}">
+                        约{{(item.area*item.price)/10000}}万<text>({{item.price}}{{item.price_unit==-1?'元/m²':item.price_unit}})</text>
+                    </block>
+                    <block wx:if="{{item.price_unit!=-1 && item.price_unit=='万元/套'}}">
+                        约{{item.price}}{{item.price_unit}}<text></text>
+                    </block>
+                    <block wx:if="{{item.price_unit==-1}}">
+                        价格待定
+                    </block>
+                </view>
+                <!-- id={{item.id}}&&area={{item.area}} -->
+                <view bindtap="handleShowHuxing" data-index="{{index}}">
+                    <icon class='iconfont icon-huxing'></icon>户型图
+                </view>
+            </view>
+            </block>
+
+        </view>
+    </view>
+
+    <view class='margin-bottom' wx:if="{{data.rooms.length>0}}"></view>
+
+    <view class='rooms state' wx:if="{{data.lastNews.Body}}">
+        <view class='r-top'>
+            <view class='title new'>楼房动态</view>
+            <view class='more' bindtap='handleGo' data-go='../room-state/index?house_id={{id}}'>
+                更多<icon class='iconfont icon-gengduo'></icon> 
+            </view>
+        </view>
+        <view class='s-ul'>
+            <view class='s-li'>
+                <view class='title'>
+                    {{data.lastNews.Title}}
+                </view>
+                <view class='desc'>
+                    {{data.lastNews.Body}}
+                </view>
+                <view class='date'>
+                    {{data.lastNews.Ctime}}
+                </view>
+            </view>
+            <view class='solid-bottom'></view>
+            <view class='subscribe {{followActive?"active":""}}'>
+                <view bindtap="follow" data-name='订阅' data-id="{{followId}}">
+                    <icon class="iconfont icon-add"></icon>{{followText}}
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='margin-bottom' wx:if="{{data.lastNews.Body}}"></view>
+
+    <view class='rooms q-a' wx:if="{{false}}">
+        <view class='r-top'>
+            <view class='title new'>问答</view>
+            <view class='more' bindtap="handleGo" data-go="../questions-answers/qs-list/index?house_id={{id}}">
+                问题数<text class='nums'>{{data.question_count}}+</text>
+                <icon class='iconfont icon-gengduo'></icon> 
+            </view>
+        </view>
+
+        <!-- <swiper bindchange='ban_change' class='q-ul' wx:if="{{false}}">
+            <swiper-item wx:for="{{data.lastQuestions}}" wx:key="qs">
+                <view class='q-li' animation="{{index!=currentSwiper?ani:ani2}}">
+                    <view class='title'>
+                        {{item.Body}}
+                    </view>
+                    <view class='desc'>
+                        {{item.lastAnswer.Body}}
+                    </view>
+                    <view class='users'>
+                        <view class='boxs'>
+                            <view class='avtor'>
+                                <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+                            </view>
+                            <view class='info'>
+                                <text class='info-name'>朱佳</text>
+                                <text class='info-date'>{{item.Mtime}}</text>
+                            </view>
+                        </view>
+                        <view class='love'>
+                            <icon class='iconfont icon-xihuan'></icon>234
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper> -->
+
+        <view class="we-container" wx:if="{{false}}">
+            <view class="we-wrapper q-ul"
+                bindtouchstart="touchstart"
+                bindtouchmove="touchmove"
+                bindtouchend="touchend"
+                animation="{{animationData}}">
+                <block wx:for="{{data.lastQuestions}}" wx:key="qs">
+                <!-- animation="{{index!=swiper?ani:ani2}}" -->
+                    <view class='we-slide q-li' 
+                        animation="{{index!=swiper?ani:ani2}}">
+                        <view class='title'>
+                            {{item.Body}}
+                        </view>
+                        <view class='desc'>
+                            {{item.lastAnswer.Body}}
+                        </view>
+                        <view class='users'>
+                            <view class='boxs'>
+                                <view class='avtor'>
+                                    <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+                                </view>
+                                <view class='info'>
+                                    <text class='info-name'>{{item.user.username}}</text>
+                                    <text class='info-date'>{{item.Ctime}}</text>
+                                </view>
+                            </view>
+                            <view class='love'>
+                                <icon class='iconfont icon-xihuan'></icon>{{item.Zan}}
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+       
+        <view class='subscribe'>
+            <view bindtap="handleGo" data-go="../questions-answers/qs-submit/index?house_id={{id}}">
+                <icon class='iconfont icon-message'></icon>提问
+            </view>
+        </view> 
+        
+    </view>
+    
+
+    <view class='margin-bottom'  wx:if="{{false}}"></view>
+
+    <view class='weixin' wx:if="{{data.house_attrs.WeixinName}}">
+        <view class='title'>官方公众号</view>
+        <view class='content'>
+            <view class='gzh'>公众号：{{data.house_attrs.WeixinName}}</view>
+            <view class='gzh-img'>
+                <image src="{{data.house_attrs.WeixinPhoto}}" />
+            </view>
+        </view>
+    </view>
+
+    <view class='margin-bottom' wx:if="{{data.house_attrs.WeixinName}}"></view>
+
+    <view class='feedback'>
+        <view class='r-top'>
+            <view class='title'>用户反馈</view>
+            <view class='more' bindtap='handleGo' data-go="../userback/index/index?house_id={{id}}">
+                更多<icon class='iconfont icon-gengduo'></icon> 
+            </view>
+        </view>
+        <view class='f-ul' wx:if="{{data.lastReports.length>0}}">
+            <block wx:for="{{[1,2,3]}}" wx:key="backs">
+            <view class='f-li'>
+                <view class='title'>{{data.lastReports[index].Body}}</view>
+                <view class='author'>该信息由<text>{{data.lastReports[index].user.username}}</text>反馈，感谢</view>
+                <view class='date'>{{data.lastReports[index].Ctime}}</view>
+                <view class='solid-bottom'></view>
+            </view>
+            </block>
+        </view>
+        <view class='no-report' wx:else>暂无用户反馈</view>
+        <view class='back-bottom'>
+            <view class='btn' bindtap="handleGo" data-go="../userback/submit/index?house_id={{id}}">
+                <icon class='iconfont icon-message'></icon>反馈
+            </view>
+            <view class='desc'>
+                为了帮助更多的人了解的真实准确的楼盘信息，若您发现信息有误，不全，不及时等，请向我们反馈。
+            </view>
+        </view>
+    </view>
+
+    <view class='margin-bottom'></view>
+
+    <view class='tap-content' id='tap-content' wx:if="{{navShow}}">     
+    </view>
+    <view class='mask' wx:if="{{navShow}}">
+        <view class='item' bindtap='handleTab' data-name="{{item}}" data-id="{{index}}" wx:for="{{userTypes}}" wx:key="types" wx:if="{{item=='未标记' || item=='浏览' || item=='订阅'?false:true}}">
+            <block>
+                {{item}}
+            </block>
+        </view>
+    </view>  
+  
+</view>
+
+<!--户型图  -->
+<view class='huxing-img' wx:if='{{huxingShow}}'>
+    <view class='hx-bg'></view>
+    <view class='hx-content'>
+        <view class='top'>
+            <view><text>{{current+1}}/{{huxing.photos.length}}</text></view>
+            <view>{{huxing.name}}</view>
+            <view bindtap="handleShowHuxing">X</view>
+        </view>
+        <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+            bindchange="handleSlider" current="{{current}}" > 
+            <block wx:for="{{huxing.photos}}" wx:key="hx-imgs">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+            <view class='dots' wx:if="{{huxing.photos.length>1}}">
+                <block wx:for="{{huxing.photos}}" wx:key="hx-imgs-dots"> 
+                    <text class='{{current==index?"active":""}}'></text>
+                </block>
+            </view>
+        </swiper>
+
+        <view class='boxs'>
+            <view class='item'>
+                <view class='price'>
+                    <text>价格</text>
+                    <block wx:if="{{huxing.price_unit!=-1 && huxing.price_unit=='元/m²'}}">
+                        <text class='red'>约{{(huxing.area*huxing.price)/10000}}万</text> ({{huxing.price}}{{huxing.price_unit==-1?'元/m²':huxing.price_unit}})
+                    </block>
+                    <block wx:if="{{huxing.price_unit!=-1 && huxing.price_unit=='万元/套'}}">
+                        <text class='red'>约{{huxing.price}}{{huxing.price_unit}}</text>
+                    </block>
+                    <block wx:if="{{huxing.price_unit==-1}}">
+                        <text class='red'>价格待定</text>
+                    </block>
+                </view>
+                <view class='area'>
+                    <text>面积</text>
+                    <text>{{huxing.area}}㎡</text>
+                </view>
+                <view class='type'>
+                    <text>户型</text>
+                    <text>{{huxing.habitable}}</text>
+                </view>
+                <view class='time'>
+                    <text>更新时间</text>
+                    <text>{{huxing.mtime}}</text>
+                </view>
+            </view>
+
+        </view>
+    </view>
+</view>
+
+<view class='dingyue' wx:if="{{follow}}">
+    <view class='dy-content'>
+        <view class='dy-title'>订阅成功</view>
+        <view class='dy-code'>
+            <image src='https://ssl.malmam.com/xiangju-static/dfs/9/257276f274a2e3/_E6_B8_85_E5_8D_8E_E5_9B_AD1.jpg'></image>
+        </view>
+        <view class='dy-text'>
+            扫码关注“新房007”微信公众号即可获取楼盘最新动态
+        </view>
+        <view class='dy-del' bindtap='handleFollow'>X</view>
+    </view>
+</view>
+
+
+<!--底部导航  -->
+<view class='nav-bottom'>
+    <view class='nav-left' bindtap="handleShow">
+        <icon class='iconfont icon-biaoji'></icon>
+        <text>{{usertypes}}</text>
+    </view>
+    <view class='nav-right' bindtap="handleCall" data-phone="{{data.house_attrs.Tel}}">
+        <text wx:if="{{data.house_attrs.Tel}}">拨打售楼处电话</text>
+        <text wx:else>暂无售楼处电话</text>
+        <text>{{data.house_attrs.Tel}}</text>
+    </view>
+</view>

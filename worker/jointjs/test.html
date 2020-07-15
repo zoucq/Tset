@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Orgchart, Tree Layout and Interaction</title>
+    <link rel="stylesheet" type="text/css" href="http://resources.jointjs.com/demos/rappid/build/rappid.css">
+    <link rel="stylesheet" type="text/css" href="http://resources.jointjs.com/demos/rappid/apps/OrgChart/css/orgchart.css">
+  </head>
+  <body>
+
+    <p class="center">Drag nodes to move branches, add new nodes with '+', remove old nodes with '-'.</p>
+    <div id="paper-container"></div>
+    <p>Show the ORG Chart in  <span id="orgchart-direction"></span> direction.</p>
+
+    <!-- Rappid/JointJS dependencies: -->
+    <script src="http://resources.jointjs.com/demos/rappid/node_modules/jquery/dist/jquery.js"></script>
+    <script src="http://resources.jointjs.com/demos/rappid/node_modules/lodash/index.js"></script>
+    <script src="http://resources.jointjs.com/demos/rappid/node_modules/backbone/backbone.js"></script>
+    <script src="http://resources.jointjs.com/demos/rappid/build/rappid.js"></script>
+    <!-- OrgChart app: -->
+    <script src="http://resources.jointjs.com/demos/rappid/apps/OrgChart/src/orgchart.js"></script>
+
+    <script >
+
+    $(function(){
+
+      console.log( joint.V($('#paper-container').children()) )
+
+      
+      // let vel = joint.V(cellView.rotatableNode.node.childNodes[0].childNodes[0]);
+// console.log(cellView.rotatableNode.node.childNodes[0].childNodes[0]);
+// console.log(vel.node);
+// console.log(vel);
+// 将标签转为path
+// console.log(vel.convertToPath());
+// 获取path数据
+// console.log(vel.convertToPathData());
+
+
+    })
+
+
+    </script>
+
+
+  </body>
+</html>

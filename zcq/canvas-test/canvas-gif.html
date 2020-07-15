@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Gif</title>
+</head>
+<body>
+
+    <canvas width="480" height="480" id="canvas">
+        
+    </canvas>
+    <img src="http://www.zcq.test.91xiangju.com/images/logo_256.png" id="img">
+    <img src="" id="result">
+
+</body>
+
+<script src="https://cdn.bootcss.com/gif.js/0.2.0/gif.js"></script>
+<script>
+    window.onload = function () {
+        var oImg = document.getElementById("img");
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d')
+
+        let gif = new GIF({
+            workers: 4,
+            quality: 30,
+            workerScript:'https://cdn.bootcss.com/gif.js/0.2.0/gif.worker.js'
+            // transparent: "#fff",
+            // background: '#ffffff',
+        });
+        
+        var imgList = [
+            'http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E3JTJDMTM1ZDExNmYzYzc0ZTUmdz0zMDA-/img.jpg',
+            'http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E4JTJDMTM1NDJkNTg5MGU1MGUmdz0zMDA-/img.jpg',
+            'http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E3JTJDMTMyZGRjNTE1OGE5Zjcmdz0zMDA-/img.jpg',
+        ];
+        var imgObjList = [],count = 0;
+
+        for (let i=0; i<imgList.length; i++){
+            var tmpImg = new Image();
+            imgObjList.push(tmpImg);
+            tmpImg.src = imgList[i];
+            tmpImg.onload = function () {
+                count++;
+                if (count === imgList.length ){
+                    generateGif(imgObjList);
+                }
+            }
+        }
+
+
+        function generateGif(imgObjList) {
+
+            for (let i=0;i<imgObjList.length;i++){
+                console.log(imgObjList[i])
+                gif.addFrame(imgObjList[i])
+            }
+            gif.render();
+
+        }
+
+
+        gif.on("finished",function(blob){
+            console.log(URL.createObjectURL(blob));
+            // var file = new FileReader();
+            // file.readAsDataURL(blob);
+            // file.onload = function(){
+            //     document.getElementById("result").setAttribute("src", file.result)
+            // }
+            window.open(URL.createObjectURL(blob));
+        })
+
+    }
+</script>
+</html>

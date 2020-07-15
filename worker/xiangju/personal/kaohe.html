@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link href="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<style>
+		*{margin:0;padding: 0;}
+		ul,ol{list-style: none;margin: 0;}
+		a,a:hover,a:visited,a:focus{
+			text-decoration: none;
+		}
+		b{
+			font-weight: 500;
+		}
+		.left{
+			float: left;
+		}
+		.right{
+			float: right;
+		}
+		span,img{
+			vertical-align: middle;
+		}
+
+		html,body{
+			background:#EDF0F5;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+
+		.container{
+			width: 100%;
+			height: 100%;
+			padding: 0;
+		}
+		.slider-left{
+			height: 100%;
+			padding: 0;
+			background:#fff;
+			/* min-width: 240px; */
+			width: 240px;
+			position: fixed;
+			left: 0;top: 0;
+		}
+		.slider-left .s-title{
+			background: #1E87F0;
+			height: 80px;
+			width: 100%;
+			display: inline-block;
+			padding-left: 34px;
+			line-height: 80px;
+			color: #fff;
+			font-size: 18px;
+		}
+		.slider-left .s-title img{
+			padding-left: 34px;
+		}
+		.slider-left .s-nav{
+			width: 100%;
+			height: 100%;
+		}
+		.slider-left .s-nav li{
+			margin-top: 62px;
+			padding-left: 57px;
+			box-sizing: border-box;
+			height: 28px;
+    		line-height: 28px;
+    		cursor: pointer;
+		}
+		.slider-left .s-nav li a{
+			display: block;
+		    width: 100%;
+		    height: 100%;
+		    box-sizing: border-box;
+		    color: #000;
+		}
+		.slider-left .s-nav li img{
+			margin-right: 33px;
+			max-width: 28px;
+			max-height: 28px;
+		}
+		.slider-left .s-nav li.active{
+			position: relative;
+		}
+		.slider-left .s-nav li.active::before{
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width:10px;
+			height:44px; 
+			font-size:18px;
+			margin-top: -8px;
+			background:rgba(65,146,236,1);
+			box-shadow: 2px 3px 11px 0px rgba(1,172,253,0.74);
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+
+		.content{
+			padding: 0;
+			height: 100%;
+			padding-left: 254px;
+			width: 100%;
+			margin: 0;
+		}
+		.content .c-top{
+			width:100%;
+			background: #fff;
+			height: 80px;
+			line-height: 80px;
+		}
+		.content .c-top .menu-btn{
+			float: left;
+			background: #1E87F0;
+			box-sizing: border-box;
+			display: none;
+		}
+		.content .c-top .menu-btn img{
+			padding:0 34px;
+		}
+		.content .c-top ul{
+			float: left;
+		}
+		.content .c-top .item{
+			float: left;
+			display: inline-block;
+			height: 100%;
+			margin-right: 30px;
+			position: relative;
+		}
+		.content .c-top .item > a{
+			color: #000000;
+			display: block;
+		    height: 100%;
+		    width: 100%;
+		}
+		.content .c-top .item > a img{
+			margin-left: 4px;
+		}
+		.content .c-top .item:first-child{
+			padding-left: 52px;
+			padding-right: 32px;
+		}
+		.content .c-top .item .sub-nav{
+			display: block;
+			width: 208px;
+			height: auto;
+			line-height: 1;
+			background: #fff;
+			position: absolute;
+			padding: 24px 34px;
+			border-top: 2px solid rgba(48,164,245,1);
+			box-sizing: border-box;
+			color: #000A12;
+			font-size: 14px;
+			display: none;
+			z-index: 9999;
+			box-shadow: 0px 10px 26px 0px rgba(63,78,90,0.14) ;
+			/* border-radius: 4px ;  */
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+		.content .c-top .item .sub-nav li{
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li > a{
+			color: #000A12;
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li:not(:last-child){
+			padding-bottom: 20px;
+		}
+
+		.c-total{
+			background: #EDF0F5;
+			width: 100%;
+			height: auto;
+			padding: 30px 30px 30px 30px;
+		}
+
+		.c-total .wrap{
+			display: block;
+			width: 100%;
+			background: #fff;
+			margin-bottom: 30px;
+			overflow: hidden;
+		}
+		.c-total .wrap-title{
+			font-size: 26px;
+			margin-bottom: 30px;
+		}
+		.c-total .wrap-userinfo{
+			background: #fff;
+			padding: 16px 30px;
+			width: 546px;
+		}
+		.c-total .wrap-userinfo .detail{
+			width: auto;
+		}
+		.c-total .wrap-userinfo .detail > .item{
+			float: left;
+			text-align: center;
+			padding-left: 40px;
+		}
+		.c-total .wrap-userinfo .detail b{
+			color: #1E87F0;
+			font-size: 30px;
+			font-weight: 400;
+		}
+		.c-total .wrap-userinfo .detail p{
+			color: #9b9b9b;
+			font-size: 16px;
+		}
+		.c-total .wrap-userinfo .info {
+			padding-right: 30px;
+			border-right: 1px solid rgba(0,0,0,0.2);
+		}
+		.c-total .wrap-userinfo .info::after{
+			width: 1px;height: 64px;
+			background: rgba(0,0,0,0.2);
+		}
+		.c-total .wrap-userinfo .info b{
+			font-size: 30px;
+		}
+		.c-total .wrap-userinfo .info p{
+			font-size: 16px;
+			color: #9b9b9b;
+		}
+
+
+		.wrap-table{
+
+		}
+		.wrap-table .tabs-table{
+			background: #EDF0F5;
+			height: 40px;
+		}
+		.wrap-table .tabs-table li{
+			float: left;
+			font-size: 14px;
+			color: #7f7f7f;
+			display: inline-block;
+			padding-left: 18px;
+			line-height: 40px;
+			width: 166px;height: 40px;
+			background: url(../img/Shape.png) no-repeat left top;
+			background-size: 100% 100%;
+			z-index: 3;
+			position: relative;
+		}
+		.wrap-table .tabs-table li:not(:first-child){
+			margin-left: -34px;
+		}
+		.wrap-table .tabs-table li:last-child{
+			z-index: 2;
+		}
+		.wrap-table .tabs-table li.act{
+			color: #fff;
+			background: url(../img/Shape_active.png) no-repeat left top;
+			background-size: 100% 100%;
+			z-index: 4;
+		}
+		.tab-content{
+			display: none;
+		}
+		.tab-content.active{
+			display: table;
+		}
+
+		.wrap-table .table{
+			background: #fff;
+		}
+		.table>thead>tr{
+			height: 50px;
+		    line-height: 50px;
+		    background: #f1f7fe;
+		}
+		.table>thead>tr>th {
+		    vertical-align: middle;
+		    text-align: center;
+		    border-bottom: 1px solid #ddd;
+		}
+		.table>tbody>tr{
+			height: 68px;
+		    line-height: 68px;
+		    background: #fcfbfd;
+		    text-align: center;
+		}
+		.table>tbody>tr>td{
+			padding: 10px;
+			/* vertical-align: middle; */
+		}
+
+		.table .see{
+			overflow: hidden;
+		}
+		.table .edit{
+			display: none;
+		}
+		.table .close-mark{
+			display: none;
+		}
+
+
+		.timely{
+			width: 100%;
+		}
+		.timely .select{
+			display: block;
+			background: #fff;
+			overflow: hidden;
+			padding: 20px 22px;
+			margin-bottom: 10px;
+		}
+		.timely .select > div{
+			margin-right: 30px;
+		}
+		.timely .select label{
+			margin-right: 12px;
+		}
+
+		.timely .time-list{
+			overflow: hidden;
+		}
+		.timely .time-list .time-item{
+			overflow: hidden;
+			padding: 30px;
+			background: #fff;
+			margin-bottom: 10px;
+		}
+		.timely .time-list .time-item .userinfo{
+			overflow: hidden;
+			height: 80px;
+			line-height: 80px;
+			margin-bottom: 22px;
+		}
+		.timely .time-list .time-item .userinfo > div:not(:last-child){
+			padding-right: 40px;
+			box-sizing: border-box;
+			font-size: 15px;
+		}
+		.timely .time-list .time-item .userinfo .user{
+			font-size: 16px;
+		}
+		.timely .time-list .time-item .userinfo > div.jibie{
+			margin: 0 10px;
+			color: #99c0ee;
+			font-size: 70px;
+		}
+		.timely .time-list .time-item .userinfo img{
+			width: 80px;height: 80px;
+			border-radius: 50%;
+			margin-right: 6px;
+		}
+		.timely .time-list .time-item .userinfo .date{
+			color: #1E87F0;
+			padding-left: 20px;
+		}
+
+		.timely .time-list .time-item .detail{
+			width:898px;
+			height:110px; 
+			background:rgba(255,255,255,1);
+			border-radius: 6px ; 
+			border: 1px solid #D9E5EF;
+			padding: 16px 22px 54px 22px;
+			color: #72A3D7;
+			box-sizing: border-box;
+		}
+
+
+
+
+
+
+		.active,
+		.active > a{
+			color: #1E87F0 !important;
+		}
+		.show{
+			display: block;
+		}
+		.hide{
+			display: none;
+		}
+
+		.mt10{
+			margin-top: 10px;
+		}
+
+		.orange{
+			color: #FF6D4A;
+		}
+		.sec-color{
+			color: #9F9F9F;
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="container container-fluid row">
+
+		<div class="slider-left">
+			<div class="s-title">
+				<span>客户管理后台</span>
+				<img src="../img/menu.png" alt="" class="menu">	
+			</div>
+			<div class="s-nav">
+				<ul>
+					<li class="active">
+						<a href="#" >
+							<img src="../img/nav_icon1.png" alt=""><span>销售管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon2.png" alt=""><span>客户管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon3.png" alt=""><span>考核</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon4.png" alt=""><span>统计</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container content ">
+
+			<div class="c-top">
+				<div class="menu-btn">
+					<img src="../img/menu.png" alt="" class="menu">	
+				</div>
+				<ul class="c-nav">
+					<li class="item active">
+						<a href="index.html">概况</a>
+					</li>
+					<li class="item">
+						<a href="#">
+							<span>海南销售部</span>
+							<img src="../img/nav_top_icon.png" alt="">
+						</a>
+						<ul class="sub-nav">
+							<li class="active"><a href="department/total.html">概览</a></li>
+							<li><a href="">成交详情</a></li>
+							<li><a href="">动态详情</a></li>
+							<li><a href="">带看详情</a></li>
+							<li><a href="">部门成员</a></li>
+						</ul>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>云南销售部</span>
+						<img src="../img/nav_top_icon.png" alt=""></a>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>杭州销售部</span>
+						<img src="../img/nav_top_icon.png" alt="">
+						</a>
+					</li>
+				</ul>
+
+			</div>
+
+			<div class="c-total">
+				<div class="wrap-title">考核</div>
+				<div class="wrap wrap-userinfo">
+					<div class="left info">
+						<b>狗子</b>
+						<p>入职180天</p>
+					</div>
+					<div class="left detail">
+						<div class="item">
+							<b>180</b>
+							<p>带看总数</p>
+						</div>
+						<div class="item">
+							<b>180</b>
+							<p>带看总数</p>
+						</div>
+						<div class="item">
+							<b>180</b>
+							<p>带看总数</p>
+						</div>
+					</div>
+				</div>
+				<div class=" wrap-table">
+					<ul class="tabs-table">
+						<li class="act">跟进客户详情</li>
+						<li>发布动态详情</li>
+						<li>及时度详情</li>
+					</ul>
+					<table class="table tab-content customer active">
+						<thead>
+							<tr>
+					            <th>ID</th>
+					            <th>级别</th>
+					            <th>姓名</th>
+					            <th>电话</th>
+					            <th>楼盘</th>
+					            <th>登记时间</th>
+					            <th>售前</th>
+					            <th>销售</th>
+					            <th>客户状态</th>
+					            <th style="min-width: 150px;">跟进</th>
+					        </tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>201801</td>
+								<td>B</td>
+								<td>zcq</td>
+								<td>18720745631</td>
+								<td>飞鸟客</td>
+								<td>2018.05.20</td>
+								<td>掘金</td>
+								<td>娜娜</td>
+								<td>已成交</td>
+								<td>
+									<div class="see">
+										<div class="left text-left mark-detail">
+											<span class="orange">客户很满意，已交钱</span>
+											<p class="sec-color">2018.05.20</p>
+										</div>
+										<button class="btn btn-xs btn-default right open-mark">展开</button>
+										<button class="btn btn-xs btn-default right close-mark">关闭</button>
+									</div>
+									<div class="edit mt10">
+										<textarea class="form-control" rows="2" cols="25"></textarea>
+										<div class="text-right mt10 add-mark">
+											<button class="btn btn-xs btn-default">添加</button>
+										</div>
+										<div class="text-left mark-list mt10">
+											<div class="mark-item">		
+												<span class="sec-color info">123123123</span>
+												<p class="sec-color time">2018.05.20 xxx</p>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+					<table class="table tab-content state">
+						<thead>
+							<tr>
+					            <th>跟进内容</th>
+					            <th>跟进时间</th>
+					            <th>客户姓名</th>
+					            <th>客户级别</th>
+					            <th>客户状态</th>
+					            <th>登记时间</th>
+					            <th>标记</th>
+					        </tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="orange" style="max-width: 200px;">客户说周末过来似懂都是 非懂对方是的地方的都是</td>
+								<td>2018.4.13-11:41</td>
+								<td>王德法</td>
+								<td>A</td>
+								<td>跟进中</td>
+								<td>2018.01.20-11:41</td>
+								<td>
+									<select name="" >
+										<option value="1">有效</option>
+										<option value="0">无效</option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+
+					<div class="tab-content timely">
+						<div class="select">
+							<div class="left">
+								<label>时间</label>
+								<input type="input" name="">
+							</div>
+							<div class="left">
+								<label>类型</label>
+								<select name="" >
+									<option value="">超时跟进</option>
+								</select>
+							</div>
+						</div>
+						<div class="time-list">
+							<div class="time-item">
+								<div class="userinfo">
+									<div class="left user">
+										<img src="https://ssl.malmam.com/xiangju-static/dfs/13/408a3894bcd803/_E4_B8_8B_E8_BD_BD_20_282_29.jpeg" />
+										<span>西风</span>
+									</div>
+									<div class="left jibie">
+										A
+									</div>
+									<div class="left genjin">
+										<span>跟进时间</span><span class="date">2018.4.13-15:00</span>
+									</div>
+									<div class="left start-time">
+										<span>登记时间</span><span class="date">2018.4.13-15:00</span>
+									</div>
+									<div class="left start-time">
+										<span>跟进时长</span><span class="date">50分钟</span>
+									</div>
+								</div>
+								<div class="detail">
+									大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范发大师傅的说法都是范德萨发。
+								</div>
+							</div>
+							<div class="time-item">
+								<div class="userinfo">
+									<div class="left user">
+										<img src="https://ssl.malmam.com/xiangju-static/dfs/13/408a3894bcd803/_E4_B8_8B_E8_BD_BD_20_282_29.jpeg" />
+										<span>西风</span>
+									</div>
+									<div class="left jibie">
+										A
+									</div>
+									<div class="left genjin">
+										<span>跟进时间</span><span class="date">2018.4.13-15:00</span>
+									</div>
+									<div class="left start-time">
+										<span>登记时间</span><span class="date">2018.4.13-15:00</span>
+									</div>
+									<div class="left start-time">
+										<span>跟进时长</span><span class="date">50分钟</span>
+									</div>
+								</div>
+								<div class="detail">
+									大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范发大师傅的说法都是范德萨发。
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+
+				</div>
+				
+
+			</div>     
+
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		
+		$(function(){
+			//  侧边栏导航
+			$('.menu').on('click',function(){
+				$('.slider-left').hide();
+				$('.content ').css({'padding-left':0});
+				$('.menu-btn').show();
+			});
+			$('.menu-btn').on('click',function(){
+				$('.slider-left').show();
+				$('.content ').css({'padding-left':254});
+				$('.menu-btn').hide();
+			});
+
+			$('.s-nav li').on('click',function(e){
+				$(this).addClass('active').siblings().removeClass('active');
+			});
+
+			// 顶部导航
+			$('.c-nav > .item a').on('click',function(e){
+				// $(this).siblings('.item').find('a').removeClass('active');
+				// $(this).find('a').addClass('active');
+
+				e.stopPropagation();
+				$(this).parent().addClass('active').siblings().removeClass('active');
+				$(this).parent().find('.sub-nav').toggleClass('show')
+				$(this).parent().siblings('.item').find('.sub-nav').hide().removeClass('show');
+				
+				// return false;
+			});
+
+			$(document).on('click',function(){
+				$('.sub-nav').hide().removeClass('show');
+			});
+
+			$('.sub-nav > li').on('click',function(){
+				$(this).addClass('active').siblings().removeClass('active');
+				// return false;
+			});
+
+			// 点评star
+			$('.star img').on('click',function(){
+				var src = $(this).attr('src');
+				var index = $(this).index()+1;
+				var score = 0;
+				score = (index)*2;
+
+				$('.star img').attr('src','img/icon_star.png');
+				if(src.indexOf('icon_star_active.png')>-1){
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star.png');
+					}
+					$('.score').html(0+'分');
+				}else{
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star_active.png');
+					}
+					$('.score').html(score+'分');
+				}
+
+			});
+
+
+
+
+			$('.open-mark').on('click',function(){
+				$(this).hide().next('.close-mark').show();
+				$(this).parent('.see').find('.mark-detail').hide();
+				$(this).parent('.see').next('.edit').show();
+			});
+			$('.close-mark').on('click',function(){
+				$(this).hide().prev('.open-mark').show();
+				$(this).parent('.see').find('.mark-detail').show();
+				$(this).parent('.see').next('.edit').hide();
+			});
+
+
+			$('.tabs-table > li').on('click',function(){
+				var index = $(this).index();
+				$(this).addClass('act').siblings().removeClass('act');
+				$('.tab-content').eq(index).addClass('active').siblings().removeClass('active');
+			});
+
+
+
+
+		})
+
+
+	</script>
+</body>
+</html>

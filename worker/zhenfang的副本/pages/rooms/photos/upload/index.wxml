@@ -1,0 +1,38 @@
+<view class="container">
+    <view class='upload-box'>
+        <view class='imgs'>
+            <block wx:for="{{imgs}}" wx:key="imgs">
+                <view class='img'>
+                    <image data-index="{{index}}" data-id="{{item.id}}"
+                    bindtap='delPng' src='../../../../image/del-png.png'></image>
+                    <image src='{{item.url}}'></image>
+                </view>
+            </block>
+        </view>
+        <view class='file' bindtap='upload'>
+            <!-- <icon class='iconfont icon-add'></icon> -->
+        </view>
+    </view>
+</view>
+
+<view class='nav'>
+    <view class='top'>
+        <view class='left'>选择照片分类</view>
+        <view class='right'>
+            <text class="select {{select?'active':''}} " bindtap="handleSelect">{{name}}</text>
+        </view>
+        <view class='list' wx:if="{{select}}">
+            <block wx:for="{{list}}" wx:key="{{listImgs}}">
+                <view class='item {{act==index?"active":""}}' 
+                    bindtap="handleSelectSecond" data-index="{{index}}"
+                    data-name="{{item.name}}">
+                    {{item.name}}
+                </view>
+            </block>
+        </view>
+    </view>
+    
+    <view class='down'>
+        <button bindtap='addSubmit'>确定</button>
+    </view>
+</view>

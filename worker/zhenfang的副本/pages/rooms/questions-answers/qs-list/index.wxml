@@ -1,0 +1,30 @@
+<view class="container">
+
+    <view class='content' wx:if="{{list.length>0}}">
+        <block wx:for="{{list}}" wx:key="questions">
+        <view  class='item' bindtap='handleGo' data-go='../qs-detail/index?id={{item.Id}}'>
+            <view class='title'>{{item.Body}}</view>
+            <view class='desc'>{{item.LastAnswer[0]}}</view>
+            <view class='info'>
+                <view class='user'>
+                    <view class='avtor'>
+                        <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png' />
+                    </view>
+                    <view class='username'>隔壁老王</view>
+                    <view class='like' wx:if='{{item.Status==1}}'>关注楼盘</view>
+                    <view class='like' wx:elif='{{item.Status==2}}'>现场看过</view>
+                    <view class='like' wx:elif='{{item.Status==3}}'>咨询过</view>
+                    <view class='like' wx:else='{{item.Status==4}}'>已购买</view>
+                </view>
+                <view class='time'>{{item.Ctime}}</view>
+            </view>
+        </view>
+        </block>    
+        <view wx:if="{{noMore}}" class='noMore'>没有更多问题哦~~</view>
+    </view>
+
+    <view class='noList' wx:else>
+        暂时没有问题哦~~
+    </view>
+
+</view>

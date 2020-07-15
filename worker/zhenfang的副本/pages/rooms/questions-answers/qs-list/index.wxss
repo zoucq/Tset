@@ -1,0 +1,66 @@
+page{
+    background: #F1F2F7;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 28rpx;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 20rpx 40rpx;
+    color: #505050;
+    margin-bottom: 10rpx;
+}
+.item > view:not(:last-child){
+    margin-bottom: 20rpx;
+}
+.item .title{
+    width: 100%;
+    color: #505050;
+    font-weight: bold;
+}
+.item .desc{
+    color: #505050;
+}
+.item .info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item .info .time{
+    color: #505050;
+}
+.item .info .user{
+    display: flex;
+    align-items: center;
+    padding: 20rpx 0;
+}
+.item .info .user>view{
+    margin-right: 10rpx;
+}
+.item .info .user .avtor{
+    width: 60rpx;height: 60rpx;
+    display: flex;
+}
+.item .info .user .avtor image{
+    width: 100%;height: 100%;
+} 
+.item .info .user .like{
+    display: flex;
+    padding: 4rpx 8rpx;
+    background: #2a82e4;
+    color: #fff;
+    font-size: 24rpx;
+}
+
+
+.noList,.noMore{
+    display: flex;
+    justify-content: center;
+    padding: 20rpx;
+}

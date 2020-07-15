@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <style type="text/css" media="screen">
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class='box'>
+        0
+    </div>
+
+    <script>
+
+
+        var flag = true
+        var left = 100
+        function test() {
+            var e = document.querySelector('.box')
+            if (flag == true) {
+                  if (left >= 100) {
+                    flag = false;
+                  }
+                  e.innerHTML = left++;
+            } else {
+                  if (left <= 0) {
+                    flag = true;
+                  }
+                  e.innerHTML = left--;
+            }
+            document.title = left
+        }
+
+
+        (function animloop() {
+            test();
+            var a=window.requestAnimationFrame(animloop);
+          })();
+
+        
+        function createStore(){
+
+        }
+
+
+        // w(n) = w(n-1) + w(n-2)
+        const getSumWaysOfClinbStairs = function (n){
+            const sumStairs = [];
+            sumStairs[1] = 1;
+            sumStairs[2] = 2;
+            
+            for(let i = 3; i<=n ; i++){
+                sumStairs[i] = sumStairs[i-2] + sumStairs[i-1]
+            }
+            return sumStairs[n];
+        }
+
+        console.log(getSumWaysOfClinbStairs(3))
+        console.log(getSumWaysOfClinbStairs(4))
+        console.log(getSumWaysOfClinbStairs(5))
+        console.log(getSumWaysOfClinbStairs(13))
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+
+		*{margin: 0;padding: 0;}
+    	ul,ol{list-style: none;}
+    	a,a:hover,a:focus{text-decoration: none;}
+    	.l{float: left;}
+    	.r{float: right;}
+    	.t_l{text-align: left;}
+    	.t_r{text-align: right;}
+
+    	body{
+    		width: 100%;height: auto;overflow-x: hidden;
+    		background: rgb(243,247,252);
+    	}
+    	.box{
+    		width: 100%;height: auto;overflow-x: hidden;
+    	}
+    	.box .top{
+    		width: 100%;height: 200px;
+    		overflow: hidden;
+    		background: #eee;
+    		box-sizing: border-box;
+    	}
+    	.box .top img{
+    		width: 100%;height: 100%;
+    		border: 0;
+    	}
+
+    	.box .list,.box .list ul{
+    		width: 100%;height: auto;
+    		margin-bottom: 60px;
+    	}
+    	.box .list .item{
+    		height: auto;
+    		box-sizing: border-box;
+    		overflow: hidden;
+    		margin-bottom: 10px;
+    		background: #fff;
+    	}
+    	.box .list .item a{
+    		display: block;
+    		width: 100%;
+    		height: 100%;    		
+    	}
+    	.box .list .item h2{
+    		color: #333;font-size: 14px;
+    		height: 49px;line-height: 49px;
+    		overflow: hidden;text-overflow: ellipsis;
+    		white-space: nowrap;
+    		background: #f8f7fc;
+    		padding: 0px 10px;
+    	}
+    	.box .list .item h2 .title{
+    		display:inline-block;
+    		/*width:60%;overflow: hidden;text-overflow: ellipsis;
+    		white-space: nowrap;*/
+    	}
+    	.box .list .item h2 img{
+    		width: 23px;
+    		height: 8px;
+    		vertical-align: middle;
+    		margin-top: -4px;
+    		margin-left: 4px;
+    	}
+    	.box .list .item .title:last-child img{
+    		display: none;
+    	}
+    	.box .list .item h2 .col_1{
+    		color: rgb(102,102,102);
+    	}
+
+    	.box .list .item .item_down{
+    		padding: 0 10px;
+    		height: 158px;
+    		position: relative;
+    	}
+    	.box .list .item .item_down .user_total{
+    		position: absolute;
+    		right: 0;
+    		top: 15px;
+    		width: 90px;height: 35px;line-height: 35px;text-align: center;
+    		color: #fff;background: #e62635;font-size: 14px;
+    		border-bottom-left-radius: 18px;
+    		border-top-left-radius: 18px;
+    	}
+    	.box .list .item .item_down p{
+    		padding-top: 14px;color: #333;font-size: 16px;
+    	}
+    	.box .list .item .item_p1 b{
+    		color: rgb(243,152,0);font-weight: 400;
+    	}
+    	.box .list .item .item_down .item_p3{
+    		font-size:14px;font-weight: bold;color: #333;
+    	}	
+    	.box .list .item .biaoqian{
+    		margin-top: 14px;
+    		box-sizing: border-box;
+    	}
+    	.box .list .item .biaoqian button{
+    		border: 0;
+    		border: 1px solid #488ec8;
+    		display: inline-block;
+    		height: 20px;
+    		line-height: 20px;
+    		width: 54px;
+    		color: #488ec8;
+    		box-sizing: border-box;
+    		background: #fff;
+    		margin-right: 10px;
+    		font-size: 12px;
+    		white-space: nowrap;
+    		float: left;
+    		border-radius: 3px;
+    	}
+    	
+
+
+    	.box .bottom{
+    		position: fixed;
+    		bottom: 0;left: 0;
+    		width: 100%;
+    		height:50px;
+    		line-height: 50px;
+    		background: #fff;
+    		box-sizing: border-box;
+    		overflow: hidden;
+    	}
+    	.box .bottom .b_left{
+    		width: 60%;
+		    height: 100%;
+		    text-align: center;
+		    float: left;
+		    background: #fff;
+    	}
+    	.box .bottom .b_right{
+    		width: 40%;
+		    height: 100%;
+		    text-align: center;
+		    float: right;
+		    background: rgb(202,0,26);
+    	}
+    	.box .bottom .b_left span{
+    		color: #f39800;font-size: 18px;
+    	}
+    	.box .bottom .b_right a{
+    		display: inline-block;
+    		width: 100%;height: 100%;
+    		background: #f39800;
+    		color: #fff;
+    		font-size: 18px;
+    	}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		
+		<div class="top">
+			<img src="img/banner.png"/>
+		</div>
+
+		<div class="list">
+			<ul>
+				<li class="item">
+					<a href="javascript:;">
+						<h2>
+							<div class="title">			
+								<span>海口<img src="img/arrow_right.png"/><span>
+								<span>兰昌<img src="img/arrow_right.png"/><span>
+								<span>陵水<img src="img/arrow_right.png"/><span>
+								<span>三亚<span>
+							</div>
+							<span class="col_1">(投资度假主题看房团)</span>
+						</h2>
+						<div class="item_down">
+							<p class="t_l item_p1">
+								均价：<b>1300元/㎡</b>
+							</p>
+							<p class="t_l item_p2">
+								活动时间：11月20号-12月20号
+							</p>
+							<p class="t_l item_p3">
+								全程16个楼盘
+							</p>
+							<div class="user_total">33人已报名</div>
+							<div class="biaoqian">
+								<button>海景</button>
+								<button>环境优美</button>
+								<button>体量大</button>
+								<button>升值空间</button>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="item">
+					<a href="javascript:;">
+						<h2>
+							<div class="title">			
+								<span>海口<img src="img/arrow_right.png"/><span>
+								<span>兰昌<img src="img/arrow_right.png"/><span>
+								<span>陵水<img src="img/arrow_right.png"/><span>
+								<span>三亚<span>
+							</div>
+							<span class="col_1">(投资度假主题看房团)</span>
+						</h2>
+						<div class="item_down">
+							<p class="t_l item_p1">
+								均价：<b>1300元/㎡</b>
+							</p>
+							<p class="t_l item_p2">
+								活动时间：11月20号-12月20号
+							</p>
+							<p class="t_l item_p3">
+								全程16个楼盘
+							</p>
+							<div class="user_total">333人已报名</div>
+							<div class="biaoqian">
+								<button>海景</button>
+								<button>环境优美</button>
+								<button>体量大</button>
+								<button>升值空间</button>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="item">
+					<a href="javascript:;">
+						<h2>
+							<div class="title">			
+								<span>海口<img src="img/arrow_right.png"/><span>
+								<span>兰昌<img src="img/arrow_right.png"/><span>
+								<span>陵水<img src="img/arrow_right.png"/><span>
+								<span>三亚<span>
+							</div>
+							<span class="col_1">(投资度假主题看房团)</span>
+						</h2>
+						<div class="item_down">
+							<p class="t_l item_p1">
+								均价：<b>1300元/㎡</b>
+							</p>
+							<p class="t_l item_p2">
+								活动时间：11月20号-12月20号
+							</p>
+							<p class="t_l item_p3">
+								全程16个楼盘
+							</p>
+							<div class="user_total">3人已报名</div>
+							<div class="biaoqian">
+								<button>海景</button>
+								<button>环境优美</button>
+								<button>体量大</button>
+								<button>升值空间</button>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="bottom">
+			<div class="b_left">
+				<span>没用找到满意的路线</span>
+			</div>
+			<div class="b_right">
+				<a href="javascript:;" >定制专属路线</a>
+			</div>
+		</div>
+
+	</div>
+	
+</body>
+</html>

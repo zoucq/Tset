@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+
+    <script>
+        
+        (function(){
+
+            var obj = {
+                a:function(){
+                    console.log(111);
+                },
+                b:function(){
+                    console.log(222);
+                }
+            }
+
+
+        })()
+
+
+        var cateId = 221;
+
+        var dirArr = [
+            {
+                id:1,label:'test1',children:[
+                    {id:11,label:'test11'},
+                    {id:12,label:'test12'},
+                ]
+            },
+            {
+                id:2,label:'test2',children:[
+                    {id:21,label:'test21'},
+                    {id:22,label:'test22',children:[
+                        {id:221,label:'test221'},
+                        {id:222,label:'test222'},
+                    ]},
+                ]
+            },
+            {
+                id:3,label:'test3',children:[]
+            },
+            {
+                id:4,label:'test4',children:[
+                    {id:41,label:'test41'},
+                    {id:42,label:'test42'},
+                ]
+            },
+        ];
+
+
+        console.log(  findIdDir(dirArr,cateId)  );   //  输出 [ 2,22,221 ]
+
+        
+        function findIdDir(arr,id,resArr,parent){
+            resArr = resArr || [];
+            arr && arr.map((v,i)=>{
+                if(v.id == id){
+                    parent ? resArr.push(parent.id,v.id) : resArr.push(v.id);
+                }else{
+                    v.children && v.children.length>0 && findIdDir(v.children,id,resArr,v);
+                }
+            });
+            return resArr;
+        }
+
+
+
+        var list = [
+            {id:7,name:'部门G',parentId:2},
+            {id:8,name:'部门H',parentId:4},
+            {id:1,name:'部门A',parentId:0},
+            {id:2,name:'部门B',parentId:0},
+            {id:3,name:'部门C',parentId:1},
+            {id:4,name:'部门D',parentId:1},
+            {id:5,name:'部门E',parentId:2},
+            {id:6,name:'部门F',parentId:3},
+        ];
+
+        var result = convert(list);
+        console.log(result);
+
+        // var map = list.reduce((res,v)=>({...res,[v.id]:v}),{});
+        // console.log(111,map);
+        // console.log(111,list);
+
+        function convert(arr){
+            var obj = {};
+            var obj2= {};
+            var arrs = [];
+            arr.map((v,i)=>{
+                v.children = [];
+                if(!obj[v.parentId]) {
+                    obj[v.parentId] = [];
+                }
+                obj[v.parentId].push(v);
+                obj2[v.id] = v;
+            });
+            for(let k in obj){
+                if(k!=0){
+                    // console.log(obj[k]);
+                    obj2[k].children = obj[k];
+                }else{
+                    arrs = obj[k];
+                }
+            }
+            console.log(obj);
+            console.log(arrs);
+        }
+
+
+        //  先想先写=》理清逻辑 =》列出问题点 = 解决方法
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

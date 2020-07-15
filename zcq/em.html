@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin:0;padding: 0;}
+		body{
+			font-size: 20px;
+		}
+		.wrapper{
+			font-size: 2em;
+		}
+		.box{
+			/*font-size: 16px;*/
+			font-size: 3em;
+		}
+		/*
+			em:相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置， 则相对于浏览器的默认字体尺寸。它会继承父级元素的字体大小，因此并不是一个固定的值。
+		*/
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="box">猜猜我多大？</div>
+	</div>
+
+
+	<script>
+		
+		for(let i=0;i<100;i++){
+			setTimeout(function(){
+			    console.log(i);
+			},i*1000);
+		}
+
+
+	</script>
+</body>
+</html>

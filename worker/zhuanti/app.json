@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/room-type/index",
+    "pages/detail/index",
+    "pages/my-redpacket/index",
+    "pages/message/index",
+    "pages/search/index",
+    "pages/my/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#eeeeee"
+  },
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor":"#1afa29",
+    "backgroundColor":"#fff",
+    "borderStyle":"black",
+    "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "image/index.png",
+            "selectedIconPath": "image/index-active.png"
+        },
+        {
+            "pagePath": "pages/detail/index",
+            "text": "消息",
+            "iconPath": "image/msg.png",
+            "selectedIconPath": "image/msg-active.png"
+        },
+        {
+            "pagePath": "pages/my/index",
+            "text": "我",
+            "iconPath": "image/user.png",
+            "selectedIconPath": "image/user-active.png"
+        }
+    ]
+  }
+}

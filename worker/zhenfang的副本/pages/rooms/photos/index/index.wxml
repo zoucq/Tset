@@ -1,0 +1,47 @@
+<view class="container">
+
+    <view class='c-top' >
+        <block wx:for="{{photos}}"  wx:key="types" >
+            <view class='item {{index==current?"active":""}}' bindtap="handleClick" data-id="{{index}}" >
+                {{item.name}}({{item.photos.length}})
+            </view>
+        </block>
+        <view wx:if="{{photos.length==0}}">暂无相册列表</view>
+    </view>
+
+    <view class='c-center' >
+        <swiper indicator-dots="{{indicatorDots}}" current="{{imgCurrent}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        wx:if="{{photos[current].photos.length>0}}">
+        <block wx:for="{{photos[current].photos}}" wx:key="imgs-big">
+            <swiper-item>
+                <image src="{{item.url}}" class="slide-image" />
+            </swiper-item>
+        </block>
+        </swiper>
+        <swiper indicator-dots="{{indicatorDots}}" current="{{imgCurrent}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        wx:else>
+            <swiper-item>
+                <image src="http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png" class="slide-image" />
+            </swiper-item>
+        </swiper>
+        <view class='user'>该图片由“{{photos[current].photos[imgCurrent].user}}”提供</view>
+    </view>
+
+    <scroll-view scroll-x style="width:100%;"> 
+    <view class='imgs' wx:if="{{photos[current].photos.length>0}}">
+        <block wx:for="{{photos[current].photos}}" wx:key="imgs-small">
+        <view bindtap="handleImgClick" data-index="{{index}}">
+            <image src='{{item.url}}'></image>
+        </view>
+        </block>
+    </view>
+    </scroll-view> 
+
+</view>
+
+<view class='c-bottom'>
+    <view class='left'>我有楼盘照片</view>
+    <view class='right' bindtap="handleGo" data-go="../upload/index?id={{id}}">上传</view>
+</view>

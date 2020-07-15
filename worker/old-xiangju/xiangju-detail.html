@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+
+		.container{
+		    width: 100%;
+		    background:rgba(244,244,244,1);
+		}
+
+		.pd100{
+		    padding-bottom: 50px;
+		}
+
+
+		.slider{
+		    width: 100%;
+		    height: 200px;
+		    position: relative;
+		    display: flex;
+		    flex-direction: column;
+		}
+		.slider .text{
+		    position: absolute;
+		    right: 10px;
+		    bottom: 10px;
+		    padding: 3px 10px;
+		    background-color: rgba(0, 0, 0, 0.4);
+		    border-radius: 20px;
+		    font-size: 13px;
+		    color: #fff;
+		}
+		.slider swiper{
+		    width: 100%;
+		    height: 100%;
+		}
+		.slider swiper img{
+		    width: 100%;
+		    height: 100%;
+		    display: inline-block;
+		}
+
+
+		.content{
+		    display: block;
+		    overflow: hidden;
+		}
+		.content .title{
+		    margin:0 16px;
+		    padding: 20px 0;
+		    background: #fff;
+		    text-align: left;
+		    border-bottom: 1px solid rgba(0,0,0,0.08);
+		}
+		.content .title .name{
+		    margin-bottom:8px;
+		    display: flex;
+		    align-items: center;
+		    justify-content: flex-start;
+		    font-size: 18px;
+		    color:rgba(0,0,0,0.8);
+		}
+		.content .title .name text{
+		    font-size: 18px;color: #333;
+		    display: inline-block;
+		    font-weight: 500;
+		}
+		.content .title .addr{
+		    font-size: 14px;
+		    color: #D12E33;
+		    letter-spacing: 1px;
+		    margin-bottom:10px;
+		    display: flex;
+		    align-items: center;
+		}
+		.content .title .addr img{
+		    display: inline-block;
+		    width:13px;
+		    height:16px;
+		    margin-right:6px;
+		}
+		.content .title .addr .first{
+		    margin-right:5px;
+		}
+		.content .title .bq div{
+		    display: inline-block;
+		    border: 1px solid rgba(73,173,102,1);
+		    border-radius: 4px;
+		    height: 20px;
+		    line-height: 20px;
+		    padding: 0 6px;
+		    color: #49AD66;
+		    font-size: 12px;
+		    vertical-align: middle;
+		    margin-right: 9px;
+		}
+		.content .title .bq .green{
+		    border: 1px solid rgba(73,173,102,1);
+		    color: #49AD66;
+		}
+		.content .title .bq .blue{
+		    border: 1px solid rgba(73,116,173,1);
+		    color: #4974AD;
+		}
+		.content .title .bq .yellow{
+		    border: 1px solid rgba(173,132,73,1);
+		    color: #AD8449;
+		}
+
+		.content .house{
+		    display: flex;
+		    flex-direction: column;
+		    background: #fff;
+		    margin-bottom: 10px;
+		}
+		.pub-title{
+		    text-align: center;
+		    padding-top: 25px;
+		    padding-bottom: 30px;
+		    color: #333;
+		    font-size: 15px;
+		    font-weight: 500;
+		}
+		.pub-title::before,
+		.pub-title::after{
+		    content: '一 ';
+		    color: #ccc;
+		}
+
+		.content .house .item{
+		    display: flex;
+		    flex-direction: row;
+		    padding: 0 20px;
+		    margin-bottom: 20px;
+		    font-size: 14px;
+		    color: #666;
+		}
+		.content .house .item > div{
+		    flex: 1.4;
+		    display: flex;
+		    justify-content: flex-start;
+		    align-items: center;
+		    /* margin-right:60px; */
+		}
+		.content .house .item > div:first-child{
+		     flex: 1.8; 
+		    max-width: 220px;
+		}
+		.content .house .item > div:last-child{
+		    flex: 2.4;
+		    /* margin-right:0; */
+		}
+		.content .house .item > div > div{
+		    color:#ff801b;
+		    margin-right: 5px;
+		}
+
+		.content .h-more{
+		    background: #fff;
+		    text-align: center;
+		    width: 100%;
+		    margin-top: 10px;
+		    margin-bottom: 20px;
+		    display: flex;
+		    justify-content: center;
+		}
+		.content .h-more .mores{
+		    -webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    border-radius: 3px;
+		    padding: 0 10px; 
+		    background: rgba(0, 0, 0, 0.04);
+		    height: 24px; 
+		    text-align: center;
+		    display: flex;
+		    align-items: center;
+		    
+		}
+		.content .h-more > view > view{
+		    display: inline-block;
+		    font-size: 12px;
+		    color: #bfbfbf;
+		}
+		.content .h-more > view > img{
+		    width: 12px;height: 7px;
+		    display: inline-block;
+		    margin-left: 5px;
+		}
+		.content .h-more .open{
+		    transform: rotate(180deg);
+		}
+
+		.content .house .dijia{
+		    padding: 16px 30px 16px 20px;
+		    background: #fff;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    color:rgba(0,0,0,0.48);
+		}
+		.content .house .dijia .left{
+		    width: 202px;
+		    font-size: 14px;
+		    color: #ff801b;
+		    margin-right: 35px;
+		}
+		.content .house .dijia .right{
+		    text-align: right;
+		    width: 89px;
+		}
+		.content .house .dijia .right > button{
+		    color: #fff;
+		    background: #ff801b;
+		    text-shadow: none;
+		    display: inline-block;
+		    height: 37px;
+		    width: 88px;
+		    -webkit-border-radius: 4px;
+		    -moz-border-radius: 4px;
+		    border-radius: 4px;
+		    font-size: 15px;
+		    border: 0;
+		    box-sizing: border-box;
+		    margin-top: 10px;
+		}
+		.content .house .new-msg{
+		    border-bottom: 1px solid rgba(0,0,0,0.1);
+		    background: #fff;
+		}
+		.content .house .new-msg .n-title {
+		    text-align: center;
+		    margin-bottom:25px;
+		}
+		.content .house .new-msg .n-title .pub-title {
+		    padding-bottom: 5px;
+		}
+		.content .house .new-msg .n-title .date{
+		    text-align: center;
+		    display: inline-block;
+		    width: 68px;
+		    height: 15px;
+		    line-height: 15px;
+		    background: rgba(125, 125, 125, 0.08);
+		    font-size: 12px;
+		    color: #999;
+		}
+		.content .house .new-msg .desc{
+		    padding:0 16px 38px 21px;
+			font-size: 14px;
+			line-height: 21px;
+			letter-spacing: 1px;
+			color: #666666;
+		}
+		.content .house .new-msg .btns{
+		    display: flex;
+		    justify-content: center;
+		    margin-bottom: 23px;
+		}
+		.content .house .new-msg .btns .btn{
+		    width: 158px;
+			height: 40px;
+			border-radius: 4px;
+			border: 1px solid #ff801b;
+		    color: #ff801b;
+		    font-size: 16px;
+		    background: #fff;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+
+		.content .house .room-type{
+		    display: flex;
+		    flex-direction: column;
+		    border-bottom: 1px solid rgba(0,0,0,0.1);
+		    background: #fff;
+		}
+		.content .house .room-type .scroll{
+		    display: flex;
+		    flex-direction: row;
+		    margin-bottom: 25px;
+		    margin-right: 20px;
+		}
+		.content .house .room-type .list{
+		    display: flex;
+		    flex-direction: row; 
+		    padding: 0 20px;
+		    width: 100%;
+		    box-sizing: border-box;
+		}
+		.content .house .room-type .list .r-item{
+		    display: flex;
+		    flex-direction: column;
+		    width: 210px;
+		    border: 1px solid rgba(0, 0, 0, 0.1);
+		    margin-right: 15px;
+		    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+		}
+		.content .house .room-type .list .r-item .top{
+		    width: 100%;
+			height: 175px;
+		    display: flex;
+		    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+		}
+		.content .house .room-type .list .r-item .top img{
+		    width: 210px;
+		    height: 100%;
+		}
+		.content .house .room-type .list .r-item .bottom{
+		    display: flex;
+		    flex-direction: column;
+		    padding: 15px 10px; 
+		    box-sizing: border-box;
+		}
+		.content .house .room-type .list .r-item .bottom .name{
+		    margin-bottom:10px;
+		}
+		.content .house .room-type .list .r-item .bottom .name .status{
+		    border: 1px solid #00a651;
+		    border-radius: 3px;
+		    padding: 0 5px 0 6px;
+		    color: #00a651;
+		    font-size: 10px;
+		    vertical-align: middle;
+		    margin-right: 9px;
+		}
+		.content .house .room-type .list .r-item .bottom .name text:last-child{
+		    font-size: 14px;color: #333;
+		    display: inline-block;
+		}
+		.content .house .room-type .list .r-item .bottom .desc{
+		    display: flex;
+		    font-size: 14px;
+		    color: #ff801b;
+		}
+		.content .house .room-type .list .r-item .bottom .desc > view{
+		    margin-right:10px;
+		}
+
+
+		.content .space{
+		    width: 100%;
+		    height: 10px;
+		    background: rgba(0, 0, 0, 0.06);
+		}
+
+
+		.content .liangdian{
+		    display: block;
+		    background: #fff;
+		    margin-bottom: 10px;
+		}
+		.content .liangdian .l-title{
+		    padding: 12px 19px;
+		    background: #fff;
+		    font-size: 16px;
+		    color: rgba(0,0,0,0.7);
+		}
+		.content .liangdian .l-content{
+		    padding:0 16px 16px;
+		    background: #fff;
+		}
+		.content .liangdian .l-content .l-tab{
+		    display: block;
+		    margin-bottom: 10px;
+		}
+		.content .liangdian .l-content .l-tab > div{
+		    display: inline-block;
+		    height: 30px;
+		    line-height: 30px;
+		    padding: 0 10px;
+			border-radius: 5px;
+		    margin-bottom: 10px;
+		    margin-right: 14px;
+		    font-size: 14px;
+		    background: #fff;
+		    color: #898989;
+		    border: solid 1px #adadad;
+		    box-sizing: border-box;
+		}
+		.content .liangdian .l-content .l-tab .active{
+			border: solid 1px rgba(208,146,74,1);
+		    color: #D0924A;
+		}
+		.content .liangdian .l-content  .l-tabpane .pane{
+		    padding: 8px;
+		    background:rgba(246,241,241,1);
+		    border-radius: 3px;
+		    color:rgba(0,0,0,0.87);
+		    font-size: 14px;
+		    display: none;
+		}
+		.content .liangdian .l-content  .l-tabpane .pane.show{
+		    display: block;
+		}
+
+
+
+		.content .h-desc{
+		    display: block;
+		    background: #fff;
+		}
+		.content .h-desc .h-content{
+		    padding: 10px;
+		    width: 100%;
+		    box-sizing: border-box;
+		    font-size: 14px;
+		    color: #666;
+		}
+		.content .h-desc .h-content p{
+		    display: block;
+		    width: 100%;
+		    font-size: 14px;
+		    margin-bottom: 10px;
+		    color: #666;
+		}
+		.content .h-desc .h-content img{
+		    width: 100% !important;
+		    height: 250px;
+		}
+		.content .h-desc .h-content .img{
+		    width: 100% !important;
+		    height: 250px;
+		    margin: 15px 0;
+		}
+		.content .h-desc .h-content .p1{
+		    margin-bottom: 15px;
+		}
+
+
+
+
+
+
+		.nav{
+		    position: fixed;
+		    left: 0;bottom: 0;
+		    width: 100%;
+		    display: flex;
+		    height: 50px;
+		    color: #fff;
+		    background: #f88b38;
+		    box-sizing: border-box;
+		    font-size: 15px;
+		}
+		.nav .n-left{
+		    width: 40%;
+		    height: 100%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    background: #fff;
+		    color:rgba(0,0,0,1);
+		}
+		.nav .n-right{
+		    width: 60%;
+		    height: 100%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    background:rgba(209,46,51,1);
+		}
+
+		.hongbao {
+		    bottom:65px;
+		}
+		.zixun{
+		    bottom:60px;
+		}
+
+
+
+		.dialog{
+		    position: fixed;
+		    left: 0;top: 0;
+		    width: 100%;
+		    height: 100vh;
+		    background: rgba(0,0,0,0.6);
+		    z-index: 999999999;
+		}
+		.dialog .dialog-content{
+		    position: relative;
+		    width: 300px;
+		    height: auto;
+		    background: #fff;
+		    border-radius: 6px;
+		    left: 50%;top: 50%;
+		    transform: translate(-50%,-50%);
+		    color: #333;
+		    font-size: 16px;
+		    font-weight: 300;
+		}
+		.dialog .dialog-header{
+		    padding: 20px;
+		    text-align: center;
+		}
+		.dialog .dialog-header .title{
+		    color: #333;
+		    font-size: 18px;
+		    font-weight: 300;
+		}
+		.dialog .dialog-header .close{
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    width: 40px;height: 40px;
+		    position: absolute;
+		    top: 10px;
+		    right: 20px;
+		    font-size: 32px;
+		    font-weight: 100;
+		    color: #000;
+		    filter: alpha(opacity=20);
+		    opacity: 0.2;
+		}
+		.dialog .dialog-body{
+		    padding: 10px 25px;
+		    margin-bottom: 10px;
+		}
+		.dialog .good{
+		    text-align: left;
+		    padding-left: 25px;
+		}
+		.dialog .good .good1{
+		    font-size: 16px;
+		    font-weight: 400;
+		    display: block;
+		    margin-bottom: 7px;
+		}
+		.dialog .good .good2{
+		    font-size: 14px;
+		    color: red;
+		    display: block;
+		    margin-bottom: 7px;
+		}
+		.dialog .dialog-body .form-wrap{
+		    display: flex;
+		    align-items:flex-end;
+		    margin-bottom: 17px;
+		    padding: 9px 12px;
+		    /* background-color: #f2f2f4; */
+		    border-radius: 5px;
+		    text-align: left;
+		}
+		.dialog .dialog-body .form-wrap view{
+		    color: #333;
+		    /* width: 140px; */
+		    width: 55px;
+		    padding: 3px 0;
+		}
+		.dialog .dialog-body .form-wrap input{
+		    font-size: 14px;
+		    color: #333;
+		    /* filter: alpha(opacity=40);
+		    opacity: 0.4; */
+		    /* background-color:#f2f2f4; */
+		    padding:10px 6px 0 9px;
+		    border-bottom: 1px solid rgba(0,0,0,0.1);
+
+		}
+
+
+
+		.dialog .dialog-body .form-wrap.bar{
+		    padding: 5px 8px;
+		    font-size: 14px;
+		    background:rgba(255,246,244,1);
+		    border-radius:2px;
+		    border:1px solid rgba(255,197,197,1);
+		    box-sizing: border-box;
+		    /* margin:30px 24px; */
+		    margin:15px 16px 15px 12px;
+		}
+		.dialog .dialog-body .form-wrap.bar > view{
+		    width: auto;
+		    padding: 0;
+		    display: flex;
+		    align-items: center;
+		}
+		.dialog .dialog-body .form-wrap.bar,
+		.dialog .bar{
+		    display: flex;
+		    justify-content: space-between;
+		}
+		.dialog .dialog-body .form-wrap.bar  text,
+		.dialog .bar text{
+		    font-size: 14px;
+		    color:rgba(0,0,0,0.6);
+		}
+		.dialog .dialog-body .form-wrap.bar  img,
+		.dialog .bar img{
+		    display: inline-block;
+		    height: 7px;
+		    width: 12px;
+		    transform: rotate(-90deg);
+		}
+		.dialog .dialog-body .form-wrap.bar .color{
+		    color:rgba(237,75,75,1);
+		    font-weight: bold;
+		}
+		.dialog .dialog-body .form-wrap.bar  .b-more{
+		    color:rgba(0,0,0,0.36);
+		}
+
+		.dialog .dialog-footer{
+		    display: block;
+		}
+		.dialog .dialog-footer button{
+		    width: 100%;
+		    border-radius: 0px 0px 10px 10px;
+		    color: #fff;
+		    text-align: center;
+		    background-color: #FF801B;
+		}
+
+
+		.dialog-back .dialog-body{
+		    padding:0 29px;
+		}
+		.dialog-back .dialog-body .form-wrap{
+		    display: flex;
+		    justify-content: center;
+		    padding: 0;
+		    margin: 0;
+		}
+		.dialog-back .dialog-body .form-wrap img{
+		    width: 93px;
+		    height: 93px;
+		    margin: 25px 0;
+		}
+		.dialog-back .dialog-body .text{
+		    font-size: 20px;
+		    color: #000;
+		    font-weight: 500;
+		    margin-bottom: 15px;
+		}
+		.dialog-back .dialog-body .back{
+		    font-size: 14px;
+		    color: #888888;
+		    margin-bottom: 40px;
+		    text-align: center;
+		}
+		.dialog-back .dialog-footer{
+		    border-radius:0px 0px 5px 5px;
+		    border-top: 1px solid #E5E5E5;
+		}
+		.dialog-back .dialog-footer button{
+		    background: #fff;
+		    color: #ED7A41;
+		    font-size:18px;
+		}
+
+
+		.new-more{
+		    display:flex;
+		    justify-content:center;
+		    position:relative;
+		    bottom:-42px;
+		}
+		.new-more view{
+		    width:108px;
+		    height:29px;
+		    border-radius:6px;
+		    border:1px solid rgba(223,149,35,1);
+		    font-size:12px;
+		    color:rgba(202,124,0,1);
+		    text-align: center;
+		    line-height: 29px;
+		}
+
+
+
+
+		.now-room{
+		    display: block;
+		    margin: 0 17px;
+		    padding: 17px 0;
+		    font-size:14px;
+		    color: #000;
+		    border-bottom: 1px solid rgba(0,0,0,0.08);
+		}
+		.now-room .n-tit{
+		    display: block;
+		    font-size: 14px;
+		    margin-bottom: 18px;
+		    color:rgba(0,0,0,0.74);
+		    position: relative;
+		}
+		.now-room .n-tit::after{
+		    content: '';
+		    position: absolute;
+		    left: 0;bottom: 4px;
+		    width: 58px;
+		    height: 6px;
+		    background: rgba(209,46,51,0.28);
+		}
+		.now-room .n-list{
+		    display: flex;
+		    flex-direction: column;
+		    color:rgba(0,0,0,0.87);
+		}
+		.now-room .n-list .n-item{
+		    display: flex;
+		    align-items: center;
+		    margin-bottom: 18px;
+		}
+		.now-room .n-list .n-item:last-child{
+		    margin-bottom: 0;
+		}
+		.now-room .n-list .n-item > div{
+		    flex: 1;
+		}
+		.now-room .n-list .n-item > div:nth-of-type(3){
+		    flex: 2;
+		}
+		.now-room .n-list .n-item > div:last-child{
+		    text-align: right;
+		}
+		.now-room .n-list .n-item > div:last-child > div{
+			display: inline-block;
+			width: auto;
+		    padding: 4px 6px;
+		    border-radius:4px;
+		    border:1px solid rgba(217,133,96,1);
+		    font-size:12px;
+		    color:rgba(217,133,96,1);
+		    text-align: center;
+		    box-sizing: border-box;
+		}
+
+
+		.dijia{
+		    padding: 12px 0 15px 0;
+		    text-align: center;
+		    font-size:12px;
+		    color:rgba(0,0,0,0.48);
+		}
+		.dijia .dj-btn{
+		    width:108px;
+		    height:30px;
+		    text-align: center;
+		    line-height: 30px;
+		    border-radius:6px;
+		    border:1px solid rgba(209,46,51,1);
+		    color:rgba(209,46,51,1);
+		    margin: 12px auto 0;
+		}
+
+
+		.content .youhui{
+		    padding: 10px 16px 21px;
+		    background:rgba(244,244,244,1);
+		    position: relative;
+		    height: 88px;
+		    margin-bottom: 10px;
+		    box-sizing: border-box;
+		}
+		.content .youhui .yh-bg{
+		    position: absolute;
+		    left: 0;top: 0;
+		    width: 100%;
+		    height: 100%;
+		}
+		.content .youhui .y-content{
+		    border-radius: 2px;
+		    position: absolute;
+		    background-size: cover;
+		    font-size: 16px;
+		    color: #fff;
+		}
+		.content .youhui .y-title{
+		    font-size: 16px;
+		    color:rgba(0,0,0,0.7);
+		}
+		.content .youhui .y-desc{
+		    padding-top: 10px;
+		    font-size: 18px;
+		    color: #D12E33;
+		    display: flex;
+		    align-items: center;
+		}
+		.content .youhui .y-desc .y-hui{
+		    position: relative;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    width: 20px;
+		    height: 20px;
+		    margin-right: 7px;
+		}
+		.content .youhui .y-desc .y-hui div{
+		    position: absolute;
+		    color: #fff;
+		    font-size: 14px;
+		    z-index: 99;
+		}
+		.content .youhui .y-desc .y-hui > img{
+		    position: absolute;
+		    width: 20px;
+		    height: 20px;
+		    display: inline-block;
+		    margin-right: 7px;
+		}   
+
+
+		.news-msg{
+		    display: block;
+		    padding: 16px;
+		    margin-bottom: 10px;
+		    background: #fff;
+		}
+		.news-msg .nm-tit{
+		    font-size: 16px;
+		    color:rgba(0,0,0,0.7);
+		    margin-bottom: 16px;
+		}
+		.news-msg .nm-desc{
+		    font-size: 14px;
+		    color:rgba(0,0,0,0.87);
+		    margin-bottom: 8px;
+		}
+		.news-msg .nm-date{
+		    font-size: 12px;
+		    color:rgba(0,0,0,0.4);
+		    margin-bottom: 20px;
+		}
+		.news-msg .nm-btn{
+		    font-size: 12px;
+		    margin: 0 auto;
+		    width:126px;
+		    height:30px;
+		    line-height: 30px;
+		    text-align: center;
+		    border-radius:6px;
+		    border:1px solid rgba(209,46,51,1);
+		    color:rgba(209,46,51,1);
+		}
+
+
+
+		.tabs{
+		    display: block;
+		}
+		.tabs .tabs-li{
+		    display: flex;
+		    margin-bottom: 10px;
+		}
+		.tabs .tabs-li > div{
+		    flex: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    font-size: 16px;
+		    color:rgba(0,0,0,0.8);
+		    padding: 18px 0;
+		    background: #fff;
+		    position: relative;
+		}
+		.tabs .tabs-li .active{
+		    color: #D12E33;
+		}
+		.tabs .tabs-li .active::after{
+		    position: absolute;
+		    bottom: 0;left: 0;
+		    content: '';
+		    width:100%;
+		    height:1px;
+		    background:rgba(209,46,51,1);
+		    opacity:0.87;
+		}
+
+
+		.tabs .tabs-con{
+		    display: block;
+		    background: #fff;
+		}
+	
+		.tabs .tabs-con .jiaotong{
+		    padding: 16px;
+		}
+		.tabs .tabs-con .jiaotong .jt-desc{
+		    display: block;
+		    font-size: 14px;
+		    color:rgba(0,0,0,0.87);
+		    padding-bottom: 28px;
+		}
+		.tabs .tabs-con .jiaotong .jt-imgs{
+		    height:169px;
+		    /* background:rgba(216,216,216,1); */
+		}
+		.tabs .tabs-con .jiaotong .jt-imgs img{
+		    width: 100%;
+		    height: 100%;
+		    display: block;
+		}
+
+		.content .tabs-con .romm-detail{
+		    display: block;
+		    background: #fff;
+		    padding: 0 16px;
+		}
+		.content .tabs-con .romm-detail .d-list{
+		    display: flex;
+		    flex-direction: column;
+		    font-size: 14px;
+		    color: rgba(0,0,0,0.42);
+		}
+		.content .tabs-con .romm-detail .d-list .d-item{
+		    padding: 10px 0;
+		    border-bottom: 1px solid rgba(0,0,0,0.18);
+		}
+		.content .tabs-con .romm-detail .d-list .d-item:last-child{
+		    border-bottom: 0;
+		}
+		.content .tabs-con .romm-detail .d-list .d-item > text:first-child{
+		    display: inline-block;
+		    width: 92px;
+		}
+		.content .tabs-con .romm-detail .d-list .value{
+		    color: rgba(0,0,0,0.87);
+		}
+		.tabs .tabs-con .t-item{
+		    display: none;
+		}
+		.tabs .tabs-con .t-item.show{
+			display: block;
+		}
+
+
+		.dianping .l-title{
+		    padding: 16px 16px;
+		}
+		.dianping .dp-list{
+		    display: flex;
+		    flex-direction: column;
+		    padding: 0 16px 6px;
+		    box-sizing: border-box;
+		}
+		.dianping .dp-list .dp-item{
+		    margin-bottom: 10px;
+		    font-size: 14px;
+		    box-sizing: border-box;
+		    display: flex;
+		    align-items: flex-start;
+		}
+		.dianping .dp-list .dp-item .dp-text{
+		    line-height:26px;
+		    text-align: justify;
+		    width:315px;
+		}
+		.dianping .dp-list .dp-item .dp-dian{
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    width:16px;
+		    height:16px;
+		    border-radius: 50%;
+		    background:rgba(235,230,230,1);
+		    font-size:14px;
+		    color:rgba(209,46,51,1);
+		    margin-right: 12px;
+		    margin-top: 2px;
+		}
+
+
+	</style>
+</head>
+<body>
+	
+<div class='container pd100' 
+    bindtouchstart='_Start' bindtouchmove='_Move' bindtouchend='_End'>
+
+    <div class='slider'>
+        <!-- <swiper 
+            current="{{current}}" bindchange="_slider" circular="{{circular}}"
+            indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 
+            interval="{{interval}}" duration="{{duration}}" >
+            <block wx:for="{{house.photo_urls_array}}" wx:key="{{index}}">
+                <swiper-item>
+                    <img src="{{item}}" class="slide-img" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <div class="div">{{current+1}} / {{house.photo_urls_array.length}}</div> -->
+    </div>
+
+    <div class="content">
+        <div class="house">
+            <div class="title">
+                <div class="name">
+                    <div>杭州湾星河荣御</div>
+                </div>
+                <div class="addr">
+                    <img src='/img/detail2/icon-addr.png'></img> 
+                    <div class='first'>[宁波市慈溪市]</div>
+                    <div>杭州湾利时广场西南侧</div>
+                </div>
+                <div class='bq'>
+                    <div class='green' wx:if="{{house.house_status_sting}}">在售</div>
+                    <div class='blue' wx:if="{{house.house_detail.build_type_string}}">在售</div>
+                    <div class='yellow' wx:if="{{house.house_detail.decoration_standard}}">在售</div>
+                </div>
+            </div>
+            <div class='now-room'>
+                <div class='n-tit'>今日房源</div>
+                <div class='n-list'>
+                    <block wx:for="{{house.rooms.jinri_rooms}}" wx:key="{{index}}">
+                        <div class='n-item'>
+                            <div>三房两厅</div>
+                            <div>90㎡</div>
+                            <div>约223万 (12000/m²)</div>
+                            <div><div bindtap='_handleGO' 
+                            data-go="../room-type/index?id={{houseId}}&&index={{index}}">户型图</div></div>
+                        </div>
+                    </block>
+                </div>
+            </div>
+            <div class='dijia'>
+                <div>以上价格为开发商报价，可联系案场经理咨询最低底价</div>
+                <div class='dj-btn' catchtap='_showDialog' data-type="0">询底价</div>
+            </div>
+        </div>  <!-- house-end -->
+        
+
+        <div class='youhui' wx:if="{{house.activity.des}}">
+            <img class='yh-bg' src='/img/detail2/yh_bg.png'></img>
+            <div class='y-content'>
+                <div class='y-title'>优惠信息</div>
+                <div class='y-desc'>
+                    <div class='y-hui'>
+                        <img src='/img/detail2/yh_hui.png'></img>
+                        <div>惠</div>
+                    </div>
+                    <div>10万抵12万</div>
+                </div>
+            </div>
+        </div>
+
+        <div class='news-msg' wx:if="{{house.news}}">
+            <div class='nm-tit'>最新消息</div>
+            <div class='nm-desc'>
+                weqeqweqweqeqweq
+            </div>
+            <div class='nm-date'>2018-01-03</div>
+            <div class='nm-btn' catchtap='_showDialog' data-type="1">有新消息通知我</div>
+        </div>
+
+        <block wx:if="{{house.house_spotlight.title}}">
+            <div class='liangdian' >
+                <div class='l-title'>精选理由</div>
+                <div class='l-content'>
+                    <div class='l-tab'>
+                        <div class="active" data-index="{{index}}">亮点1</div>
+                        <div class="" data-index="{{index}}">亮点2</div>
+                        <div class="" data-index="{{index}}">亮点3</div>
+                    </div>
+                    <div class='l-tabpane'>
+                        <div class='pane show' >
+                            亮点1亮点1亮点1亮点1亮点1
+                        </div>
+                        <div class='pane' >
+                            亮点2亮点2亮点2亮点2亮点2
+                        </div>
+                        <div class='pane' >
+                            亮点3亮点3亮点3亮点3亮点3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </block>
+
+        <div wx:else>
+            <div class='liangdian dianping' wx:if="{{house.dianping.length>0}}">
+                <div class='l-title' >小编点评</div>
+                <div class='dp-list'>
+                    <block wx:for="{{house.dianping}}" wx:key="{{index}}">
+                        <div class='dp-item'>
+                            <div class='dp-dian'>0</div>
+                            <div class='dp-div'>历史课大萨达阿克苏打开的安吉斯柯达</div>
+                        </div>
+                    </block>
+                </div>
+            </div>
+        </div>
+
+        <div class='tabs'>
+            <div class='tabs-li'>
+                <div class='active' 
+                    bindtap='tabs' data-index="0">交通配套</div>
+                <div class='{{d2==1?"active":""}}' 
+                    bindtap='tabs' data-index="1">楼盘详情</div>
+                <div class='{{d2==2?"active":""}}' 
+                    bindtap='tabs' data-index="2">楼盘介绍</div>
+            </div>
+
+            <div class='tabs-con'>
+                <div class='t-item jiaotong show' wx:if="{{d2==0 && house.house_traffic_info}}">
+                    <div class='jt-desc'>埃里克森的骄傲了圣诞节了啊</div>
+                    <div class='jt-imgs'>
+                        <img mode="aspectFit" 
+                            src='{{house.house_traffic_info.img}}'></img>
+                    </div>
+                </div>
+                
+                <div class="t-item romm-detail" wx:elif="{{d2==1}}">
+                    <div class="d-list" wx:if="{{house.house_detail}}">
+                        <div class='d-item' wx:if="{{house.house_detail.property_right}}">
+                            <div>产权年限</div>
+                            <div class='value'>{{house.house_detail.property_right}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.decoration_standard}}">
+                            <div>装修标准</div>
+                            <div class='value'>{{house.house_detail.decoration_standard}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.property_fee}}">
+                            <div>物业费</div>
+                            <div class='value'>{{house.house_detail.property_fee}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.company_name}}">
+                            <div>开发商</div>
+                            <div class='value'>{{house.house_detail.company_name}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.house_address}}">
+                            <div>楼盘地址</div>
+                            <div class='value'>{{house.house_detail.house_address}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.feature_string}}">
+                            <div>项目特色</div>
+                            <div class='value'>{{house.house_detail.feature_string}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.sales_address}}">
+                            <div>售楼处地址</div>
+                            <div class='value'>{{house.house_detail.sales_address}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.build_type_string}}">
+                            <div>建筑类型</div>
+                            <div class='value'>{{house.house_detail.build_type_string}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.green_rate}}">
+                            <div>绿化率</div>
+                            <div class='value'>{{house.house_detail.green_rate}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.area_covered}}">
+                            <div>占地面积</div>
+                            <div class='value'>{{house.house_detail.area_covered}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.volume_ratio}}">
+                            <div>容积率</div>
+                            <div class='value'>{{house.house_detail.volume_ratio}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.planning_households}}">
+                            <div>规划户数</div>
+                            <div class='value'>{{house.house_detail.planning_households}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.property_company}}">
+                            <div>物业公司</div>
+                            <div class='value'>{{house.house_detail.property_company}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.parking_ratio}}">
+                            <div>车位配比</div>
+                            <div class='value'>{{house.house_detail.parking_ratio}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.heating_method}}">
+                            <div>供暖方式</div>
+                            <div class='value'>{{house.house_detail.heating_method}}</div>
+                        </div>
+                        <div class='d-item' wx:if="{{house.house_detail.parking}}">
+                            <div>车位</div>
+                            <div class='value'>{{house.house_detail.parking}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='t-item liangdian h-desc' wx:else>
+                    <div class='h-content' wx:if="{{house.house_intro.body}}">
+                        <rich-div nodes="{{house.house_intro.body}}"></rich-div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    
+    </div>
+
+
+    <div class='nav'>
+        <div class='n-left' bindtap='_call' data-phone="{{house.phone400}}">
+              电话咨询
+        </div>
+        <div class='n-right' catchtap='_showDialog' data-type="2">
+            预约看房
+        </div>
+    </div>
+
+</div>
+
+
+<div class='dialog' id="dialog" hidden="{{dialogShow}}" bindtap='_closeDialog'>
+    <div class='dialog-content' catchtap='_place'>
+        <div class='dialog-header'>
+            <div class='title'>{{dialogCurrent==0?'询底价':(dialogCurrent==1?'订阅通知':'预约看房')}}</div>
+            <div class='close' catchtap="_closeDialog">× </div>
+        </div>
+        <div class='good' wx:if="{{dialogCurrent==2?true:false}}">
+            <div class='good1'>10万认筹优先选房</div>
+            <div class='good2'>(仅限网上报名客户专享)</div>
+        </div>
+        <div class='dialog-body' >
+            <div class='form-wrap' wx:if="{{dialogCurrent!=1?true:false}}">
+                <div>姓名</div>
+                <input type="div" placeholder='请输入姓名' cursor-spacing="100"                             adjust-position="true" bindinput="_inputName" value="{{inputName}}"/>
+            </div>
+            <div class='form-wrap'>
+                <div>手机</div>
+                <input type="div" placeholder='请输入电话' maxlength="11"                                 cursor-spacing="100" adjust-position="true" bindinput='_inputPhone' value="{{inputPhone}}"/>
+            </div>
+
+            <block wx:if="{{plan_type==1}}">
+                <div class='form-wrap bar' 
+                    bindtap='_handleGO' data-go='../my-redpacket/index'>
+                    <div>购房红包：<div class='color'>{{house.hpjx_red_packet_money}}元</div></div>
+                    <div><div class='b-more'>领取更多</div><img src='http://www.91xiangju.com/imgs/xiangju/commodity-house/xiangqing_more@2x.png'></img></div>
+                </div>
+            </block>
+
+            <div class='form-wrap bar' wx:else
+                bindtap='_Bhongbao' >
+                <div>购房红包：<div class='color'>{{house.hpjx_red_packet_money}}元</div></div>
+                <div wx:if="{{house.hpjx_red_packet_money!=5000}}"><div class='b-more'>领取红包</div><img src='http://www.91xiangju.com/imgs/xiangju/commodity-house/xiangqing_more@2x.png'></img></div>
+            </div>
+
+        </div>
+        <div class='dialog-footer'>
+            <button catchtap='_submit'>确定</button>
+        </div>
+    </div>
+</div>
+
+<!-- 预约返回  -->
+<div class='dialog dialog-back' hidden="{{dialogShow3}}" bindtap='_closeDialog2'>
+    <div class='dialog-content' catchtap='_place'>
+        <div class='dialog-body' >
+            <div class='form-wrap' >
+                <img src="http://www.91xiangju.com/imgs/xiangju/icon_check.png"></img>
+            </div>
+            <div class='form-wrap div' >
+                <div>提交成功</div>
+            </div>
+            <div class='form-wrap back' >
+                <div>{{backdiv}}</div>
+            </div>
+        </div>
+        <div class='dialog-footer'>
+            <button catchtap='_closeDialog3' data-type='dialogShow3'>知道了</button>
+        </div>
+    </div>
+</div>
+	
+
+	<script src='https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js'></script>
+	<script>
+		
+		$(function(){
+				$('.container').on('click','.tabs-li > div',function(){
+					var index = $(this).index();
+					$(this).addClass('active').siblings().removeClass('active');
+					$('.tabs-con .t-item').eq(index).addClass('show').siblings().removeClass('show');
+				});
+
+				$('.container').on('click','.l-tab > div',function(){
+					var index = $(this).index();
+					$(this).addClass('active').siblings().removeClass('active');
+					$('.l-tabpane .pane').eq(index).addClass('show').siblings().removeClass('show');
+				});
+
+
+		})
+
+
+
+	</script>
+
+
+
+</body>
+</html>

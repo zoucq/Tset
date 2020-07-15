@@ -1,0 +1,45 @@
+.main{
+    width: 100%;
+    min-height: 100vh;
+    background: #f1f2f3; 
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    padding: 32rpx 32rpx 0;
+    background: #f1f2f3; 
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 24rpx;
+    margin-bottom: 24rpx;
+    border-radius: 8rpx;
+}
+
+.pic{
+    width: 100%;
+    height: auto;
+}
+
+.desc{
+    display: block;
+    margin-top: 24rpx;
+    font-size: 32rpx;
+    line-height: 1.4;
+}
+
+.default_btn{
+    border: 0;
+    margin: 0;
+    background: transparent;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+.default_btn::after{
+    display: none;
+    border: 0;
+}

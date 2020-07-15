@@ -1,0 +1,70 @@
+<view class="container">
+
+    <view class="we-container {{directionClass}}">
+        <view class="we-wrapper"
+            bindtouchstart="touchstart"
+            bindtouchmove="touchmove"
+            bindtouchend="touchend"
+            animation="{{animationData}}">
+            <view class="we-slide"></view>
+            <block wx:for="{{rooms}}" wx:key="slides">
+            <view class="we-slide {{index==activeIndex?'active':''}}">{{item.name}}</view>
+            </block>
+        </view>
+        <view class='bg'>
+            <view class='left'></view>
+            <view class='right'></view>
+        </view>
+    </view>
+
+    <block wx:for="{{rooms}}" wx:key="slides-box">
+    <view class='wrapper' wx:if='{{index==activeIndex}}'>
+        <swiper indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+            bindchange="handleSlider" current="{{current}}" > 
+            <block wx:for="{{rooms[activeIndex].photos}}" wx:key="imgs" wx:for-item="item">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+            <view class='act-all'>{{current+1}}/{{rooms[activeIndex].photos.length}}</view>
+        </swiper>
+
+        <view class='boxs'>
+            <view class='item'>
+                <view class='title'>
+                    {{rooms[activeIndex].name}}
+                    <text>{{rooms[activeIndex].status_des}}</text>
+                </view>
+                <view class='price'>
+                    <text>价格</text>
+
+                    <block wx:if="{{rooms[activeIndex].price_unit!=-1 && rooms[activeIndex].price_unit=='元/m²'}}">
+                        <text class='red'>约{{(rooms[activeIndex].area*rooms[activeIndex].price)/10000}}万</text> ({{rooms[activeIndex].price}}{{rooms[activeIndex].price_unit==-1?'元/m²':rooms[activeIndex].price_unit}})
+                    </block>
+                    <block wx:if="{{rooms[activeIndex].price_unit!=-1 && rooms[activeIndex].price_unit=='万元/套'}}">
+                        <text class='red'>约{{rooms[activeIndex].price}}{{rooms[activeIndex].price_unit}}</text>
+                    </block>
+                    <block wx:if="{{rooms[activeIndex].price_unit==-1}}">
+                        <text class='red'>价格待定</text>
+                    </block>
+                </view>
+                <view class='area'>
+                    <text>面积</text>
+                    <text>{{rooms[activeIndex].area}}㎡</text>
+                </view>
+                <view class='type'>
+                    <text>户型</text>
+                    <text>{{rooms[activeIndex].habitable}}</text>
+                </view>
+                <view class='time'>
+                    <text>更新时间</text>
+                    <text>{{rooms[activeIndex].mtime}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    </block>   
+
+
+</view>

@@ -1,0 +1,124 @@
+<!--index.wxml-->
+<view class="container">
+
+    <view class='content'>
+        <view class='user-info'>
+            <image src='{{userInfo.avatarUrl}}'></image>
+        </view>
+        <view class='title'>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
+        <view class='ul'>
+            <view class='li' data-id='{{historyInfo["4"].id}}' 
+                bindtap='handleGo' data-go='../my-detail/index?type=浏览过&&id={{historyInfo["4"].id}}'>
+                <view>浏览过</view>
+                <view>
+                    <text>{{historyInfo['4'].num}}个楼盘</text>
+                    <icon class='iconfont icon-gengduo'></icon>
+                </view>
+            </view>
+            <view class='li' data-id='{{historyInfo["0"].id}}' 
+                bindtap='handleGo' data-go='../my-detail/index?type=关注过&&id={{historyInfo["0"].id}}'>
+                <view>关注过</view>
+                <view>
+                    <text>{{historyInfo['0'].num}}个楼盘</text>
+                    <icon class='iconfont icon-gengduo'></icon>
+                </view>
+            </view>
+            <view class='li' data-id='{{historyInfo["2"].id}}' 
+                bindtap='handleGo' data-go='../my-detail/index?type=咨询过&&id={{historyInfo["2"].id}}'>
+                <view>咨询过</view>
+                <view>
+                    <text>{{historyInfo['2'].num}}个楼盘</text>
+                    <icon class='iconfont icon-gengduo'></icon>
+                </view>
+            </view>
+            <view class='li' data-id='{{historyInfo["1"].id}}' 
+                bindtap='handleGo' data-go='../my-detail/index?type=现场看过&&id={{historyInfo["1"].id}}'>
+                <view>现场看过</view>
+                <view>
+                    <text>{{historyInfo['1'].num}}个楼盘</text>
+                    <icon class='iconfont icon-gengduo'></icon>
+                </view>
+            </view>
+            <view class='li' data-id='{{historyInfo["4"].id}}' 
+                bindtap='handleGo' data-go='../my-detail/index?type=已购买&&id={{historyInfo["3"].id}}'>
+                <view>已购买</view>
+                <view>
+                    <text>{{historyInfo['3'].num}}个楼盘</text>
+                    <icon class='iconfont icon-gengduo'></icon>
+                </view>
+            </view>
+        </view>
+    </view>
+
+<block wx:if="{{false}}">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+
+    <view class="user-qa" wx:if="{{false}}">
+        <view class='item'>
+            <!-- <icon class='iconfont icon-add'></icon> -->
+            <text>回答</text>
+            <text>{{infos.answer}}次</text>
+        </view>
+        <view class='item'>
+            <text>提问</text>
+            <text>{{infos.question}}次</text>
+        </view>
+        <view class='item'>
+            <text>反馈</text>
+            <text>{{infos.report}}次</text>
+        </view>
+    </view>
+
+    <view class='history'>
+        <view class='title'>
+            <text>我的买房旅程</text>
+            <text>共365天</text>
+        </view>      
+        <view class='date'>
+            <text>2017年\n10月30日</text>
+        </view>
+        <view class='list'>         
+            <view class='item' data-id='1' bindtap='handleGo' data-go='../my-detail/index?type=关注过&&id=1'>
+                <text>关注过</text>
+                <text>{{historyInfo['1']}}个楼盘</text>
+                <view>查看详情<icon class='iconfont icon-gengduo'></icon></view>
+            </view>
+            <view class='item' data-id='2' bindtap='handleGo' data-go='../my-detail/index?type=现场看过&&id=2'>
+                <text>现场看过</text>
+                <text>{{historyInfo['2']}}个楼盘</text>
+                <view>查看详情<icon class='iconfont icon-gengduo'></icon></view>
+            </view>
+            <view class='item' data-id='3' bindtap='handleGo' data-go='../my-detail/index?type=咨询过&&id=3'>
+                <text>咨询过</text>
+                <text>{{historyInfo['3']}}个楼盘</text>
+                <view>查看详情<icon class='iconfont icon-gengduo'></icon></view>
+            </view>
+            <view class='item' data-id='4' bindtap='handleGo' data-go='../my-detail/index?type=已购买&&id=4'>
+                <text>已购买</text>
+                <text>{{historyInfo['4']}}个楼盘</text>
+                <view>查看详情<icon class='iconfont icon-gengduo'></icon></view>
+            </view>
+            <view class='item' data-id='5' bindtap='handleGo' data-go='../my-detail/index?type=浏览过&&id=5'>
+                <text>浏览过</text>
+                <text>{{historyInfo['5']}}个楼盘</text>
+                <view>查看详情<icon class='iconfont icon-gengduo'></icon></view>
+            </view>
+
+        </view>
+        <view class='date end'>
+            <text>2018年\n01月26日</text>
+        </view>
+
+    </view>
+</block>
+
+
+</view>

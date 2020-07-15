@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style type="text/css">
+    	*{margin:0;padding: 0;}
+        #canvas{
+            margin: 20px 0 0 100px;
+            border: 1px solid black;
+            display: block;
+        }
+        .output{
+        	margin-top: 20px;
+        	margin-left: 100px;
+        	font-size: 16px;
+        }
+    </style>
+</head>
+<body> 
+
+
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+	<div class='output'>pos</div>
+
+
+</body>
+</html>
+
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    /**
+     * rem 布局初始化
+     */
+    // $('html').css('font-size', $(window).width()/10);
+    /**
+     * 获取 canvas 画布
+     * 获取 canvas 绘图上下文环境
+     */
+    // var canvas = $('#canvas')[0];
+    // var cxt = canvas.getContext('2d');
+    // var balls = [];
+    
+    /**
+     * 事件交互, 点击事件为例
+     * isPointInPath(横坐标, 纵坐标)
+     */
+    // for(var i = 0; i < 10; i++){
+    //     var ball = {
+    //         X: Math.random()*canvas.width,
+    //         Y: Math.random()*canvas.height,
+    //         R: Math.random()*50 + 20
+    //     }
+    //     balls[i] = ball;
+    // }
+    
+    // draw();
+
+    function draw(){
+        cxt.fillStyle = "blue";
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].X, balls[i].Y, balls[i].R, 0, Math.PI*2);
+            cxt.fill();
+        }
+    }
+
+    // $("#canvas").click(function(event){
+    // 	console.log(event);
+    //     //标准的获取鼠标点击相对于canvas画布的坐标公式
+    //     var x = event.pageX - canvas.getBoundingClientRect().left;
+    //     var y = event.pageY - canvas.getBoundingClientRect().top;
+    //     console.log(x,y);
+    // });
+
+    // $("#canvas").on('click',function(event){
+    // 	console.log(event);
+    // 	console.log(event.pageX ,event.pageY);
+    // 	var x = event.clientX - $(canvas).offset().left;
+    //     var y = event.clientY - $(canvas).offset().top;
+    //     drawCircle(x,y);
+    //     $('.output').html('x:'+x+', y:'+y);
+    // });
+
+
+    function drawCircle(x,y){
+    	context.fillStyle = "blue";
+    	context.beginPath();
+        context.arc(x, y, 5, 0, Math.PI*2);
+        context.fill();
+    }
+
+
+    
+
+    var canvas, context;
+	var img,//图片对象
+	    imgIsLoaded,//图片是否加载完成;
+	    imgX = 0,
+	    imgX2 = 0,
+	    imgY = 0,
+	    imgY2 = 0,
+	    imgScale = 1;
+
+	var lastStatus ;
+    var isMove = false;
+
+	
+
+	 
+	(function int() {
+	    canvas = document.getElementById('canvas'); //画布对象
+	    context = canvas.getContext('2d');//画布显示二维图片
+	    loadImg();
+
+	})();
+
+	function loadImg() {
+	    img = new Image();
+	    img.onload = function () {
+	        imgIsLoaded = true;
+	        drawImage(canvas.width / 2, canvas.height / 2);
+
+    		canvasEventsInit();
+
+	    }
+	    // img.src = 'https://ssl.malmam.com/xiangju-static/dfs/15/53c43f45f4162f/share_2.png';
+	    img.src = 'https://ssl.malmam.com/xiangju-static/dfs/11/53c206b2efdee8/Bitmap_403x.png';
+	    lastStatus = {
+	    	"imgX" : -1 * img.width / 2,
+	        "imgY" : -1 * img.height / 2,
+	        'mouseX' : 0,
+	        'mouseY' : 0,
+	        'translateX' : canvas.width / 2,
+	        'translateY' : canvas.height /2
+	    };
+	}
+
+	function drawImage(x,y) {
+    	context.clearRect(0, 0, canvas.width, canvas.height);
+    	context.save();
+    	context.translate(x,y);
+     	context.drawImage(
+            img, //规定要使用的图像、画布或视频。
+            0, 0, //开始剪切的 x 坐标位置。
+            img.width, img.height
+        );
+        context.restore();
+    }
+
+    function drawImgByStatus(x, y) {
+        var imgX = lastStatus.imgX - (x - lastStatus.translateX) / lastStatus.scale;
+        var imgY = lastStatus.imgY - (y - lastStatus.translateY) / lastStatus.scale;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.save();
+        context.translate(x, y);
+        context.drawImage(img, imgX, imgY, img.width, img.height);
+        context.restore();
+
+        lastStatus = {
+            'imgX' : imgX,
+            'imgY' : imgY,
+            'translateX' : x,
+            'translateY' : y
+        };
+    }
+
+    /*事件注册*/
+	function canvasEventsInit() {
+
+	    canvas.onmousedown = function(e) {
+	        isMove = true;
+	        canvas.style.cursor = "move";
+
+	        var box = windowToCanvas(e.clientX, e.clientY);
+	        lastStatus.mouseX = box.x;
+	        lastStatus.mouseY = box.y;
+	    }
+
+	    canvas.onmouseout = function(e) {
+	        isMove = false;
+	        canvas.style.cursor = "default";
+	    }
+
+	    canvas.onmouseup = function(e) {
+	        isMove = false;
+	        canvas.style.cursor = "default";
+	    }
+
+	    canvas.onmousemove = function(e) {
+	        if(isMove) {
+	            var box = windowToCanvas(e.clientX, e.clientY);
+	            drawImgByMove(box.x, box.y);
+	        }
+	    }
+
+	 
+	    canvas.onmousewheel = canvas.onwheel = function (event) {    //滚轮放大缩小
+	        var pos = windowToCanvas (event.clientX, event.clientY);
+	        event.wheelDelta = event.wheelDelta ? event.wheelDelta : (event.deltalY * (-40));  //获取当前鼠标的滚动情况
+	        if (event.wheelDelta > 0) {
+	        	if(imgScale>=8) return ;
+	            imgScale *= 2;
+	            imgX = imgX * 2 - pos.x;
+	            imgY = imgY * 2 - pos.y;
+	        } else {
+	        	if(imgScale<=1/8) return ;
+	            imgScale /= 2;
+	            imgX = imgX * 0.5 + pos.x * 0.5;
+	            imgY = imgY * 0.5 + pos.y * 0.5;
+	        }
+	        drawImage();   //重新绘制图片
+	    };
+
+	}
+
+	function drawImgByMove(x, y) {
+        lastStatus.translateX = lastStatus.translateX + (x - lastStatus.mouseX);
+        lastStatus.translateY = lastStatus.translateY + (y - lastStatus.mouseY);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.save();
+        context.translate(lastStatus.translateX, lastStatus.translateY);
+        context.drawImage(img, lastStatus.imgX, lastStatus.imgY, img.width, img.height);
+        context.restore();
+
+        lastStatus.mouseX = x;
+        lastStatus.mouseY = y;
+    }
+	 
+	 
+	/*坐标转换*/
+	function windowToCanvas(x,y) {
+	    var box = canvas.getBoundingClientRect();  
+	    // console.log(box)
+	    //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离
+	    return {
+	        x: x - box.left-(box.width - canvas.width) / 2,
+	        y: y - box.top-(box.height - canvas.height) / 2
+	    };
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+</html>

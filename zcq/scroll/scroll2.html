@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模拟Marquee无缝滚动</title>
+<style type="text/css">
+/* CSS Document reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+:focus {/* remember to define focus styles! */
+  outline: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  font-size: 12px;
+  margin: 0px auto auto auto;
+  color: black;
+  cursor:default;
+}
+ol, ul {
+  list-style: none;
+}
+table {/* tables still need 'cellspacing="0"' in the markup */
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  font-weight: normal;
+  text-align: left;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+a img {
+  border: 0;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ul, li, ol {list-style: none;}
+/* 水平滚动 */
+.marquee_horizontal {overflow:hidden; width:360px; height:45px;}
+.marquee_horizontal ul li {float:left; padding:0px; line-height:24px;}
+.marquee_horizontal ul li img {display:block;}
+/* 垂直滚动 */
+.marquee_vertical {overflow:hidden; width:60px; height: 225px;}
+.marquee_vertical ul li {float:left; padding:0px;}
+.marquee_vertical ul li img {display:block;}
+.marquee_c {overflow:hidden; width:360px; height: 25px;}
+.marquee_c ul li {float:left; padding:0px; line-height: 24px;}
+.marquee_d {overflow:hidden; width:180px; height:200px;}
+.marquee_d ul li {float:left; width:180px; padding: 0px; line-height:20px;}
+</style>
+</head>
+<body>
+    <div id="marquee_a" class="marquee_horizontal">
+      <ul>
+        <li><a href="#"><img src="img/a1.jpg"></a></li>
+        <li><a href="#"><img src="img/a2.jpg"></a></li>
+        <li><a href="#"><img src="img/a3.jpg"></a></li>
+        <li><a href="#"><img src="img/a4.jpg"></a></li>
+        <li><a href="#"><img src="img/a5.jpg"></a></li>
+        <li><a href="#"><img src="img/a6.jpg"></a></li>
+        <li><a href="#"><img src="img/a7.jpg"></a></li>
+        <li><a href="#"><img src="img/a8.jpg"></a></li>
+      </ul>
+    </div>
+    <div id="marquee_b" class="marquee_vertical">
+      <ul>
+        <li><a href="#"><img src="img/a1.jpg"></a></li>
+        <li><a href="#"><img src="img/a2.jpg"></a></li>
+        <li><a href="#"><img src="img/a3.jpg"></a></li>
+        <li><a href="#"><img src="img/a4.jpg"></a></li>
+        <li><a href="#"><img src="img/a5.jpg"></a></li>
+        <li><a href="#"><img src="img/a6.jpg"></a></li>
+        <li><a href="#"><img src="img/a7.jpg"></a></li>
+        <li><a href="#"><img src="img/a8.jpg"></a></li>
+      </ul>
+    </div>
+    <div id="marquee_c" class="marquee_c">
+      <ul>
+        <li><a href="#">星期一要长</a></li>
+        <li><a href="#">星期二特别长一点</a></li>
+        <li><a href="#">星期三</a></li>
+        <li><a href="#">星期四长度不等</a></li>
+        <li><a href="#">星期五</a></li>
+        <li><a href="#">星期六长短</a></li>
+        <li><a href="#">星期日</a></li>
+      </ul>
+    </div>
+    <div id="marquee_d" class="marquee_d">
+      <ul>
+        <li><a href="#">星期一星期一星期一星期一星期一星期一星期一星期一星期一</a></li>
+        <li><a href="#">星期二</a></li>
+        <li><a href="#">星期三星期三星期三星期三星期三星期三</a></li>
+        <li><a href="#">星期四</a></li>
+        <li><a href="#">星期五</a></li>
+        <li><a href="#">星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六星期六</a></li>
+        <li><a href="#">星期日</a></li>
+      </ul>
+    </div>
+<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js" type="text/javascript"></script>
+<script src="http://ah.sina.com.cn/iframe/101/2014/1117/130.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+  // $("#marquee_a").kxbdMarquee();
+  // $("#marquee_b").kxbdMarquee({direction:"down"});
+  // $("#marquee_c").kxbdMarquee({direction:"left",isEqual:false});
+  $("#marquee_d").kxbdMarquee({direction:"up",isEqual:false});
+});
+</script>
+</body>
+</html>

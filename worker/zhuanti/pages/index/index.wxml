@@ -1,0 +1,25 @@
+<view class='container'>
+
+    <view class='list'>
+        <block wx:for="{{[1,2,3]}}" wx:key="{{index}}">
+            <view class='item'>
+                <image src='https://ssl.malmam.com/xiangju-static/sie/aD00NTAmbT1RJnVybD1kZnMlM0E4JTJDMWZkMmViOTMyYzgwYzgmdz03NTA-/img.jpg'></image>
+            </view>
+        </block>
+    </view>
+
+    <view class='hongbao' bindtap='_handleGO' data-go="../my-redpacket/index">
+        <view>7</view>
+        <image src='../../image/icon_hongbao.png'></image>
+    </view>
+
+</view>
+
+<view class='modal' hidden="{{!dialogShow}}" bindtap='_closeDialog'>
+    <view class='content' catchtap='_place'>
+        <view class='close' catchtap='_closeDialog'></view>
+        <view class='btn' wx:if="{{open}}" bindtap='_handleGO' data-go="../my-redpacket/index">查看我的红包</view>
+        <image src='{{open?"../../image/success_hongbao.png":"../../image/hongbao_big.png"}}' catchtap='_open' animation="{{animated}}"></image>
+    </view>
+
+</view>

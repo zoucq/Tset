@@ -1,0 +1,42 @@
+<!--logs.wxml-->
+<view class="search">
+
+    <view class='from'>
+        <input type="text" placeholder='找售楼处，用新房007' class='txt' 
+            bindinput='handleInput' value="{{txt}}" 
+            bindconfirm='handleGo' data-go='../../../map-house/gaode-map/index?words={{txt}}' 
+            wx:if="{{map}}"/>
+         <input type="text" placeholder='找售楼处，用新房007' class='txt' 
+            bindinput='handleInput' value="{{txt}}" 
+            bindconfirm='handleGo' data-go='../list/index?words={{txt}}'
+            wx:else />
+
+        <button class='btn' bindtap="handleGo" data-go='../list/index?words={{txt}}'>搜索</button>
+    </view>
+
+    <view class='bg-line'></view>
+   
+    <view class='history' >
+        <view class='title'>最近搜索</view>
+        <view class='list'>
+            <block wx:for="{{history}}" wx:key="history">
+                <view bindtap="handleKeywords" data-word="{{item}}">{{item}}</view>
+            </block>
+        </view>   
+    </view>
+
+    <view class='alert' wx:if="{{search}}">
+        <block wx:for="{{alert}}" wx:key="alert">
+        <!-- bindtap='handleKeywords' data-word="{{item.value}}" -->
+            <view data-id="{{item.id}}" wx:if="{{map}}"
+                bindtap="handleGo" data-go='../../../map-house/gaode-map/index?id={{item.id}}'>
+                <rich-text nodes="{{item.value}}" ></rich-text>
+            </view>
+            <view data-id="{{item.id}}" wx:else
+                bindtap="handleGo" data-go='../../room-detail/index?id={{item.id}}'>
+                <rich-text nodes="{{item.value}}" ></rich-text>
+            </view>
+        </block>
+    </view>
+
+</view>

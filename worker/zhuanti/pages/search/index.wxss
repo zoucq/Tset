@@ -1,0 +1,75 @@
+page{
+    background: #fff;
+}
+.search{
+    display: flex;
+    flex-direction: column;
+    width: 100%;height: 100%;
+    position: relative;
+    background: #fff;
+}
+.search .from{
+    display: flex;
+    justify-content: space-between;
+    height: 82rpx;
+    width: 100%;
+    padding: 0rpx 20rpx 10rpx 20rpx;
+    background: #fff;
+}
+.search .from .txt{
+    width: 80%;
+    height:100%;
+    border:1px solid #eee;
+    border-radius: 10rpx;
+    background: #eee;
+    padding-left: 10rpx;
+    font-size: 24rpx;
+}
+.search .from .btn{
+   width: auto;height: 72rpx;
+   color: #333;
+   display:flex;
+   align-items:center;
+   font-size: 28rpx;
+}
+
+.search .history{
+    display: flex;
+    flex-direction: column;
+}
+.search .history .title{
+    display: flex;
+    width: 100%;
+    padding: 30rpx 20rpx 10rpx 20rpx;
+    font-size: 32rpx;
+}
+.search .history .list{
+    display: flex;
+    padding:10rpx 20rpx;
+}
+.search .history .list view{
+    display: flex;
+    padding:6rpx 10rpx;
+    border: 1px solid #ccc;
+    border-radius: 8rpx;
+    margin-right: 16rpx;
+    font-size: 28rpx;
+}
+
+
+.search .alert{
+    display: flex;
+    flex-direction: column;
+    background: #eee;
+    width: 100%;
+    position: absolute;
+    top: 82rpx;left: 0;
+}
+.search .alert view{
+    display: flex;
+    background: #fff;
+    color: #666;
+    padding: 20rpx;
+    margin-top:10rpx;
+    font-size: 28rpx;
+}

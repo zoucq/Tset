@@ -1,0 +1,67 @@
+<view class='page' wx:if="{{false}}">
+    <view wx:if="{{current != 1}}" bindtap="reduce" class="{{current==1?'disabled':''}}">
+        上页</view>
+    <block wx:for="{{pages}}" wx:key="{{index}}">
+        <view class="{{current==item?'current':''}}" bindtap='goto2' data-item="{{item}}">
+            {{item}}</view>
+    </block>
+    <view wx:if="{{allPage != current && allPage != 0 }}" bindtap="add">
+        下页</view>
+</view>
+
+
+        current:1,
+        pagesize:10,
+        showItem:5,
+        allPage:14
+
+goto(page) {
+        if (this.data.current !== page) {
+            this.data.current = page
+        }
+        this.setData({
+            current: this.data.current
+        });
+
+        this.pageComputed();
+        
+    },
+    goto2(e){
+        let item = e.currentTarget.dataset.item;
+        this.goto(item);
+
+        this.pageComputed();
+    },
+
+    reduce(){
+        this.data.current-- && this.goto(this.data.current);
+    },
+    add(){
+        this.data.current++ && this.goto(this.data.current++);
+    },
+
+    pageComputed() {
+        let left = 1,
+            right = this.data.allPage,
+            movePoint = Math.ceil(this.data.showItem / 2),
+            pages = [];
+        if (this.data.current > movePoint && this.data.current < this.data.allPage - movePoint + 1) {
+            left = this.data.showItem % 2 === 0 ? this.data.current - movePoint : this.data.currente - movePoint + 1;
+            right = this.data.current + movePoint - 1;
+        } else if (this.data.current <= movePoint) {
+            left = 1;
+            right = this.data.showItem;
+        } else {
+            left = this.data.allPage - this.data.showItem + 1;
+            right = this.data.showItem;
+        }
+
+        while (left <= right) {
+            pages.push(left);
+            left++;
+        }
+        console.log(pages);
+        this.setData({
+            pages: pages
+        });
+    }

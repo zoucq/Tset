@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <style type="text/css">
+        body,html{
+            width: 100%;
+            text-align: center;
+        }
+        #picyzm{
+            width: 100px;
+            height: 40px;
+            display: inline-block;
+            margin: 0 30px;
+        }
+        #verifyCodeDemo{
+            width: 100%;
+            display: flex;
+            margin-top: 200px;
+            justify-content: center;
+        }
+        #btn{
+            margin: 30px auto;
+            background-color: blue;
+            color: #fff;
+            border-radius: 5px;
+            border: 0;
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="verifyCodeDemo">
+        <input type="text" id="code_input" placeholder="在这个框里输入验证码">
+        <p id="picyzm"></p>
+    </div>
+    <input type="button" value="验证" id="btn">
+
+    <script src='gVerify.js'></script>
+    <script>
+        //初始化验证码
+        var verifyCode = new GVerify({
+            id:"picyzm", 
+            type:"blend" 
+        });
+        //点击按钮验证
+        var code = document.getElementById("code_input");
+        var btn =  document.getElementById("btn");
+        btn.onclick = function(){
+            var res = verifyCode.validate(code.value);
+            if(res){
+                console.log("验证通过");
+            }else{
+                console.log("验证码错误");
+            }
+        }
+        code_input.onblur = function(){
+            var res = verifyCode.validate(code.value);
+            if(res){
+                console.log("验证通过");
+            }else{
+                console.log("验证码错误");
+            }
+        }
+
+
+    </script>
+</body>
+</html>

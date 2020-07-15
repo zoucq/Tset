@@ -1,0 +1,84 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/map-house/qq-map/index",
+
+    "pages/map-house/gaode-map/index",
+    "pages/map-house/baidu-map/index",
+
+    "pages/rooms/search/list/index",
+    "pages/rooms/room-detail/index",
+
+    "pages/my/my-index/index",
+
+    "pages/message/msg-index/index",
+    "pages/message/msg-back/index",
+    "pages/message/msg-room-state/index",
+
+    
+    "pages/rooms/photos/upload/index",
+    "pages/rooms/photos/index/index",
+    
+    "pages/rooms/search/index/index",
+    
+
+
+    "pages/rooms/map/index",
+    "pages/rooms/questions-answers/qs-submit/index",
+
+    "pages/rooms/userback/submit/index",
+    "pages/rooms/userback/index/index",
+    
+    "pages/rooms/questions-answers/qs-detail/index",
+    
+
+    "pages/rooms/room-state/index",
+    "pages/rooms/room-info/index",
+
+
+    "pages/rooms/room-type/index",
+
+    "pages/message/msg-request/index",
+    "pages/message/msg-answer/index",
+    "pages/message/msg-question/index",
+
+    "pages/my/my-detail/index",
+
+    "pages/rooms/questions-answers/qs-list/index"
+
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#f1f2f7"
+  },
+  "tabBar": {
+    "color": "#828393",
+    "selectedColor":"#5555ff",
+    "backgroundColor":"#fff",
+    "borderStyle":"black",
+    "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "image/index.png",
+            "selectedIconPath": "image/index-active.png"
+        },
+        {
+            "pagePath": "pages/message/msg-index/index",
+            "text": "消息",
+            "iconPath": "image/msg.png",
+            "selectedIconPath": "image/msg-active.png"
+        },
+        {
+            "pagePath": "pages/my/my-index/index",
+            "text": "我",
+            "iconPath": "image/user.png",
+            "selectedIconPath": "image/user-active.png"
+        }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+<view class='container'>
+    
+    <scroll-view scroll-y 
+        scroll-top="{{scrollTop}}" style='height:{{scrollHeight}}px;'
+        bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"                             bindscroll="scroll" scroll-into-view="{{toView}}" >
+    <view class="body-view" hidden='{{hidden}}'>
+        {{text}}
+    </view>
+    <view class='boxs' wx:if='{{list.length>0}}'>
+        <block wx:for="{{list}}" wx:key="lists">
+            <view class='now-time'>
+                <text class='text'>{{item.ctime}}</text>
+            </view>
+            <view class='item' data-id="{{item.house_id}}" id="{{index==list.length-1?'red':''}}">
+                <view class='top'>
+                    <text >{{item.content}}</text>
+                </view>
+                <view class='down'>
+                    <view>{{item.report.house}}</view>
+                </view>
+                <view class='center'>
+                    {{item.report.content}}
+                </view>
+                <view class='agree'>
+                    <image wx:if="{{item.report.status=='采纳'}}" src='../../../image/agree.png'></image>
+                    <image wx:else src='../../../image/no-agree.png'></image>
+                </view>
+            </view>
+        </block>
+    </view>
+    
+    <view class='noList' wx:else>暂无数据~~</view>
+    </scroll-view>
+
+</view>

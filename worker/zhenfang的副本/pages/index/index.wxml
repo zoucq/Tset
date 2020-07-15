@@ -1,0 +1,103 @@
+
+<import src="/utils/wxParse/wxParse.wxml"/>
+
+<view class='container' >
+    <loading wx:if="{{load}}">加载中</loading>
+
+    <!--top  -->
+    <view class='top'>     
+         <view class='pos'>{{city}}</view> 
+    </view>
+    <view class='c-mt'>
+        <view class='down'>
+            <input placeholder='' /> 
+            <view class='inputs' bindtap='handleGo' data-go='../rooms/search/index/index'>
+                <icon class='iconfont icon-sousuo'></icon>
+                <text>输入楼盘名查找售楼处电话</text>
+            </view>
+        </view>
+    </view>
+
+    <!--nav  -->
+    <view class='nav'>
+        <view class='item' bindtap='handleGo' data-go='../rooms/search/list/index?type=0'>
+            <image src="../../image/item1.png" />
+            <text>全部楼盘</text>
+        </view>
+        <view class='item' bindtap='handleGo' data-go='../rooms/search/list/index?type=1&&status={{type}}'>
+            <image src="../../image/item2.png" />
+            <text>在售楼盘</text>
+        </view>
+        <view class='item' bindtap='handleGo' data-go='../rooms/search/list/index?type=2'>
+            <image src="../../image/item3.png" />
+            <text>最近开盘</text>
+        </view>
+         <view class='item' bindtap='handleGo' data-go='../map-house/gaode-map/index'>
+            <image src="../../image/item4.png" />
+            <text>地图找房</text>
+        </view> 
+        <!-- <view class='item'>
+            <image src="../../image/item4.png" />
+            <text>小户型</text>
+        </view> -->
+    </view>
+
+    <!-- <view class="test">
+        <textarea placeholder="textarea"  />
+        <cover-view >
+            <cover-view class="test_mit">submit</cover-view>
+        </cover-view>
+    </view> -->
+
+    <!--wrapper  -->
+    <view class='wrapper'>
+        <view class='title'>热门房源</view>
+        <block wx:if='list.length>0'>
+        <!-- <scroll-view  class="scroll-view_H" scroll-y style="height: {{boxHeight}}" bindscroll="scroll"> -->
+        <view class='ul' >
+            <block wx:for="{{list}}" wx:key="list">
+
+            <!-- <view class="loadImg loadImg{{index}} {{item.show? 'active' : ''}}" >
+                <image wx:if='{{item.show}}' style='width:100%;height:100%;' 
+                    src='{{item.Photo}}'></image>
+                <image wx:else style='width:20%;height:20%;margin:0 auto;margin-top:50%;transform:translateY(-50%);' src='http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png' mode='aspectFit'></image>
+            </view> -->
+
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+
+            <!-- <view class='li' data-id="{{item.Id}}" 
+                bindtap='handleGo' data-go='../rooms/room-detail/index?id={{item.Id}}'  >
+                <view class='l-box'>
+                    <image bindload='imgLoad' animation="{{item.show ? in2 : in1}}" src='{{item.show ? (!item.Photo?"http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png":item.Photo) : "http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png"}}' />
+                </view>
+                <view class='r-box'>
+                    <view class='tit'>
+                        <text>{{item.Status}}</text>
+                        <text>{{item.Name}}</text>
+                    </view>           
+                    <text class='addr'>{{item.Address}}</text>
+                    <text class='price' wx:if="{{item.Price!=0}}">均价：{{item.Price}}{{item.PriceUnit}}</text>   
+                    <text class='price' wx:else>价格待定</text>
+                    <view class='biaoqian'>
+                        <text wx:if="{{item.RenovationStatus!=0}}">{{item.RenovationStatus}}</text>
+                        <text wx:if="{{item.PropertyType!=0}}">{{item.PropertyType}}</text>
+                        <text wx:if="{{item.ArchitecturalType!=0}}">{{item.ArchitecturalType}}</text>
+                    </view>     
+                </view>
+            </view> -->
+
+            </block>
+            <view wx:if="{{noMore}}" class='noMore'>
+                没有更多了~
+            </view>
+        </view>
+        <!-- </scroll-view> -->
+        </block>
+        <view wx:else class='noList'>
+            暂无数据
+        </view>
+
+    </view>
+    
+
+</view>

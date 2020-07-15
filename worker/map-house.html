@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+
+	<script>
+		myAmapFun.getWalkingRoute({
+        origin: that.data.longitude + ',' + that.data.latitude,
+        destination: v.longitude + ',' + v.latitude,
+        success: function (data) {
+            console.log(i,data);
+            
+            if (data.paths && data.paths[0].distance>100000){
+                that.data.markers.splice(i,1); 
+            }
+            // var points = [];
+            // if (data.paths && data.paths[0] && data.paths[0].steps) {
+            //     var steps = data.paths[0].steps;
+            //     for (var i = 0; i < steps.length; i++) {
+            //         var poLen = steps[i].polyline.split(';');
+            //         for (var j = 0; j < poLen.length; j++) {
+            //             points.push({
+            //                 longitude: parseFloat(poLen[j].split(',')[0]),
+            //                 latitude: parseFloat(poLen[j].split(',')[1])
+            //             });
+            //         }
+            //     }
+            //     points = [{
+            //         points: points,
+            //         color: "#0091ff",
+            //         width: 6
+            //     }];
+            // }
+            // that.setData({
+            //     polyline: that.data.polyline.concat(points)
+            // });
+            // console.log(that.data.polyline); 
+
+            let distance=[];
+            if (data.paths[0] && data.paths[0].distance) {
+                distance.push({ id: v.id, distance: data.paths[0].distance + '米' })
+                that.setData({   
+                    distance: that.data.distance.concat(distance)
+                });
+            }
+
+        },
+        fail: function (info) {
+
+        }
+    });
+
+	let distance=0;
+    this.data.distance.map((v,i)=>{
+        if(v.id==id){
+            distance= v.distance;
+            this.data.markers.map((v, i) => {
+                if (v.id == id) {
+                    console.log(v)
+                    v.label = {
+                        content: distance,
+                        bgColor:'#fff',
+                        textAlign:'center',
+                        x:-20,
+                        y:-54
+                    }
+                }
+            });
+        }
+    })
+
+
+	</script>
+	
+</body>
+</html>

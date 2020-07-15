@@ -1,0 +1,16 @@
+<view class="container">
+
+    <form bindsubmit="formSubmit">
+        <view class='content'>
+            <view class='helper'>您的反馈可以帮助更多的人了解真实房产信息</view>
+            <view class='wrapper'>
+                <textarea value="{{txt}}" bindblur="handLeBlur" name="textarea" bindtap="handlePlace">
+                    
+                </textarea>
+                <text  wx:if="{{showPlace}}">点击输入...</text>
+            </view>
+        </view>
+        <button form-type="submit"> 提交 </button>
+    </form>
+
+</view>

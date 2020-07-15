@@ -1,0 +1,100 @@
+<scroll-view class="scroll-view_H" scroll-x scroll-with-animation="true" scroll-left="{{srollLeft}}" style="width: 100%;" bindscroll="scroll" class='q-a'>
+  <view class='q-ul' bindtouchstart='touchStart' bindtouchmove='touchMove'>
+    <view class='q-li '>
+      <view class='title'>
+        你觉得这个楼盘怎么样？
+      </view>
+      <view class='desc'>
+        去看过，还不错，在2号线边上，小区环境不错。
+      </view>
+      <view class='users'>
+        <view class='boxs'>
+          <view class='avtor'>
+            <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png ' />
+          </view>
+          <view class='info'>
+            <text class='info-name'>朱佳</text>
+            <text class='info-date'>2017年12月20日</text>
+          </view>
+        </view>
+        <view class='love'>
+          <icon class='iconfont icon-xihuan'></icon>234
+        </view>
+      </view>
+    </view>
+    <view class='q-li active'>
+      <view class='title'>
+        你觉得这个楼盘怎么样？
+      </view>
+      <view class='desc'>
+        去看过，还不错，在2号线边上，小区环境不错。附近吃喝都很多，离三中很近，打算买在这里。
+      </view>
+      <view class='users'>
+        <view class='boxs'>
+          <view class='avtor'>
+            <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png ' />
+          </view>
+          <view class='info'>
+            <text class='info-name'>朱佳</text>
+            <text class='info-date'>2017年12月20日</text>
+          </view>
+        </view>
+        <view class='love'>
+          <icon class='iconfont icon-xihuan'></icon>23
+        </view>
+      </view>
+    </view>
+
+    <view class='q-li'>
+      <view class='title'>
+        你觉得这个楼盘怎么样？
+      </view>
+      <view class='desc'>
+        去看过，还不错，在2号线边上
+      </view>
+      <view class='users'>
+        <view class='boxs'>
+          <view class='avtor'>
+            <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png ' />
+          </view>
+          <view class='info'>
+            <text class='info-name'>朱佳</text>
+            <text class='info-date'>2017年12月20日</text>
+          </view>
+        </view>
+        <view class='love'>
+          <icon class='iconfont icon-xihuan'></icon>2
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</scroll-view>
+
+<swiper bindchange='ban_change' class='sw'>
+  <swiper-item wx:for="{{list}}" wx:key="qs">
+    <view class='item' animation="{{index!=current?ani:ani2}}">
+       <view class='title'>
+        你觉得这个楼盘怎么样？
+      </view>
+      <view class='desc'>
+        去看过，还不错，在2号线边上，小区环境不错。
+      </view>
+      <view class='users'>
+        <view class='boxs'>
+          <view class='avtor'>
+            <image src='http://www.zcq.test.91xiangju.com/images/index/nongminfang3.png ' />
+          </view>
+          <view class='info'>
+            <text class='info-name'>朱佳</text>
+            <text class='info-date'>2017年12月20日</text>
+          </view>
+        </view>
+        <view class='love'>
+          <icon class='iconfont icon-xihuan'></icon>234
+        </view>
+      </view> 
+    </view>
+  </swiper-item>
+</swiper>

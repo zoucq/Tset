@@ -1,0 +1,89 @@
+ <!-- <web-view src="https://mp.weixin.qq.com/s/M3jwB1AGWfJGv_LNd-Mu0g"></web-view>  -->
+
+<view class='container pd100' 
+    bindtouchstart='_Start' bindtouchmove='_Move' bindtouchend='_End'>
+    <view class='list'>
+        <block wx:if="{{plan_type==1}}">
+            <view class='item activity-banner' data-id="{{item.Id}}" 
+                bindtap='_handleGO' data-go="../activity/index">
+                <image src='{{ext_imgs.banner}}'></image>
+            </view>
+        </block>
+        <block wx:for="{{list}}" wx:key="{{index}}"  wx:if="{{list}}">
+            <view class='item' data-id="{{item.Id}}" 
+                bindtap='_handleGO' data-go="../house-list/index?id={{item.Id}}">
+                <image src='{{item.Banner}}'></image>
+            </view>
+        </block>
+    </view>
+
+    <block wx:if="{{plan_type==1}}">
+        <view class='hongbao' hidden="{{scroll}}">
+            <view class='con'>
+                <view class='text' wx:if="{{can_take_count!=0}}">
+                    {{can_take_count}}
+                </view>
+                <image src='../../image/icon_hongbao3.png'></image>
+                <button open-type="getUserInfo" 
+                    class='share' bindgetuserinfo="_userInfo"></button>
+            </view>
+        </view> 
+    </block>
+     <view wx:else class='hongbao' hidden="{{scroll}}">
+        <view class='con'>
+            <image src='../../image/icon_hongbao3.png' bindtap='_Bhongbao'></image>
+        </view>
+    </view> 
+
+    <!-- <button open-type="contact" hidden="{{scroll}}">
+        <view class='zixun'>
+            <image src='../../image/zixun.png'></image>
+        </view>
+    </button>  -->
+
+</view>
+
+<block wx:if="{{plan_type==1}}">
+    <view class='modal' hidden="{{dialogShow2}}" 
+        bindtap='_closeDialog' data-type='dialogShow2'>
+        <view class='content' catchtap='_place'>
+            <view class='close' 
+                catchtap='_closeDialog' data-type='dialogShow2'></view>
+            <view wx:if="{{open}}" class='btn {{ani?"animate":""}}'  
+                bindtap='_goRed' data-go="../my-redpacket/index">
+                <image src='../../image/btn.png' />
+            </view> 
+            <image class='opens' catchtap='_open' src='{{open?"../../image/success_hongbao2.png":"../../image/hongbao_big2.png"}}'  ></image>
+        </view>
+    </view>
+</block>
+<view class='modal' wx:else hidden="{{dialogShow2}}" 
+    bindtap='_closeDialog' data-type='dialogShow2'>
+    <view class='content' catchtap='_place'>
+        <view class='close' id='b-close'
+            catchtap='_closeDialog' data-type='dialogShow2'></view>
+        <block wx:if="{{open}}">
+            <button class='btn' 
+                bindtap='_goKanfang' data-go="../kanfang/index">
+                <image src='../../image/b/b-open-btn.png' />
+            </button> 
+        </block>
+        <button open-type='share' class='btn' id='b-btn' wx:else>
+            <image src="../../image/b/b-big-btn.png" />
+        </button> 
+
+        <image class='opens' id='{{open?"b-open":""}}' 
+        src='{{open?"../../image/b/b-open.png":"../../image/b/b-big.png"}}'  ></image>
+
+    </view>
+</view>
+
+
+
+
+<!-- <view class='modal modal-auth' hidden="{{auth}}" bindtap='_closeDialog' data-type='auth'>
+    <view class='content' catchtap='_place'>
+        <view class='tit'>小程序需授权才能使用完整功能</view>
+        <view class='btn' bindtap='_auth'>去授权</view>
+    </view>
+</view> -->

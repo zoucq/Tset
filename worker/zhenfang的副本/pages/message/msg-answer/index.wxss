@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.container .boxs{
+    display: flex;
+    flex-direction: column;
+}
+.container .boxs .item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    padding: 20rpx 20rpx;
+    margin-top: 10rpx;
+    font-size: 28rpx;
+}
+.container .boxs .item > view:not(:last-child){
+    margin-bottom: 20rpx;
+}
+
+.container .boxs .item .top{
+    display: flex;
+    font-size: 32rpx;
+    color: #666;
+}
+.container .boxs .item .center{
+    font-size: 28rpx;
+    color: #999;
+}
+.container .boxs .item .down{
+    display: flex;
+    font-size: 28rpx;
+    color: #666;
+}
+.container .boxs .item .down view{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+.container .boxs .item .down view:first-child{
+    justify-content: flex-start;
+    color: #5555ff;
+}
+.container .boxs .item .down view:last-child{
+    justify-content: flex-end;
+    color: #f60;
+}

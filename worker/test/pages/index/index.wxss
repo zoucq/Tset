@@ -1,0 +1,147 @@
+.container{
+    width:100%;
+    height: 100%;
+    background:rgba(232,233,242,1);
+}
+.banner{
+    /* padding:28rpx 24rpx 0; */
+    width: 100%;
+    height: 300rpx;
+}
+.banner image{
+    width: 100%;height: 100%;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+    border-radius: 8px; */
+}
+
+.container .list{
+    padding: 28rpx 24rpx;
+    width: 100%;
+}
+.container .list .item{
+    margin-bottom: 28rpx;
+    height: 300rpx;
+    width: 100%;
+
+}
+.container .list .item image{
+    width: 100%;height: 100%;
+    background: #D8D8D8;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+    border-radius: 8px;
+}
+
+
+
+.modal{
+    position: fixed;
+    left: 0;top: 0;
+    width: 100%;height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index:999999999;
+}
+.modal .content{
+    width: 650rpx;
+    height: 868rpx;
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.modal .content image{
+    width: 100%;height: 100%;
+}
+.modal .content .close{
+    position: absolute;
+    left: 0;top: 0;
+    width: 88rpx;height: 88rpx;
+    z-index: 999;
+}
+.modal .content .open{
+    position: absolute;
+    left: 0;top: 0;
+    width: 88rpx;height: 88rpx;
+    z-index: 999;
+}
+
+.modal .content  .btn{
+    position: absolute;
+    /* left: 62rpx;
+    bottom: 164rpx; */
+    left: 70rpx;
+    bottom: 62rpx;
+    z-index: 99999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:532rpx;
+    height:120rpx; 
+    /* background:rgba(253,159,43,1); */
+    background: transparent;
+    border-radius: 8rpx ; 
+    font-size: 32rpx;
+    color: #F1F1F1;
+    /* opacity:0; */
+
+}
+
+
+
+
+
+.modal-auth .content{
+    width:560rpx;
+    height:266rpx; 
+    background:#fff;
+    border-radius: 8rpx ; 
+    position: relative;
+    left: 50%;top: 50%;
+    transform: translate(-50%,-50%);
+}
+.modal-auth .content .tit{
+    padding: 62rpx 56rpx;
+    color: #353535;
+    font-size: 30rpx;
+}
+.modal-auth .content .btn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius:0px 0px 8rpx 8rpx;
+    background: transparent;
+    border-top: 1px solid rgba(229,229,229,0.8);
+    color: #FD9F2B;
+    font-size: 36rpx;
+}
+
+
+.opens{
+    width: 100%;height: 100%;
+    position: absolute;
+    left: 0;top: 0;
+    padding: 0;
+    background-color:transparent;
+    border-radius: 0;
+}
+.opens::after{
+    display: none;
+    visibility: hidden;
+}
+
+button{
+   background-color:transparent; 
+}
+
+
+#b-open{
+    width: 750rpx;
+    height: 548rpx;
+    margin-left: -50rpx;
+}
+
+#b-close{
+    top:-15rpx;
+    left:596rpx;
+}

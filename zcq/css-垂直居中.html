@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>table-cell垂直居中-</title>
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+
+		/*
+			H：
+				Hue(色调)。0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0 - 360
+			S：
+				Saturation(饱和度)。取值为：0.0% - 100.0%
+			L：
+				Lightness(亮度)。取值为：0.0% - 100.0%
+			A：
+				Alpha透明度。取值0~1之间。
+
+			兼容：ie9以下不支持
+		*/
+		div{
+			width: 100px;height: 100px;border: 1px solid #ccc;
+		}
+
+		.test{
+			margin: 50px;
+			background-color: hsla(360, 50%, 50%, .5);
+		}
+
+		.wrapper{
+			display: block;
+			border: 0;
+			margin: 50px;
+		}
+
+		/*
+			子级元素是内联元素，
+			父级元素用display: table-cell;和vertical-align: middle;
+		*/
+		.box{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.box .c_box{
+			display: inline;
+		}
+
+		/*
+			对于子级是块级元素，
+			父级元素同样用display: table-cell;和vertical-align: middle;属性实现垂直居中，
+			子级水平方向居中用margin: 0 auto;。
+		*/
+
+		.box2{
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.box2 .c_box{
+			display: block;
+			width: 50px;height: 50px;
+			line-height: 50px;
+			margin: 0 auto;
+			/*text-align: center;*/
+		}
+
+		/*
+			当父级是浮动的，用display: table-cell;会失效，
+			这时需要包三层，第一层display: table;，
+			第二层display: table-cell; 
+			第三层居中
+		*/
+		.box3{
+			display: table;
+			float: left;
+		}
+		.box3 .box_wrapper{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			/*float: left;*/
+		}
+		.box3 .c_box{
+			display: inline;
+		}
+
+		
+
+
+	</style>
+</head>
+<body>
+
+	<div class="test"></div>
+
+	<div class="wrapper">
+		
+		<div class="box">
+			<div class="c_box">
+				12342234
+			</div>
+		</div>
+
+		<br>
+
+		<div class="box2">
+			<div class="c_box">
+				12342234
+			</div>
+		</div>
+
+		<br>
+
+		<div class="box3">
+			<div class="box_wrapper">
+				<div class="c_box">
+					12342234
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+// 全站通用
+$width-iphone-5: 320px; // iphone5 宽度 (竖屏)
+$width-iphone-6: 375px; // iphone6 宽度 (竖屏)
+$width-iphone-6-plus: 414px; // iphone6-plus 宽度 (竖屏)
+
+
+
+// Xiangju 模块
+$color-body-bg: #f2f2f2; // body 背景色
+$color-mint: #3eddd0; // 薄荷色, 淡绿
+$color-mint-deepen: #13b5b1; // 薄荷色, 加深
+$color-red: #e60012; // 红色
+$color-title: #FF801B; // 橙色, 小标题颜色
+$color-title-deepen: #ea5d18; // 橙色, 加深版
+$color-title-lighten: #f39a24;
+$color-orange-customer-modal: #ec7940; // 橙色, 用户登记表单标题
+
+$color-key: #999; // 普通的键值对, 如果键要设置为灰色, 用这个颜色
+$color-price: $color-title; // 橙色, 楼盘价格, 户型价格颜色
+$color-gold: #f6b37f; // 金色, 黄色, 用在定位图标和地址上
+
+$row-split-gutter: 10px; // row 垂直 margin
+
+
+// Admin 模块
+$color-orange: #e60; // 导航栏所用的橙色
+$color-orange-2: #f88b38;
+$color-orange-3: #ea6710;

@@ -1,0 +1,28 @@
+
+<view class="container">
+
+    <view class='top'>
+        <text>红包领取资格 : 2次</text>
+    </view>
+
+    <view class='panel'>
+        <view class='ul'>
+            <block wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}" wx:key="{{index}}">
+                <view class='li {{index>2?"disabled":""}} {{item==1?"open":""}}'>
+                    <image src='../../image/icon_hongbao.png'></image>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <view class='total'>
+        <view class='money'>总金额:2300元</view>
+        <view class='use'>
+            <view>使用红包</view><image class="{{more1?'open':''}}" src="http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png"></image>
+        </view>
+        <view class='btn'>分享到群获得领红包资格</view>
+    </view>
+
+
+
+</view>

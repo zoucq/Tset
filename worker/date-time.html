@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+
+	<script>
+
+		var now = new Date();
+		var week = now.getDay();
+
+
+		console.log(formatDateTime(getDate(1, 2, now)));
+		console.log(formatDateTime(getDate(1, 1, now)));
+
+		console.log('---------------------');
+
+		console.log(getMonthDays(4));
+		console.log(getMonthDays(5));
+		console.log(getMonthDays(6));
+
+		console.log('---------------------');
+
+		console.log(getDaysInOneMonth(2018,4));
+		console.log(getDaysInOneMonth(2018,5));
+		console.log(getDaysInOneMonth(2018,6));
+
+		console.log('---------------------');
+
+		console.log(week);
+		console.log(formatDateTime(getDate(week-1,1,now))); 
+		console.log(formatDateTime(getDate(7-week,2,now)));
+
+		console.log('---------------------');
+
+		console.log(formatDateTime(getDate(week+6,1,now)));
+		console.log(formatDateTime(getDate(week,1,now)));
+
+
+		// 本周开始
+		function nowWeekStart(){
+			return formatDateTime(getDate(week-1,1,now));
+		}
+
+		// 本周结束
+		function nowWeekEnd(){
+			return formatDateTime(getDate(7-week,1,now));
+		}
+
+		// 上周开始
+		function nowWeekStart(){
+			return formatDateTime(getDate(week+6,1,now));
+		}
+
+		// 上周结束
+		function nowWeekEnd(){
+			return formatDateTime(getDate(week,1,now));
+		}
+
+
+
+
+		
+		/*
+        	* 获取传入的日期前N天或后N日期(N = day)
+        	* type: 1：前；2：后
+        	* date: 传入的日期
+        */
+        function getDate(day, type, date) {
+            var zdate;
+            if (date === null || date === undefined) {
+                zdate = new Date();
+            } else {
+                zdate = date;
+            }
+            var edate;
+            if (type === 1) {
+                edate = new Date(zdate.getTime() - (day * 24 * 60 * 60 * 1000));
+            } else {
+                edate = new Date(zdate.getTime() + (day * 24 * 60 * 60 * 1000));
+            }
+            return edate;
+        }
+
+        // 获得某月的天数
+        function getMonthDays(myMonth) {
+            var now = new Date(); //当前日期
+            var nowYear = now.getFullYear(); //当前年
+            var monthStartDate = new Date(nowYear, myMonth - 1, 1); //设置上月第一天
+            var monthEndDate = new Date(nowYear, myMonth, 1); //设置本月第一天
+
+            console.log(formatDateTime(monthStartDate));
+            console.log(formatDateTime(monthEndDate));
+
+            var days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
+            return days;
+        }
+
+
+ 		// 获得某月的天数
+		function getDaysInOneMonth(year, month){  
+		  	month = parseInt(month, 10);  
+		  	var d= new Date(year, month, 0);  
+		  	return d.getDate();  
+		}
+
+
+        // 时间格式化
+        function formatDateTime(inputTime,type) {
+            type = type || 1;
+            var date = new Date(inputTime);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            m = m < 10 ? ('0' + m) : m;
+            var d = date.getDate();
+            d = d < 10 ? ('0' + d) : d;
+            var h = date.getHours();
+            h = h < 10 ? ('0' + h) : h;
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            minute = minute < 10 ? ('0' + minute) : minute;
+            second = second < 10 ? ('0' + second) : second;
+            if(type == 1)
+                return y + '年' + m + '月' + d + '日';
+            else if(type == 2)
+                return y + '-' + m + '-' + d;
+            else if(type == 3)
+                return m*1 + '月' + d*1 + '日';
+            else if(type == 4)
+                return m*1 + '月' + d*1 + '日 ' + h +':' + minute;
+            else
+                return m + '月' + d + '日';
+        };
+
+        console.log('llll',nowSeven());
+
+        function nowSeven(){
+            var date = new Date(); //当前日期
+            var week = date.getDay(); //今天本周的第几天
+            console.log(week)
+            var end = getDate(week - 1, 1, date);
+            var start = getDate(9 - week, 1, date);
+            return [formatDateTime(start,2),formatDateTime(end,2)];
+        };
+
+
+
+
+	</script>
+
+	
+</body>
+</html>

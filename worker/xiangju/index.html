@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link href="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<style>
+		*{margin:0;padding: 0;}
+		ul,ol{list-style: none;margin: 0;}
+		a,a:hover,a:visited,a:focus{
+			text-decoration: none;
+		}
+		.left{
+			float: left;
+		}
+		.right{
+			float: right;
+		}
+
+		html,body{
+			background:#EDF0F5;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+
+		.container{
+			width: 100%;
+			height: 100%;
+			padding: 0;
+		}
+		.slider-left{
+			height: 100%;
+			padding: 0;
+			background:#fff;
+			/* min-width: 240px; */
+			width: 240px;
+			position: fixed;
+			left: 0;top: 0;
+		}
+		.slider-left .s-title{
+			background: #1E87F0;
+			height: 80px;
+			width: 100%;
+			display: inline-block;
+			padding-left: 34px;
+			line-height: 80px;
+			color: #fff;
+			font-size: 18px;
+		}
+		.slider-left .s-title img{
+			padding-left: 34px;
+		}
+		.slider-left .s-nav{
+			width: 100%;
+			height: 100%;
+		}
+		.slider-left .s-nav li{
+			margin-top: 62px;
+			padding-left: 57px;
+			box-sizing: border-box;
+			height: 28px;
+    		line-height: 28px;
+    		cursor: pointer;
+		}
+		.slider-left .s-nav li a{
+			display: block;
+		    width: 100%;
+		    height: 100%;
+		    box-sizing: border-box;
+		    color: #000;
+		}
+		.slider-left .s-nav li img{
+			margin-right: 33px;
+			max-width: 28px;
+			max-height: 28px;
+		}
+		.slider-left .s-nav li.active{
+			position: relative;
+		}
+		.slider-left .s-nav li.active::before{
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width:10px;
+			height:44px; 
+			font-size:18px;
+			margin-top: -8px;
+			background:rgba(65,146,236,1);
+			box-shadow: 2px 3px 11px 0px rgba(1,172,253,0.74);
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+
+		.content{
+			padding: 0;
+			height: 100%;
+			padding-left: 254px;
+			width: 100%;
+			margin: 0;
+		}
+		.content .c-top{
+			width:100%;
+			background: #fff;
+			height: 80px;
+			line-height: 80px;
+		}
+		.content .c-top .menu-btn{
+			float: left;
+			background: #1E87F0;
+			box-sizing: border-box;
+			display: none;
+		}
+		.content .c-top .menu-btn img{
+			padding:0 34px;
+		}
+		.content .c-top ul{
+			float: left;
+		}
+		.content .c-top .item{
+			float: left;
+			display: inline-block;
+			height: 100%;
+			margin-right: 30px;
+			position: relative;
+		}
+		.content .c-top .item > a{
+			color: #000000;
+			display: block;
+		    height: 100%;
+		    width: 100%;
+		}
+		.content .c-top .item > a img{
+			margin-left: 4px;
+		}
+		.content .c-top .item:first-child{
+			padding-left: 52px;
+			padding-right: 32px;
+		}
+		.content .c-top .item .sub-nav{
+			display: block;
+			width: 208px;
+			height: auto;
+			line-height: 1;
+			background: #fff;
+			position: absolute;
+			padding: 24px 34px;
+			border-top: 2px solid rgba(48,164,245,1);
+			box-sizing: border-box;
+			color: #000A12;
+			font-size: 14px;
+			display: none;
+			z-index: 9999;
+			box-shadow: 0px 10px 26px 0px rgba(63,78,90,0.14) ;
+			/* border-radius: 4px ;  */
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+		.content .c-top .item .sub-nav li{
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li > a{
+			color: #000A12;
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li:not(:last-child){
+			padding-bottom: 20px;
+		}
+
+		.c-total{
+			background: #EDF0F5;
+			width: 100%;
+			height: auto;
+			padding: 30px 60px 30px 30px;
+
+		}
+		.c-total .list1{
+			background: #fff;
+			border-radius: 4px;
+		}
+		.c-total .list1 .top{
+			display: block; 
+		    overflow: hidden;
+		    padding: 14px 0 14px 30px;
+		    border: 1px solid #E9EFF4;
+		    position: relative;
+		}
+		.c-total .list1 .top .left{
+			font-size: 18px;
+			color: #000A12;
+		}
+		.c-total .list1 .top .tabs{
+			margin-right: 68px;
+		}
+		.c-total .list1  .top .tabs .tab{
+			float: left;
+			color: #1E87F0;
+			display: inline-block;
+			width: 68px;
+			height: 26px;
+			text-align: center;
+			line-height: 26px;
+			border-radius: 20px;
+		}
+		.c-total .list1  .top .tabs .tab.active{
+			color: #fff !important;
+			background:rgba(30,135,240,1);
+		}
+		.c-total .list1  .top .date-time{
+			width:66px;
+			height:54px; 
+			background:rgba(244,247,249,0.4);
+			border-radius: 0px 4px 0px 0px ; 
+			position: absolute;right: 0px;
+			top: 0;
+			text-align: center;
+			line-height: 54px;
+		}
+
+		.c-total .list1  .bottom{
+			padding: 24px 30px 26px 30px;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+		.c-total .list1  .bottom ul{
+			display: flex;
+		}
+		.c-total .list1  .bottom ul li{
+			float: left;
+			text-align: center;
+			flex: 1;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.c-total .list1  .bottom ul li:not(:last-child){
+			/* padding-right: 62px; */
+		}
+		.c-total .list1  .bottom ul li .circle{
+			display: block;
+			width: 72px;height: 72px;
+			text-align: center;
+			line-height: 72px;
+			color: #fff;
+			background: #5EA2F2;
+			border-radius: 36px;
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+		.c-total .list1  .bottom ul li:nth-of-type(2) .circle{
+			background: #9D7EF7;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(3) .circle{
+			background: #F9B74C;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(4) .circle{
+			background: #FA6174;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(5) .circle{
+			background: #8CD164;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(6) .circle{
+			background: #D5C5A6;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(7) .circle{
+			background: #8CDCE1;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(8) .circle{
+			background: #FB9979;
+		} 
+		.c-total .list1  .bottom ul li span:last-child{
+			text-align: center;
+		}
+
+
+		.c-total .list2{
+			display: block;
+			width: 100%;
+			margin-top: 30px;
+		}
+		.c-total .list2 ul{
+			/* width: 100%;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap; */
+		}
+		.c-total .list2 .item{
+			float: left;
+			background: #fff;
+			/* width: 530px; */
+			width: 48%;
+			/* flex: 1; */
+			margin-right: 30px;
+			margin-bottom: 30px;
+			float: left;
+		}
+		.c-total .list2 .item:nth-of-type(even){
+			margin-right: 0px;
+			float: right;
+		}
+		.c-total .list2 .item .top{
+			padding: 14px 25px;
+			border: 1px solid #E9EFF4;
+			overflow: hidden;
+		}
+		.c-total .list2 .item .top .left{
+			font-size: 18px;
+		}
+		.c-total .list2 .item .top .right{
+			font-size: 14px;
+			color:#ccc;
+		}
+		.c-total .list2 .item .top .right span{
+			vertical-align: middle;
+			margin-right: 4px;
+		}
+
+		.c-total .list2 .item .bottom{
+			padding: 22px 26px;
+		}
+		.c-total .list2 .item .bottom .time{
+			font-size: 28px;
+			color: #000;
+			margin-bottom: 22px;
+		}
+		.c-total .list2 .item .bottom .time span:last-child{
+			padding: 2px 8px;
+			background:rgba(124,77,196,0.1);
+			border-radius: 3px ; 
+			font-size: 14px;
+			vertical-align: middle;
+			color: #7d54c2;
+			margin-left: 10px;
+		}
+		.c-total .list2 .item .bottom .info{
+			margin-bottom: 20px;
+			overflow: hidden;
+			display: block;
+			font-size: 14px;
+		}
+		.c-total .list2 .item .bottom .info .name{
+			width: 50%;
+			float: left;
+			margin-bottom: 20px;
+		}
+		.c-total .list2 .item .bottom .info .value{
+			color: #1E87F0;
+			margin-left: 32px;
+		}
+
+		.c-total .list2 .item .bottom .mark{
+			background: #fff;
+			padding: 0;
+		}
+		.c-total .list2 .item .bottom .mark .title{
+			margin-bottom: 12px;
+			font-size: 14px;
+		}
+		.c-total .list2 .item .bottom .mark .detail{
+			background: #fff;
+			padding: 10px 14px 26px 12px;
+			border: 1px solid #e9f0f6;
+			border-radius: 6px ; 
+			color: #72A3D7;
+		}
+		.c-total .list2 .item .bottom .mark .detail img{
+			display: inline-block;
+			width:80px;
+			height:80px; 
+
+		}
+
+		.comment{
+			margin-top: 20px;
+		}
+		.comment .star{
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: -5px;
+			margin-left: 16px;
+			margin-right: 0px;
+
+		}
+		.comment .star img{
+			float: left;
+			width: 21px;height: 20px;
+			margin-right: 8px;
+		}
+		.c-total .list2 .item .bottom .comment .title{
+			margin-bottom: 14px;
+		}
+
+
+		.c-total  .list3{
+			width: 100%;
+		}
+		.c-total  .list3 .item{
+			width: 100%;
+		}
+		.c-total  .list3 .department{
+			height: 48px;
+			line-height: 48px;
+			margin-bottom: 20px;
+			width: 33.3%;
+			float: left;
+		}
+		.c-total  .list3 .department img{
+			display: inline-block;
+			width: 48px;height: 48px;
+			border-radius: 50%;
+			margin-right: 20px;
+		}
+		.c-total  .list3 .department span{
+			width: 78px;
+			display: inline-block;
+		}
+		.c-total  .list3 .department .color{
+			/* margin-left: 50px; */
+			width: auto;
+			color: #1E87F0;
+		}
+
+
+
+		.active,
+		.active > a{
+			color: #1E87F0 !important;
+		}
+		.show{
+			display: block;
+		}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="container container-fluid row">
+
+		<div class="slider-left">
+			<div class="s-title">
+				<span>客户管理后台</span>
+				<img src="img/menu.png" alt="" class="menu">	
+			</div>
+			<div class="s-nav">
+				<ul>
+					<li class="active">
+						<a href="#" >
+							<img src="img/nav_icon1.png" alt=""><span>销售管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="img/nav_icon2.png" alt=""><span>客户管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="img/nav_icon3.png" alt=""><span>考核</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="img/nav_icon4.png" alt=""><span>统计</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container content ">
+
+			<div class="c-top">
+				<div class="menu-btn">
+					<img src="img/menu.png" alt="" class="menu">	
+				</div>
+				<ul class="c-nav">
+					<li class="item active">
+						<a href="index.html">概况</a>
+					</li>
+					<li class="item">
+						<a href="#">
+							<span>海南销售部</span>
+							<img src="img/nav_top_icon.png" alt="">
+						</a>
+						<ul class="sub-nav">
+							<li class="active"><a href="department/total.html">概览</a></li>
+							<li><a href="http://www.baidu.com">成交详情</a></li>
+							<li><a href="">动态详情</a></li>
+							<li><a href="">带看详情</a></li>
+							<li><a href="">部门成员</a></li>
+						</ul>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>云南销售部</span>
+						<img src="img/nav_top_icon.png" alt=""></a>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>杭州销售部</span>
+						<img src="img/nav_top_icon.png" alt="">
+						</a>
+					</li>
+				</ul>
+				<!-- <nav class="navbar navbar-default navbar-static-top">
+				  <div class="container">
+				    <ul class="nav navbar-nav navbar-left">
+				        <li><a href="#">概况</a></li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">海南销售部 <span class="glyphicon glyphicon-chevron-down"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">海南销售部</a></li>
+				            <li><a href="#">海南销售部</a></li>
+				            <li><a href="#">海南销售部</a></li>
+				            <li><a href="#">海南销售部</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				  </div>
+				</nav> -->
+
+			</div>
+
+			<div class="c-total">
+				<div class="list1">
+					<div class="top">
+						<div class="left">
+							数据概况
+						</div>
+						<div class="right tabs">
+							<div class="tab active">
+								今天
+							</div>
+							<div class="tab">
+								昨天
+							</div>
+							<div class="tab">
+								本月
+							</div>
+						</div>
+						<div class="right date-time">
+							<img src="img/icon_date.png" alt="">
+						</div>
+					</div>
+					<div class="bottom">
+						<ul>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>			
+						</ul>
+
+					</div>
+
+				</div>
+				<div class="list2">
+					<ul>
+						<li class="item">
+							<div class="top">
+								<div class="left">最近成交</div>
+								<div class="right">
+									<span>查看全部</span>
+									<img src="img/icon_more.png" alt="" />
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="time">
+									<span>5月1日</span>
+									<span>大脑袋</span>
+								</div>
+								<div class="info">
+										<div class="name">
+											<span class="key">客户姓名</span>
+											<span class="value">二狗子</span>
+										</div>
+										<div class="name">
+											<span>客户电话</span>
+											<span class="value">15784693215</span>
+										</div>
+										<div class="name">
+											<span>成交佣金</span>
+											<span class="value">1000000</span>
+										</div>
+										<div class="name">
+											<span>成交楼盘</span>
+											<span class="value">万科自古</span>
+										</div>
+								</div>
+								<div class="mark">
+									<div class="title">
+										<img src="img/icon_mark.png" alt="">
+										<span>备注</span>
+									</div>
+									<div class="detail">
+										大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第 大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范 发大师傅的说法都是范德萨发。
+									</div>
+								</div>
+
+							</div>
+						</li>
+						<li class="item">
+							<div class="top">
+								<div class="left">最近认筹</div>
+								<div class="right">
+									<span>查看全部</span>
+									<img src="img/icon_more.png" alt="" />
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="time">
+									<span>5月1日</span>
+									<span>大脑袋</span>
+								</div>
+								<div class="info">
+										<div class="name">
+											<span class="key">客户姓名</span>
+											<span class="value">二狗子</span>
+										</div>
+										<div class="name">
+											<span>客户电话</span>
+											<span class="value">15784693215</span>
+										</div>
+										<div class="name">
+											<span>认筹佣金</span>
+											<span class="value">1000000</span>
+										</div>
+										<div class="name">
+											<span>认筹楼盘</span>
+											<span class="value">万科自古</span>
+										</div>
+								</div>
+								<div class="mark">
+									<div class="title">
+										<img src="img/icon_mark.png" alt="">
+										<span>备注</span>
+									</div>
+									<div class="detail">
+										大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第 大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范 发大师傅的说法都是范德萨发。
+									</div>
+								</div>
+
+
+							</div>
+
+						</li>
+
+						<li class="item">
+							<div class="top">
+								<div class="left">最新带看</div>
+								<div class="right">
+									<span>查看全部</span>
+									<img src="img/icon_more.png" alt="" />
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="time">
+									<span>5月1日</span>
+									<span>大脑袋</span>
+								</div>
+								<div class="info">
+										<div class="name">
+											<span class="key">客户姓名</span>
+											<span class="value">二狗子</span>
+										</div>
+										<div class="name">
+											<span>客户电话</span>
+											<span class="value">15784693215</span>
+										</div>
+										<div class="name">
+											<span>带看楼盘</span>
+											<span class="value">万科自古</span>
+										</div>
+								</div>
+								<div class="mark">
+									<div class="title">
+										<img src="img/icon_mark.png" alt="">
+										<span>带看总结</span>
+									</div>
+									<div class="detail">
+										<p>
+										大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第 大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范 发大师傅的说法都是范德萨发。
+										</p>
+										<img src="https://ssl.malmam.com/xiangju-static/dfs/13/408a3894bcd803/_E4_B8_8B_E8_BD_BD_20_282_29.jpeg" alt="">
+									</div>
+								</div>
+								<div class="mark comment">
+									<div class="title">
+										<img class="" src="img/icon_add.png" alt="">
+										<span class="" >主管点评</span>
+										<div class="star">
+											<img src="img/icon_star.png" alt="">
+											<img src="img/icon_star.png" alt="">
+											<img src="img/icon_star.png" alt="">
+											<img src="img/icon_star.png" alt="">
+											<img src="img/icon_star.png" alt="">
+										</div>
+										<span class="score" >0分</span>
+									</div>
+									<div class="detail">
+										大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第 大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范 发大师傅的说法都是范德萨发。
+									</div>
+								</div>
+
+							</div>
+
+						</li>
+
+						<li class="item">
+							<div class="top">
+								<div class="left">最新动态</div>
+								<div class="right">
+									<span>查看全部</span>
+									<img src="img/icon_more.png" alt="" />
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="time">
+									<span>5月1日 15:00</span>
+									<span>大脑袋</span>
+								</div>
+								<div class="info">
+										<div class="name">
+											<span class="key">客户姓名</span>
+											<span class="value">二狗子</span>
+										</div>
+										<div class="name">
+											<span>是否有效</span>
+											<select name="" class="value">
+												<option value="1">有效</option>
+												<option value="0">无效</option>
+											</select>
+										</div>
+										<div class="name">
+											<span>客户级别</span>
+											<span class="value">A</span>
+										</div>
+										<div class="name">
+											<span>客户状态</span>
+											<span class="value">跟进中</span>
+										</div>
+										<div class="name">
+											<span>登记时间</span>
+											<span class="value">2018.05.01 15:00</span>
+										</div>
+								</div>
+								<div class="mark">
+									
+									<div class="detail">
+										大师傅的说法都是范德萨发发顺丰答复大师傅的说法， 打发第三方大师法第 大是大非是打发打发， 大师法第三方打发第三方的萨芬的是，的撒范德萨范 发大师傅的说法都是范德萨发。
+									</div>
+								</div>
+
+
+							</div>
+
+						</li>
+
+
+
+
+					</ul>
+				</div>
+
+				<!-- <div class="list2 list3">
+					<ul>
+						<li class="item">
+							<div class="top">
+								<div class="left">部门客户</div>
+								<div class="right">
+									<span>查看全部</span>
+									<img src="img/icon_more.png" alt="" />
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="department">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<span>徐峰</span>
+									<span class="color">售前顾问</span>
+								</div>
+								<div class="department">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/13/408a3894bcd803/_E4_B8_8B_E8_BD_BD_20_282_29.jpeg" alt="">
+									<span >徐峰</span>
+									<span class="color">售前顾问</span>
+								</div>
+								<div class="department">
+									<img class="left" src="https://ssl.malmam.com/xiangju-static/dfs/11/3f97748c67e8d5/_E4_B8_8B_E8_BD_BD_20_281_29.jpeg" alt="">
+									<span>徐峰</span>
+									<span class="color">售前顾问</span>
+								</div>
+								<div class="department">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<span>徐峰</span>
+									<span class="color">售前顾问</span>
+								</div>
+								<div class="department">
+									<img class="left" src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<span>徐峰</span>
+									<span class="color">售前顾问</span>
+								</div>
+
+							</div>
+
+						</li>
+					</ul>
+				</div> -->
+
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		
+		$(function(){
+			//  侧边栏导航
+			$('.menu').on('click',function(){
+				$('.slider-left').hide();
+				$('.content ').css({'padding-left':0});
+				$('.menu-btn').show();
+			});
+			$('.menu-btn').on('click',function(){
+				$('.slider-left').show();
+				$('.content ').css({'padding-left':240});
+				$('.menu-btn').hide();
+			});
+
+			$('.s-nav li').on('click',function(e){
+				$(this).addClass('active').siblings().removeClass('active');
+			});
+
+			// 顶部导航
+			$('.c-nav > .item a').on('click',function(e){
+				// $(this).siblings('.item').find('a').removeClass('active');
+				// $(this).find('a').addClass('active');
+
+				e.stopPropagation();
+				$(this).parent().addClass('active').siblings().removeClass('active');
+				$(this).parent().find('.sub-nav').toggleClass('show')
+				$(this).parent().siblings('.item').find('.sub-nav').hide().removeClass('show');
+				
+				// return false;
+			});
+
+			$(document).on('click',function(){
+				$('.sub-nav').hide().removeClass('show');
+			});
+
+			$('.sub-nav > li').on('click',function(){
+				$(this).addClass('active').siblings().removeClass('active');
+				// return false;
+			});
+
+			// 点评star
+			$('.star img').on('click',function(){
+				var src = $(this).attr('src');
+				var index = $(this).index()+1;
+				var score = 0;
+				score = (index)*2;
+
+				$('.star img').attr('src','img/icon_star.png');
+				if(src.indexOf('icon_star_active.png')>-1){
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star.png');
+					}
+					$('.score').html(0+'分');
+				}else{
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star_active.png');
+					}
+					$('.score').html(score+'分');
+				}
+
+			});
+
+
+
+
+		})
+
+
+	</script>
+</body>
+</html>

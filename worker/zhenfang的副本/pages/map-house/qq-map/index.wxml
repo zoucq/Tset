@@ -1,0 +1,58 @@
+<view class="map_container" > 
+
+    <!-- bindtap='maptap' -->
+
+    <!-- markers='{{markers}}' -->
+    <!-- bindregionchange='changeMap' bindcontroltap="controltap" -->
+
+    <map class="map" id="map" 
+        longitude="{{longitude}}" latitude="{{latitude}}" 
+        scale="{{scale}}" show-location="true" 
+        circles='{{circles}}' 
+        controls="{{controls}}" 
+        polyline="{{polyline}}"
+        markers='{{markers}}'
+        
+        bindmarkertap="makertap" bindcallouttap="callouttap"
+        bindregionchange='changeMap'
+
+        style='width:100%;height:{{winHeight}}px;' >
+
+        <cover-view 
+            wx:if="{{houseShow}}" class="controls"  
+            bindtap="go" data-go="../../index/index">
+            <cover-view class="left">
+                <cover-image class="img" src="https://img.xiaopiu.com/userImages/img74516025767768.png" />
+            </cover-view>
+            <cover-view class="right" >
+                <cover-view class="name">中通</cover-view>
+                <cover-view class="price">均价：20000/㎡</cover-view>
+                <cover-view class="biaoqian">
+                    <cover-view class='text'>住宅</cover-view>
+                </cover-view>
+                <cover-view class="tel" >
+                    <cover-image class="img" src="../../../image/phone-call.png" />
+                </cover-view>
+            </cover-view>
+        </cover-view>
+
+    </map> 
+
+    <!-- type	String		icon的类型，有效值：success, success_no_circle, info, warn, waiting, cancel, download, search, clear
+    size	Number	23	icon的大小，单位px
+    color	Color		icon的颜色，同css的color -->
+
+    <!-- <icon type="cancel" color="red" size="20" />
+    <icon type="cancel" color="green" size="20" />
+    <icon type="cancel" color="blue" size="20" />
+    <icon type="search" size="20" />
+    <icon type="success" size="20" />
+    <icon type="success_no_circle" size="20" />
+    <icon type="info" size="20" />
+    <icon type="warn" size="20" />
+    <icon type="waiting" size="20" />
+    <icon type="download" size="20" />
+    <icon type="clear" size="20" /> -->
+    
+
+</view> 

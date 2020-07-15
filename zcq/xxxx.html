@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9OuUe8NnxIgfV7VKWgO5gbgokjx4gmY5"></script>
+	<title>地图展示</title>
+	<style type="text/css" media="screen">
+		#allmap{
+			width: 500px;height: 500px;
+		}
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+		.blue{
+			color: blue;
+		}
+		.test{
+			display: inline-block;text-align: center;
+			width: 50px;height: 50px;border: 1px solid;cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="allmap"></div>
+
+	<div class="qw1 test" data-type="1">1</div>
+	<div class="qw2 test" data-type="2">2</div>
+	<div class="qw3 test" data-type="3">3</div>
+
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+	var a = {
+		x:2
+	};
+
+	var b = a;
+
+	a.y = a = {x:1};
+
+
+	console.log(a.y);
+	console.log(b.y);
+
+
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+
+	function xxx(obj1,obj2){
+		obj1.on('click',function(){
+			obj2.css('color','#f00');
+		});
+	}
+
+	// xxx($('.qw1'),$('.qw1'));
+	// xxx($('.qw2'),$('.qw2'));
+	// xxx($('.qw3'),$('.qw3'));
+
+
+	$('.test').on('click',function(){
+		var type = $(this).data('type');
+		console.log(type);
+		(type==1) && $('.qw1').toggleClass('red');
+		(type==2) && $('.qw2').toggleClass('green');
+		(type==3) && $('.qw3').toggleClass('blue');
+	});
+
+
+	var objTop = $('xxx').offset().top;
+	var clientH = $(window).height();
+	$(window).on('scroll',function(){
+		var st = $(this).scrolltop();
+		if(objTop < st + clientH + 50){
+
+		}
+	})
+
+
+
+
+</script>

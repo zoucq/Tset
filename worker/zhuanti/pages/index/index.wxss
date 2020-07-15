@@ -1,0 +1,123 @@
+.container{
+    width:100%;
+    height: 100vh;
+    background:rgba(232,233,242,1);
+}
+.container .list{
+    padding: 28rpx 24rpx;
+    width: 100%;
+}
+.container .list .item{
+    margin-bottom: 28rpx;
+    height: 300rpx;
+    width: 100%;
+
+}
+.container .list .item image{
+    width: 100%;height: 100%;
+    background: #D8D8D8;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+    border-radius: 8px;
+}
+
+.hongbao{
+    position: fixed;
+    right: 4rpx;
+    bottom: 80rpx;
+    display:block;
+    width: 176rpx;
+    height: 216rpx; 
+}
+.hongbao > view{
+    position: absolute;
+    z-index: 999999;
+    /* left: 8rpx; */
+    left: 8rpx;
+    top: 4rpx;
+    /* color: #FF5454;
+    font-size: 24rpx;
+    border-radius: 50%;
+    width:38rpx;
+    height:38rpx; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; */
+
+    width:38rpx;
+    height:38rpx; 
+    background:rgba(255,255,255,1);
+    box-shadow: 0px 2rpx 4rpx 0px rgba(171,103,103,0.5); 
+    color: #FF5454;
+    font-size: 24rpx;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; 
+}
+.hongbao > image{
+     width: 100%;
+    height: 100%;  
+    display: inline-block;
+    position: absolute;
+    left: 0;top: 0;
+    z-index: 9999;
+
+    /* background: #D8D8D8;
+    box-shadow: 0 4rpx 8rpx 0 rgba(0,0,0,0.26);
+    border-radius: 8rpx; */
+}
+
+
+
+.modal{
+    position: fixed;
+    left: 0;top: 0;
+    /* display: block; */
+    width: 100%;height: 100%;
+    background: rgba(0,0,0,0.7);
+     /* display:none;  */
+    z-index:999999999;
+}
+.modal .content{
+    width: 650rpx;
+    height: 868rpx;
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.modal .content image{
+    width: 100%;height: 100%;
+}
+.modal .content .close{
+    position: absolute;
+    left: 0;top: 0;
+    width: 88rpx;height: 88rpx;
+    z-index: 999;
+}
+.modal .content .open{
+    position: absolute;
+    left: 0;top: 0;
+    width: 88rpx;height: 88rpx;
+    z-index: 999;
+}
+
+
+.modal .content  .btn{
+    position: absolute;
+    left: 62rpx;
+    bottom: 164rpx;
+    z-index: 99999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:526rpx;
+    height:90rpx; 
+    background:rgba(253,159,43,1);
+    border-radius: 8rpx ; 
+    font-size: 32rpx;
+    color: #F1F1F1;
+}

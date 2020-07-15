@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>圆环</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0}
+		body{
+			background: rgba(0,0,0,0.8);
+		}
+
+
+		.circle{
+			width: 100px;height: 100px;
+			margin: 100px;
+			border: 50px solid;
+			border-left-color: red;
+			border-right-color: green;
+			border-top-color: blue;
+			border-bottom-color: yellow;
+			border-radius: 50%;
+			position: relative;
+		}
+
+
+		.wrapper{
+			display: block;
+		}
+
+
+		.bg_demo{
+		  	position: absolute;
+		  	width: 506px;height: 336px;
+			background: url('http://game.gtimg.cn/images/lol/act/a20180212spring/welfare-subject-2.png') no-repeat;
+		  	top:68px;
+		  	left:400px;
+		}
+
+		.bg_demo:hover::before{
+	      	content: '';
+	      	position: absolute;
+	      	width: 506px;height: 336px;
+			background: url('http://game.gtimg.cn/images/lol/act/a20180212spring/welfare-subject-2.png') no-repeat;
+	      	top:0px;
+	      	left:0px;
+	      	animation:coruscate .4s ease-in-out;
+	    }
+		
+
+		@keyframes coruscate {
+			0%{
+				opacity:.3;
+				transform: scale(1);
+			}
+			100%{
+				opacity:0;
+				transform: scale(1.2);
+				display: none;
+			}
+		}
+
+
+		.bottom-btn{
+			padding-top: 15px;
+		}
+		.bottom-btn span{
+		  	display: block;
+		  	background: #bc3623;
+		  	color: #feefb8;
+		    font-size: 20px;
+		    font-weight: 700;
+		    text-align: center;
+		    cursor: pointer;
+		  	width: 180px;
+		  	height:50px;
+		  	line-height:50px;
+		  	overflow: hidden;
+		  	position: relative;
+		  	left: 536px;
+		}
+		
+		.bottom-btn  span::before{
+		  content: ' ';
+		  position: absolute;
+		  width:80px;
+		  height:200px;
+		  top:0;
+		  left:-160px;
+		  transform: skew(-25deg);
+		  background: linear-gradient(to right,rgba(255,255,255,0) 0,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 100%);
+
+		  animation: leftToRight 1.4s linear infinite;
+		}
+		@keyframes leftToRight {
+			0%{left:-160px;}
+			100%{left:120px}
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	
+	<div class="circle"></div>
+
+	<div class="wrapper">	
+		<div class="bottom-btn">
+			<span>春晖神女 拉克丝</span>
+		</div>
+
+		<div class="bg_demo">
+			
+		</div>
+	</div>
+
+</body>
+</html>

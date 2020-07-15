@@ -1,0 +1,25 @@
+<view class='container'>
+
+    <view class='boxs' wx:if='{{list.length>0}}'>
+        <block wx:for="list" wx:key="lists">
+            <view class='item'>
+                <view class='top'>
+                    <text>提问</text>
+                    <text>请问这个楼盘周边有垃圾场，会影响生活么?????？</text>
+                </view>
+                <view class='center'>
+                    基本没有影响，垃圾场距离有3km，而且以后的规划，垃圾场会拆掉的
+                </view>
+                <view class='down'>
+                    <view>西溪新城市</view>
+                    <view>110个回答</view>
+                    <view>2018.01.06</view>
+                </view>
+            </view>
+        </block>
+        <view wx:if="{{noMore}}" class='noMore'>无更多数据~~</view>
+    </view>
+    
+    <view class='noList' wx:else>暂无数据~~</view>
+
+</view>

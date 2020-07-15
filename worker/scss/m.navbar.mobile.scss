@@ -1,0 +1,36 @@
+@import "base";
+
+$navbar-height: 44px;
+$navbar-img-height: 22px;
+
+.navbar-custom {
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  background-color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+
+  .nav-back {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: $navbar-height;
+    img {
+      width: 10px;
+    }
+  }
+
+  .home {
+    position: absolute;
+    right: ($navbar-height - $navbar-img-height) / 2;
+
+    img {
+      width: $navbar-img-height;
+      height: $navbar-img-height;
+    }
+  }
+}

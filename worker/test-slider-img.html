@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin: 0;padding:0;}
+		.box{
+			width: 600px;
+			height: 300px;
+			overflow: hidden;
+			position: relative;
+		}
+		.box .con{
+			width:auto;
+			height: 300px;
+			margin-left: 0;
+			transition: all 1s linear;
+		}
+		.box img{
+			display: inline-block;
+			width: 600px;
+			height: 300px;
+			float: left;
+		}
+		
+
+		.btn {
+			position: absolute;
+			bottom: 10px;
+			right: 20px;
+		}
+		.btn span{
+			display: inline-block;
+			width: 10px;height: 10px;
+			border-radius: 50%;
+			margin-right: 5px;
+			background: #ccc;
+			cursor: pointer;
+		}
+		.btn span.active{
+			background: orange;
+		}
+
+		button{
+			width: 50px;height: 50px;border: 0;
+			background: rgba(0,0,0,0.4);
+			color: #fff;
+		}
+		.arrow-left{
+			position: absolute;left: 10px;top: 50%;margin-top: -25px;
+		}
+		.arrow-right{
+			position: absolute;right: 10px;top: 50%;margin-top: -25px;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="box" id="box">
+		<div class="con" id="con">
+			<img src="http://www.zcq.test.91xiangju.com/images/index/banner_mobile.jpg" alt="">
+			<img src="https://ssl.malmam.com/xiangju-static/dfs/9/15f2e01cab6000/8C3F0A291348630691EEE745C26C4022.png" alt="">
+			<img src="https://ssl.malmam.com/xiangju-static/dfs/9/15f2df5ca2d1f4/8AC592561D5F39CA4248F6D803E8333E.png" alt="">
+			<img src="http://www.zcq.test.91xiangju.com/images/index/banner_mobile.jpg" alt="">
+			<img src="https://ssl.malmam.com/xiangju-static/dfs/9/15f2e01cab6000/8C3F0A291348630691EEE745C26C4022.png" alt="">
+		</div>
+		<div class="btn" id="dians">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>	
+		<button class="arrow-left" id="btn1">&lt;</button>
+		<button class="arrow-right" id="btn2">&gt;</button>
+	</div>
+
+	<script>
+
+		var W=$('con').getElementsByTagName('img')[0].offsetWidth,
+			btn=document.getElementsByTagName('button'),
+			dian=$('dians').getElementsByTagName('span'),
+			timer=null,
+			index=0;
+
+		function init(){
+			totalWidth();
+			actDot();
+			autoTab();
+		}
+		init();
+
+		function $(ele){
+			return document.getElementById(ele);
+		}
+
+		function totalWidth(){
+			$('con').style.width=W*dian.length+'px';
+		}
+
+		function actDot(){
+			for(var i=0;i<dian.length;i++){
+				dian[i].onclick=function(){
+					for(var j=0;j<dian.length;j++){
+						if(this==dian[j]){
+							index=j;
+							tab();
+						}
+					}
+				}
+			}
+		}	
+
+		function tab(){
+			for(var i=0;i<dian.length;i++){
+				dian[i].className='';
+			}
+			dian[index].className='active';
+
+			$('con').style.marginLeft=-W*(index)+'px';
+		}
+
+		function autoTab(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				$('btn2').onclick();
+			},3000);
+		}
+
+
+		$('btn1').onclick=function(){
+			index--;
+			if(index<0){
+				index=dian.length-1;
+			}
+			tab();
+		}
+		$('btn2').onclick=function(){
+			index++;
+			if(index>=dian.length){
+				index=0;
+			}
+			tab();
+		}
+
+		box.onmouseover=function(){
+			clearInterval(timer);
+		}
+		box.onmouseout=function(){
+			autoTab();
+		}
+
+
+
+	</script>
+	
+</body>
+</html>

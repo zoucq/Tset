@@ -1,0 +1,77 @@
+<view class='container'>
+
+    <view class='ul'>
+        <view class='li'>
+            <image src='/image/b/b-icon1.png'></image>
+            <view>免费专车</view>
+        </view>
+        <view class='li'>
+            <image src='/image/b/b-icon2.png'></image>
+            <view>专业顾问</view>
+        </view>
+        <view class='li'>
+            <image src='/image/b/b-icon3.png'></image>
+            <view>购房红包</view>
+        </view>
+        <view class='li'>
+            <image src='/image/b/b-icon4.png'></image>
+            <view>品质好盘</view>
+        </view>
+    </view>
+
+    <view class='list'>
+        <block wx:for="{{list}}" wx:key="{{index}}">
+            <view class='item' >
+                <view class='i_left' bindtap='_checked' 
+                    data-index="{{index}}" data-id="{{item.Data.bind_house}}">
+                    <view wx:if="{{!item.active}}" class='circle'></view>
+                    <image wx:else class='circle-checked'                                                       src='/image/b/b-checked.png'></image>
+                    <text>{{item.ActivityName}}</text>
+                </view>
+                <view class='i_right' bindtap='_handleGO'                                                   data-go="/pages/house-list/index?id={{item.Id}}">
+                    <text>查看详情</text>
+                    <image                                  src='http://www.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png'></image>
+                </view>
+            </view>
+        </block>
+    
+    </view>
+
+
+    <view class='form'>
+        <view class='wrap'>
+            <text>姓名：</text>
+            <input type='text' value="" 
+                bindinput='_input' data-type='user'></input>
+        </view>
+        <view class='wrap'>
+            <text>电话：</text>
+            <input type='number' value="" maxlength='11'
+                bindinput='_input' data-type='phone'></input>
+        </view>
+        <view class='btn' bindtap="_submit">确认预约</view>
+    </view>
+
+
+</view>
+
+
+<!-- 预约返回  -->
+<view class='dialog dialog-back' hidden="{{dialogShow2}}" bindtap='_closeDialog2'>
+    <view class='dialog-content' catchtap='_place'>
+        <view class='dialog-body' >
+            <view class='form-wrap' >
+                <image src="http://www.91xiangju.com/images/xiangju/icon_check.png"></image>
+            </view>
+            <view class='form-wrap text' >
+                <text>提交成功</text>
+            </view>
+            <view class='form-wrap back' >
+                <text>{{backText}}</text>
+            </view>
+        </view>
+        <view class='dialog-footer'>
+            <button catchtap='_closeDialog3'>知道了</button>
+        </view>
+    </view>
+</view>

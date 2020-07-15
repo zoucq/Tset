@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link href="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<style>
+		*{margin:0;padding: 0;}
+		ul,ol{list-style: none;margin: 0;}
+		a,a:hover,a:visited,a:focus{
+			text-decoration: none;
+		}
+		.left{
+			float: left;
+		}
+		.right{
+			float: right;
+		}
+
+		html,body{
+			background:#EDF0F5;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+
+		.container{
+			width: 100%;
+			height: 100%;
+			padding: 0;
+		}
+		.slider-left{
+			height: 100%;
+			padding: 0;
+			background:#fff;
+			/* min-width: 240px; */
+			width: 240px;
+			position: fixed;
+			left: 0;top: 0;
+		}
+		.slider-left .s-title{
+			background: #1E87F0;
+			height: 80px;
+			width: 100%;
+			display: inline-block;
+			padding-left: 34px;
+			line-height: 80px;
+			color: #fff;
+			font-size: 18px;
+		}
+		.slider-left .s-title img{
+			padding-left: 34px;
+		}
+		.slider-left .s-nav{
+			width: 100%;
+			height: 100%;
+		}
+		.slider-left .s-nav li{
+			margin-top: 62px;
+			padding-left: 57px;
+			box-sizing: border-box;
+			height: 28px;
+    		line-height: 28px;
+    		cursor: pointer;
+		}
+		.slider-left .s-nav li a{
+			display: block;
+		    width: 100%;
+		    height: 100%;
+		    box-sizing: border-box;
+		    color: #000;
+		}
+		.slider-left .s-nav li img{
+			margin-right: 33px;
+			max-width: 28px;
+			max-height: 28px;
+		}
+		.slider-left .s-nav li.active{
+			position: relative;
+		}
+		.slider-left .s-nav li.active::before{
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width:10px;
+			height:44px; 
+			font-size:18px;
+			margin-top: -8px;
+			background:rgba(65,146,236,1);
+			box-shadow: 2px 3px 11px 0px rgba(1,172,253,0.74);
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+
+		.content{
+			padding: 0;
+			height: 100%;
+			padding-left: 254px;
+			width: 100%;
+			margin: 0;
+		}
+		.content .c-top{
+			width:100%;
+			background: #fff;
+			height: 80px;
+			line-height: 80px;
+		}
+		.content .c-top .menu-btn{
+			float: left;
+			background: #1E87F0;
+			box-sizing: border-box;
+			display: none;
+		}
+		.content .c-top .menu-btn img{
+			padding:0 34px;
+		}
+		.content .c-top ul{
+			float: left;
+		}
+		.content .c-top .item{
+			float: left;
+			display: inline-block;
+			height: 100%;
+			margin-right: 30px;
+			position: relative;
+		}
+		.content .c-top .item > a{
+			color: #000000;
+			display: block;
+		    height: 100%;
+		    width: 100%;
+		}
+		.content .c-top .item > a img{
+			margin-left: 4px;
+		}
+		.content .c-top .item:first-child{
+			padding-left: 52px;
+			padding-right: 32px;
+		}
+		.content .c-top .item .sub-nav{
+			display: block;
+			width: 208px;
+			height: auto;
+			line-height: 1;
+			background: #fff;
+			position: absolute;
+			padding: 24px 34px;
+			border-top: 2px solid rgba(48,164,245,1);
+			box-sizing: border-box;
+			color: #000A12;
+			font-size: 14px;
+			display: none;
+			z-index: 9999;
+			box-shadow: 0px 10px 26px 0px rgba(63,78,90,0.14) ;
+			/* border-radius: 4px ;  */
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+		.content .c-top .item .sub-nav li{
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li > a{
+			color: #000A12;
+			cursor: pointer;
+		}
+		.content .c-top .item .sub-nav li:not(:last-child){
+			padding-bottom: 20px;
+		}
+
+		.c-total{
+			background: #EDF0F5;
+			width: 100%;
+			height: auto;
+			padding: 30px 60px 30px 30px;
+
+		}
+		.c-total .list1{
+			background: #fff;
+			border-radius: 4px;
+		}
+		.c-total .list1 .top{
+			display: block; 
+		    overflow: hidden;
+		    padding: 14px 0 14px 30px;
+		    border: 1px solid #E9EFF4;
+		    position: relative;
+		}
+		.c-total .list1 .top .left{
+			font-size: 18px;
+			color: #000A12;
+		}
+		.c-total .list1 .top .tabs{
+			margin-right: 68px;
+		}
+		.c-total .list1  .top .tabs .tab{
+			float: left;
+			color: #1E87F0;
+			display: inline-block;
+			width: 68px;
+			height: 26px;
+			text-align: center;
+			line-height: 26px;
+			border-radius: 20px;
+		}
+		.c-total .list1  .top .tabs .tab.active{
+			color: #fff;
+			background:rgba(30,135,240,1);
+		}
+		.c-total .list1  .top .date-time{
+			width:66px;
+			height:54px; 
+			background:rgba(244,247,249,0.4);
+			border-radius: 0px 4px 0px 0px ; 
+			position: absolute;right: 0px;
+			top: 0;
+			text-align: center;
+			line-height: 54px;
+		}
+
+		.c-total .list1  .bottom{
+			padding: 24px 30px 26px 30px;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+		.c-total .list1  .bottom ul{
+			display: flex;
+		}
+		.c-total .list1  .bottom ul li{
+			float: left;
+			text-align: center;
+			flex: 1;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.c-total .list1  .bottom ul li:not(:last-child){
+			/* padding-right: 62px; */
+		}
+		.c-total .list1  .bottom ul li .circle{
+			display: block;
+			width: 72px;height: 72px;
+			text-align: center;
+			line-height: 72px;
+			color: #fff;
+			background: #5EA2F2;
+			border-radius: 36px;
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+		.c-total .list1  .bottom ul li:nth-of-type(2) .circle{
+			background: #9D7EF7;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(3) .circle{
+			background: #F9B74C;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(4) .circle{
+			background: #FA6174;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(5) .circle{
+			background: #8CD164;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(6) .circle{
+			background: #D5C5A6;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(7) .circle{
+			background: #8CDCE1;
+		} 
+		.c-total .list1  .bottom ul li:nth-of-type(8) .circle{
+			background: #FB9979;
+		} 
+		.c-total .list1  .bottom ul li span:last-child{
+			text-align: center;
+		}
+
+
+		.c-total .list2{
+			display: block;
+			width: 100%;
+			margin-top: 30px;
+			overflow: hidden;
+		}
+		.c-total .list2 ul{
+			/* width: 100%;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap; */
+		}
+		.c-total .list2 .item{
+			float: left;
+			background: #fff;
+			/* width: 530px; */
+			width: 48%;
+			/* flex: 1; */
+			margin-right: 30px;
+			margin-bottom: 30px;
+			float: left;
+		}
+		
+
+		.comment{
+			margin-top: 20px;
+		}
+		.comment .star{
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: -5px;
+			margin-left: 16px;
+			margin-right: 0px;
+
+		}
+		.comment .star img{
+			float: left;
+			width: 21px;height: 20px;
+			margin-right: 8px;
+		}
+		.c-total .list2 .item .bottom .comment .title{
+			margin-bottom: 14px;
+		}
+
+
+		.c-total  .list3{
+			width: 100%;
+		}
+		.c-total  .list3 .item{
+			width: 100%;
+		}
+		.c-total  .list3 .department{
+			height: 48px;
+			line-height: 48px;
+			margin-bottom: 20px;
+			width: 33.3%;
+			float: left;
+		}
+		.c-total  .list3 .department img{
+			display: inline-block;
+			width: 48px;height: 48px;
+			border-radius: 50%;
+			margin-right: 20px;
+		}
+		.c-total  .list3 .department span{
+			width: 78px;
+			display: inline-block;
+		}
+		.c-total  .list3 .department .color{
+			/* margin-left: 50px; */
+			width: auto;
+			color: #1E87F0;
+		}
+
+
+
+		.active,
+		.active > a{
+			color: #1E87F0 !important;
+		}
+		.show{
+			display: block;
+		}
+
+
+		.top-title{
+			display: block;
+			width: 100%;
+			color: #233539;
+			font-size:36px;
+			margin-top: 50px;
+		}
+		.top-title div{
+			display: inline-block;
+		}
+		.top-title .add-item{
+			display: inline-block;
+			width: 80px;height: 30px;
+			line-height: 30px;
+			background: #1E87F0;
+			color: #fff;
+			font-size: 14px;
+			vertical-align: middle;
+			border: 0;
+			margin-left: 10px;
+			margin-top: -5px;
+		}
+
+
+
+		.list2 .memeber{
+			width: 31% !important;
+			/* width: 410px !important; */
+			float: left !important;
+		}
+		.list2  .memeber:nth-of-type(even){
+			margin-right: 30px!important;
+		}
+		.list2 .memeber:nth-of-type(3n){
+			margin-right: 0!important;
+		}
+		.list2 .memeber .top{
+			padding: 30px 16px !important;
+			overflow: hidden;
+		}
+		.list2 .memeber .top .userinfo img{
+			width: 80px;height: 80px;
+			display: inline-block;
+			float: left;
+			border-radius: 50%;
+			margin-right: 16px;
+		}
+		.list2 .memeber .top .userinfo .left{
+			margin-top: 20px;
+			text-align: center;
+		}
+		.list2 .memeber .top .userinfo .left b{
+			font-size: 18px;
+			color: #000;
+		}
+		.list2 .memeber .top .userinfo .left p{
+			font-size: 14px;
+			color: #9d9d9d;
+		}
+		.list2 .memeber .top .day{
+			height: 80px;
+			line-height: 80px;
+			color: #000;
+			font-size: 16px;
+		}
+		.list2 .memeber .top .day span{
+			color: #000;
+			font-size: 14px;
+			padding-left: 4px;
+		}
+		.list2 .memeber .top .day .circle{
+			display: inline-block;
+			width:10px;
+			height:10px; 
+			border-radius: 50%; 
+			border: 3px solid #A658EA;
+			box-sizing: border-box;
+		}
+
+		.list2 .memeber .bottom{
+			padding: 20px 16px;
+			display: flex;
+		}
+		.list2 .memeber .bottom .total-item{
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 0;margin: 0;
+			text-align: center;
+		}
+		.list2 .memeber .bottom .total-item b{
+			color: #1E87F0;
+			font-size: 22px;
+		}
+		.list2 .memeber .bottom .total-item p{
+			color: #9d9d9d;
+			font-size: 14px;
+			margin: 0;
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="container container-fluid row">
+
+		<div class="slider-left">
+			<div class="s-title">
+				<span>客户管理后台</span>
+				<img src="../img/menu.png" alt="" class="menu">	
+			</div>
+			<div class="s-nav">
+				<ul>
+					<li class="active">
+						<a href="#" >
+							<img src="../img/nav_icon1.png" alt=""><span>销售管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon2.png" alt=""><span>客户管理</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon3.png" alt=""><span>考核</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							<img src="../img/nav_icon4.png" alt=""><span>统计</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container content ">
+
+			<div class="c-top">
+				<div class="menu-btn">
+					<img src="../img/menu.png" alt="" class="menu">	
+				</div>
+				<ul class="c-nav">
+					<li class="item">
+						<a href="../index.html">概况</a>
+					</li>
+					<li class="item">
+						<a href="#">
+							<span>海南销售部</span>
+							<img src="../img/nav_top_icon.png" alt="">
+						</a>
+						<ul class="sub-nav">
+							<li class="active"><a href="department/total.html">概览</a></li>
+							<li><a href="">成交详情</a></li>
+							<li><a href="">动态详情</a></li>
+							<li><a href="">带看详情</a></li>
+							<li><a href="">部门成员</a></li>
+						</ul>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>云南销售部</span>
+						<img src="../img/nav_top_icon.png" alt=""></a>
+					</li>
+					<li class="item">
+						<a href="#">
+						<span>杭州销售部</span>
+						<img src="../img/nav_top_icon.png" alt="">
+						</a>
+					</li>
+				</ul>
+
+			</div>
+
+			<div class="c-total">
+				<div class="list1">
+					<div class="top">
+						<div class="left">
+							数据概况
+						</div>
+						<div class="right tabs">
+							<div class="tab">
+								今天
+							</div>
+							<div class="tab">
+								昨天
+							</div>
+							<div class="tab">
+								本月
+							</div>
+						</div>
+						<div class="right date-time">
+							<img src="../img/icon_date.png" alt="">
+						</div>
+					</div>
+					<div class="bottom">
+						<ul>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							<li>
+								<span class="circle">1000</span>
+								<span>成交数</span>
+							</li>
+							
+
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="top-title">
+					<div>部门成员</div>
+				</div>
+
+
+				<div class="list2">
+					<ul class="">
+						<li class="item memeber ">
+							<div class="top">
+								<div class="left userinfo">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<div class="left">
+										<b>西风</b>
+										<p>售前顾问</p>
+									</div>
+								</div>
+								<div class="right day">
+									<p><span class="circle"></span><span>入职180天</span></p>
+								</div>
+							</div>
+							<div class="bottom ">
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+							</div>
+						</li>
+
+						<li class="item memeber">
+							<div class="top">
+								<div class="left userinfo">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<div class="left">
+										<b>西风</b>
+										<p>售前顾问</p>
+									</div>
+								</div>
+								<div class="right day">
+									<p><span class="circle"></span><span>入职180天</span></p>
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+							</div>
+						</li>
+
+						<li class="item memeber">
+							<div class="top">
+								<div class="left userinfo">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<div class="left">
+										<b>西风</b>
+										<p>售前顾问</p>
+									</div>
+								</div>
+								<div class="right day">
+									<p><span class="circle"></span><span>入职180天</span></p>
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+							</div>
+						</li>
+
+						<li class="item memeber">
+							<div class="top">
+								<div class="left userinfo">
+									<img src="https://ssl.malmam.com/xiangju-static/dfs/15/3f9789e98c989e/_E4_B8_8B_E8_BD_BD.jpeg" alt="">
+									<div class="left">
+										<b>西风</b>
+										<p>售前顾问</p>
+									</div>
+								</div>
+								<div class="right day">
+									<p><span class="circle"></span><span>入职180天</span></p>
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+								<div class="total-item">
+									<b>180人</b>
+									<p>带看总数</p>
+								</div>
+							</div>
+						</li>
+
+
+					</ul>
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://admin.zcq.test.91xiangju.com/js/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		
+		$(function(){
+			//  侧边栏导航
+			$('.menu').on('click',function(){
+				$('.slider-left').hide();
+				$('.content ').css({'padding-left':0});
+				$('.menu-btn').show();
+			});
+			$('.menu-btn').on('click',function(){
+				$('.slider-left').show();
+				$('.content ').css({'padding-left':240});
+				$('.menu-btn').hide();
+			});
+
+			$('.s-nav li').on('click',function(e){
+				$(this).addClass('active').siblings().removeClass('active');
+			});
+
+			// 顶部导航
+			$('.c-nav > .item a').on('click',function(e){
+				// $(this).siblings('.item').find('a').removeClass('active');
+				// $(this).find('a').addClass('active');
+				e.stopPropagation();
+				$(this).parent().addClass('active').siblings().removeClass('active');
+				$(this).parent().find('.sub-nav').toggleClass('show')
+				$(this).parent().siblings('.item').find('.sub-nav').hide().removeClass('show');
+				// return false;
+			});
+
+			$(document).on('click',function(){
+				$('.sub-nav').hide().removeClass('show');
+			});
+
+			$('.sub-nav > li').on('click',function(){
+				$(this).addClass('active').siblings().removeClass('active');
+				// return false;
+			});
+
+			// 点评star
+			$('.star img').on('click',function(){
+				var src = $(this).attr('src');
+				var index = $(this).index()+1;
+				var score = 0;
+				score = (index)*2;
+
+				$('.star img').attr('src','img/icon_star.png');
+				if(src.indexOf('icon_star_active.png')>-1){
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star.png');
+					}
+					$('.score').html(0+'分');
+				}else{
+					for(var i=0;i<index;i++){
+						$('.star img').eq(i).attr('src','img/icon_star_active.png');
+					}
+					$('.score').html(score+'分');
+				}
+
+			});
+
+
+
+
+		})
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<title></title>
+	<link href="http://www.zcq.test.91xiangju.com/js/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+    	ul,ol{list-style: none;}
+    	a,a:hover,a:focus{text-decoration: none;}
+    	div{box-sizing: border-box;}
+    	p{margin:0;}
+
+    	body{
+    		font-family: Arial, Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    		font-size: 14px;
+    		color: #333;
+    	}
+    	.container{
+    		width: 100%;
+    		height: 100%;
+    		background: #fff;
+    		padding: 0;margin: 0;
+    		-webkit-overflow-scrolling: touch;
+    	}
+    	.tops{
+	        width: 100%;height:auto;
+	        margin-bottom: 6px;position: relative;
+	    }
+	    .tops img{
+	        width: 100%;height: 250px;
+	    }
+	    .tops .swipe{
+	        height: 250px;overflow: hidden;
+	    }
+	    .tops .swipe-wrap{
+	        position: relative;
+	    }
+	    .tops .swipe-wrap>div{
+	        float: left;
+	    }
+	    .dots{
+	        position: absolute;
+	        bottom:10px;
+	        right:20px;
+	        z-index: 999;
+	        text-align: center;
+	        margin-left:-2px;
+	    }
+	    .dots span{
+	        display: inline-block;
+	        border-radius: 3px;
+	        height: 6px;
+	        width: 6px;
+	        margin:0 1px;
+	        opacity: 1;
+	        background-color: #d8d8d8 !important;
+	    }
+	    .dots span.active {
+	        opacity: 1;
+	        background: #007aff !important;
+	        width: 24px;
+	    }
+
+
+
+    	.content{
+    		width: 100%;height: auto;
+    	}
+    	.list{
+    		width: 100%;height: auto;
+    	}
+    	.list .title{
+    		padding: 10px 15px;
+    		width: 100%;
+    		box-sizing: border-box;
+    		position: relative;
+    	}
+    	.list .title::before{
+    		content: "";
+    		position: absolute;
+    		left: 0;
+    		
+    	}
+    	.title span{
+    		border-left: 8px solid #f85959;
+    		padding-left: 10px;
+    		font-size: 18px;
+    		line-height: 1.5;
+    		height: 27px;
+    		display: inline-block;
+    	}
+
+    	.list .item{
+    		padding: 10px 15px;
+    		font-size: 14px;
+    		line-height: 1.5;
+    		color: #333;
+    		position: relative
+    	}
+    	
+    	.yangban .item,.gongyu .item,.bieshu .item{
+    		padding: 0;
+    		width: 100%;
+    	}
+    	.yangban .item img{
+    		width: 100%;
+    		height: 250px;
+    	}
+    	.gongyu .item img{
+    		width: 100%;
+    		height: 586px;
+    	}
+    	.bieshu .item img{
+    		width: 100%;
+    		height: 145px;
+    	}
+	    .item .swipe{
+	        height:100%;overflow: hidden;
+	    }
+	    .item .swipe-wrap{
+	        position: relative;
+	    }
+	    .item .swipe-wrap>div{
+	        float: left;
+	    }
+	    .bieshu .item .dots{
+	    	bottom: -30px;
+	    }
+
+
+
+		.bottom{
+	        width:100%;
+	        height:auto;
+	        background: #fff;
+	        padding: 10px 15px;
+	        box-sizing: border-box;
+	        margin-bottom: 20px;
+	        margin-top: 20px;
+	    }
+	    .bottom .items{
+	        margin-bottom: 10px;
+	        width:100%;
+	    }
+	    .bottom .items label{
+	        color: #787878;
+	        font-weight: 300;
+	        color: #808080;
+	        font-size: 12px;
+	    }
+	    .bottom .items label span{
+	        color: red;
+	        padding-left:3px;
+	    }
+	    .bottom .items input,.bottom .items select{
+	        border-radius: 5px!important;
+	        width:100%;height: 40px;
+	        border-color: #c5c5c5;
+	    }
+	    .bottom .items select{
+	    	padding: 6px 12px;
+		    font-size: 14px;
+		    line-height: 1.42857143;
+		    color: #555;
+		    background-color: #fff;
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+	    }
+	    .bottom .tj{
+	        width:100%;
+	        height:42px;
+	        color: #fff;
+	        background: #f74e4f;
+	        border-radius: 4px!important;
+	        margin-top:15px;
+	        line-height: 42px;
+		    text-align: center;
+		    box-sizing: border-box;
+		    text-decoration: none;
+		    font-size: 14px;
+		    padding: 0;
+		    border: none;
+	    }
+	    .phone .tj{
+	    	font-size: 18px;
+	    }
+
+
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+
+		<div class="tops">
+            <div class="swipe" id="top-slider3">
+                <div class="swipe-wrap">
+                    <div class="js-link ga" >
+                        <img src="http://p1.pstatp.com/origin/4441000eb13f3a2b2922"  class="img-responsive" alt="...">
+                    </div>
+                    <div class="js-link ga" >
+                        <img src="img/banner.png"  class="img-responsive" alt="...">
+                    </div>
+                    <div class="js-link ga" >
+                        <img src="img/banner.png"  class="img-responsive" alt="...">
+                    </div>
+
+                </div>
+            </div>
+            <div class="dots" id="banner-dots3">
+                <span class="active"><!----></span>
+                <span><!----></span>
+                <span><!----></span>
+            </div>
+        </div>
+
+        <div class="content">
+        	<div class="list">
+        		<div class="title">
+        			<span>绿地海湾</span>
+        		</div>
+        		<div class="item">
+        			<p>项目全称：国茂清水湾国际旅游度假区</p>
+        			<p>销售地址：海南·陵水英州·国茂清水湾国际旅游度假区</p>
+        			<p>参考价格：待定</p>
+        			<p>产权：70年</p>
+        			<p>开盘时间：待定</p>
+        			<p>开发商：海南国茂实业投资有限公司</p>
+        			<p>建筑类别：独栋别墅 高层</p>
+        		</div>
+
+        	</div>
+        	
+        	<div class="list">     		
+        		<div class="bottom">
+			        <div>
+			            <div class="items input-group">
+			                <label for="user">姓名<span>*</span></label>
+			                <input type="text" class="form-control" id="user">
+			            </div>
+			            <div class="items input-group">
+			                <label for="phone">电话<span>*</span></label>
+			                <input type="text" class="form-control" id="phone">
+			            </div>
+			            <button type="" class="btn tj">预约看房</button>
+			        </div>
+			    </div>
+
+        	</div>
+
+        	<div class="list">
+        		<div class="title">
+        			<span>配套解析</span>
+        		</div>
+        		<div class="item">
+        			<b>项目简介</b>
+        			<div>
+        				国茂•清水湾国际旅游养生度假区位于海南•陵水•清水湾，总占地约12583亩，是由国茂集团斥巨资精心打造。
+        			</div>
+        			<div><span style="font-family: inherit; display: inline !important;">国茂·清水湾依托陵水旅游资源和规划区内优质的火山泥疗土资源以生态养生为主线打造“世界一流，中国顶级”的海南旅游度假胜地。营造一种 “听山观海 万亩旅居”的新境界，构建海南陵水国际化养生休闲娱乐城。</span><br></div><div><span style="font-family: inherit; display: inline !important;">项目整体规划有：南国神韵、椰槟情谷、青春雨林、彩泉湖岸、体育公园、世外桃源、沧海花田，七大旅游养生组团。项目四周青山环绕，拥有得天独厚的四大养生资源，包括火山泥、温泉、冷泉、弱碱性矿泉。</span><br></div><div><span style="font-family: inherit; display: inline !important;">国茂集团秉承着“诚信、务实、高效、创新”的企业精神，打破以往旅游地产的概念，以“文化旅游+生态养生”的新模式，打造集旅游度假、居住养生、商业娱乐、有机农业、文体休闲等为一体的大型综合体项目。项目受到政府的大力支持，已被列入海南省十三五重点工程。 项目一期启动区占地约350亩，规划有12栋山居高层及236栋雨林别墅，并建有星级儿童主题酒店，大型综合泥疗养生会馆，国宾级度假养生别墅等高端配套。国茂集团聘请国际著名设计团队，精心设计，在打造舒适温馨生活的同时，尽最大的能力满足业主对养生度假区高标准居住环境的要求。</span><br></div>
+        		</div>
+
+        	</div>
+
+        	<div class="list yangban">
+        		<div class="title">
+        			<span>样板间</span>
+        		</div>
+        		<div class="item">
+        			<div class="swipe" id="top-slider4">
+		                <div class="swipe-wrap">
+		                    <div class="js-link ga" >
+		                        <img src="http://p3.pstatp.com/origin/4444000b0120f1a13fb3"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="http://p3.pstatp.com/origin/4444000b0120f1a13fb3"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="img/banner.png"  class="img-responsive" alt="...">
+		                    </div>
+
+		                </div>
+		            </div>
+		            <div class="dots" id="banner-dots4">
+		                <span class="active"><!----></span>
+		                <span><!----></span>
+		                <span><!----></span>
+		            </div>
+        		</div>
+
+        	</div>
+
+        	<div class="list gongyu">
+        		<div class="title">
+        			<span>公寓户型图</span>
+        		</div>
+        		<div class="item">
+        			<div class="swipe" id="top-slider5">
+		                <div class="swipe-wrap">
+		                    <div class="js-link ga" >
+		                        <img src="http://p4.pstatp.com/origin/4442000f86eded876d28"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="img/banner.png"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="img/banner.png"  class="img-responsive" alt="...">
+		                    </div>
+
+		                </div>
+		            </div>
+		            <div class="dots" id="banner-dots5">
+		                <span class="active"><!----></span>
+		                <span><!----></span>
+		                <span><!----></span>
+		            </div>
+        		</div>
+
+        	</div>
+
+        	<div class="list bieshu">
+        		<div class="title">
+        			<span>别墅户型图</span>
+        		</div>
+        		<div class="item">
+        			<div class="swipe" id="top-slider6">
+		                <div class="swipe-wrap">
+		                    <div class="js-link ga" >
+		                        <img src="http://p1.pstatp.com/origin/4443000e2ed2c896694e"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="img/banner.png"  class="img-responsive" alt="...">
+		                    </div>
+		                    <div class="js-link ga" >
+		                        <img src="img/banner.png"  class="img-responsive" alt="...">
+		                    </div>
+
+		                </div>
+		            </div>
+		            <div class="dots" id="banner-dots6">
+		                <span class="active"><!----></span>
+		                <span><!----></span>
+		                <span><!----></span>
+		            </div>
+        		</div>
+
+        		<div class="bottom phone">
+        			 <button type="" class="btn tj">咨询热线</button>
+        		</div>
+        	</div>
+
+
+
+        </div>
+
+	</div>
+	<script src="http://www.zcq.test.91xiangju.com/js/jquery/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="http://www.zcq.test.91xiangju.com/js/swipe.sina.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script>
+		$(function(){
+			function swiper(id, dot) {
+	            Swipe(id, {
+	                startSlide: 0,
+	                speed: 400,
+	                auto: false,
+	                continuous: true,
+	                disableScroll: false,
+	                stopPropagation: false,
+	                callback(index) {
+	                    dot.find("span")
+	                        .removeClass("active")
+	                        .each(function(_index, elem) {
+	                            (_index === index) && $(elem).addClass("active")
+	                        })
+	                }
+	            });
+	        }
+        	swiper(document.getElementById("top-slider3"), $("#banner-dots3"));
+        	swiper(document.getElementById("top-slider4"), $("#banner-dots4"));
+        	swiper(document.getElementById("top-slider5"), $("#banner-dots5"));
+        	swiper(document.getElementById("top-slider6"), $("#banner-dots6"));
+		});
+	</script>
+
+</body>
+</html>

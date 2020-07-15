@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
+	<style type="text/css" media="screen">
+	html,body{
+		width: 100%;height: 100%;overflow: hidden;
+	}
+		.swiper-container{
+			width: 100%;height: 100%;
+		}
+		.swiper-wrapper{
+
+		}
+		.swiper-slide{
+			width: 100%;height: 100%;
+			background: #eee;
+		}
+		.page2{
+			width: 80%!important;height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide page1">Slide 1</div>
+	        <div class="swiper-slide page2">Slide 2</div>
+	        <div class="swiper-slide page3">Slide 3</div>
+	    </div>
+	    <!-- 如果需要分页器 -->
+	    <div class="swiper-pagination"></div>
+	    
+	    <!-- 如果需要导航按钮 -->
+	    <div class="swiper-button-prev"></div>
+	    <div class="swiper-button-next"></div>
+	    
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.js"></script>
+	<script>
+		var a=[
+			{name:"May",age:12,id:1},
+			{name:"Jone",age:13,id:5},
+			{name:"May",age:15,id:6}
+		];
+		var b=[];
+		var c=[];
+
+
+
+		a.map(function(v,i){
+			//console.log(v);
+			// let index=i;
+			
+			a.map(function(vv,ii){
+				if(i!=ii){
+					c[i]={};
+					c[i].name=a[i].name;
+					c[i].list=[];
+					if(i!=ii && a[i].name==a[ii].name){	
+
+						b.push(a[i]);
+						c[i].list=b;
+					}else if(i!=ii && a[i].name!=a[ii].name){
+						//console.log(a[ii]);
+						c[i].list=a[i]
+					}
+				}
+
+				// if( i!=ii && a[i].name==a[ii].name ){
+				// 	console.log(a[ii])	
+				// 	c[i].list.push(a[ii]);
+				// }else if(i!=ii && a[i].name!=a[ii].name){
+				// 	console.log(a[ii]);
+				// 	c[i].list.push(a[ii]);
+				// }	
+				
+			});	
+		});
+		console.log(b);
+		console.log(c);
+
+
+
+
+
+	</script>
+</body>
+</html>

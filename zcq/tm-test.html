@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tm-test</title>
+	<script src="js/rem.js"></script>
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+		ul,ol{list-style: none;}
+		a{text-decoration: none;}
+
+		body{
+			width: 100%;
+			max-width: 7.5rem;
+			height: 10000px;
+			overflow-x: hidden;
+		}
+		
+		.header{
+			width:100%;height: auto;background: #FF0036;
+			position: relative;padding: 0.05rem 0.3rem 0.1rem 0.3rem;
+			box-sizing: border-box;
+		}
+		.fixed{
+			position: fixed;left: 0;top: 0;z-index: 999;
+		}
+		.header .up{
+			width: 100%;height: auto;max-height: 0.6rem;	
+			text-align: center;margin-bottom: 0.05rem;
+		}
+		.header .h-left,.header .h-right{
+			position: absolute;color: #fff;font-size: 0.28rem;overflow: hidden;
+		}
+		.header .h-left{
+			left: 0.3rem;
+			top: 0.2rem;
+		}
+		.header .h-right{
+			right: 0.3rem;
+			top: 0.2rem;
+		}
+		.header .h-right a{
+			color: #fff;
+		}
+		.header .up .center{
+			height: 0.64rem;
+			width: 4rem;
+			display: inline-block;
+			overflow: hidden;color: #fff;
+		}
+
+		.header .box{
+			text-align: center;
+			width: 100%;
+			height: 0.7rem;
+			line-height: 0.7rem;
+			box-sizing: border-box;
+			position: relative;
+			margin: 0 auto;
+    		display: block;
+		}
+		.header .box img{
+			display: inline-block;width:0.3rem;height: 0.32rem;
+			position: absolute;left: 0.2rem;top: 0.2rem;
+		}
+		.header .box .place{
+			height: 100%;background: #fff;
+			color: #ccc;font-weight: 200;text-align: left;
+			padding: 0 0 0 0.7rem;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="header fixed">
+		<div class="h-left">
+			分类
+		</div>
+		<div class="h-right">
+			<a href="javascript:;">登录</a>
+		</div>
+		<div class="up" id="logo">		
+			<div class="center">
+				logo
+			</div>
+		</div>
+		<div class="box" id="search">
+			<img class="search-input-img img" src="http://gw.alicdn.com/tfs/TB1yqhOQpXXXXcwaXXXXXXXXXXX-60-64.png">
+			<div class="place">搜索商品、品牌</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var timer=null;
+			var title=$('title').html();
+			var str='打扰了';
+			var tool=true;
+
+			clearInterval(timer);
+			timer=setInterval(function(){
+				tool?$('title').html(str):$('title').html(title);
+				tool=!tool;
+			},2000);
+
+			// var boxH=$(".header").height(),
+			// 	nav=$('.header');
+			// $(window).scroll(function(){
+			// 	var scrollTop=$('body').scrollTop();
+			// 	if(scrollTop>=boxH){
+			// 		nav.addClass('fixed');
+			// 	}else{
+			// 		nav.removeClass('fixed');
+			// 	}
+			// })
+
+			var logo=$("#logo"),
+				search=$("#search"),
+				logoH=logo.height(),
+				boxH=$(".header").height(),
+				boo=true;
+			const max=250;
+
+			// $(window).scroll(function(){
+			// 	var scrollTop=$('body').scrollTop();
+			// 	if(boo){
+			// 		if(scrollTop>=max){
+			// 			logo.animate({
+			// 				height : 0
+			// 			},200);
+			// 			search.animate({
+			// 				width : '4.6rem'
+			// 			},200);
+			// 		}
+			// 		boo=false;
+			// 	}	
+			// 	if(scrollTop<=boxH){
+			// 		logo.animate({
+			// 			height : logoH
+			// 		},200);
+			// 		search.animate({
+			// 			width : '100%'
+			// 		},200);
+			// 		boo=true;
+			// 	}
+			// });
+
+			$(window).scroll(function(){
+				fun();
+			});
+
+			var fun=throttle(tho,300,400);
+
+			function throttle(method,time,duration){
+				var timer=null,
+					startTime=new Date();
+				return function(){
+					var context=this,
+						endTime=new Date(),
+						resTime=endTime-startTime;
+					clearTimeout(timer);
+					if(resTime>=time){
+						method.call(context);
+						startTime=endTime;
+					}else{
+						timer=setTimeout(function(){
+							method.call(context);
+						},duration);
+					}
+
+				}
+
+			}
+
+			function tho(){
+				console.log('success');
+
+				var scrollTop=$('body').scrollTop();
+				if(scrollTop>=max){
+					logo.animate({
+						height : 0
+					},200);
+					search.animate({
+						width : '4.6rem'
+					},200);
+				}
+				if(scrollTop<=boxH){
+					logo.animate({
+						height : logoH
+					},200);
+					search.animate({
+						width : '100%'
+					},200);
+				}
+			}
+
+
+		})
+	</script>
+
+
+</body>
+</html>

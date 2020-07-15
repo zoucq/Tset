@@ -1,0 +1,132 @@
+page{
+    background: #F1F2F7;
+    border-top: 1px solid #E4E7F0;
+    width: 100%;height: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;height: 100%;
+}
+.c-top{
+    height: 88rpx; 
+    width: 100%;
+    padding: 0 28rpx;
+    display: flex;
+    align-items: center;
+    background: #fff; 
+}
+.c-top view{
+    flex: 1;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28rpx;
+    color: #BBBCCD;
+    position: relative;
+}
+.c-top view:not(:first-child){
+    margin-left:56rpx;
+}
+.c-top view.active{
+    color: #3B55E7;
+}
+.c-top view.active::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -24rpx;
+    width:48rpx;
+    height:6rpx; 
+    background:#3B55E7;
+    border-radius: 3rpx; 
+}
+
+
+.c-center{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 4rpx;
+    position: relative;
+}
+.c-center .user{
+    position: absolute;
+    right: 20rpx;top: 40rpx;
+    padding: 10rpx 28rpx 8rpx 30rpx;
+    border-radius: 80rpx; 
+    font-size: 24rpx;
+    color: #fff;
+    background:rgba(0,0,0,1);
+    opacity:0.5; 
+}
+.c-center swiper{
+    width: 100%;
+    height: 750rpx;
+}
+.c-center swiper image{
+    width: 100%;height: 100%;
+    display: inline-block;
+}
+
+
+scroll-view{
+    width: 100%;height: 186rpx;
+    padding: 36rpx 0;
+    white-space: nowrap;
+}
+.imgs{
+    width: 100%;
+    height: 186rpx;
+}
+.imgs view{
+    width:186rpx;
+    height:186rpx;
+    display: inline-block;
+    margin-left: 20rpx;
+    background: #fff;
+    border-radius: 12rpx;
+}
+.imgs view image{
+    width: 100%;height: 100%;
+    display: inline-block; 
+    border: 0;
+    border-radius: 12rpx;
+}
+
+
+
+.c-bottom{
+    position: fixed;
+    left: 0;bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 108rpx;
+    background: #fff;
+    padding: 14rpx 40rpx;
+}
+.c-bottom .left{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 32rpx;
+    color: #BBBCCD;
+}
+.c-bottom .right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 32rpx;
+    color: #fff;
+    width:280rpx;
+    height:80rpx; 
+    background:#5555FF url('https://ssl.malmam.com/xiangju-static/dfs/6/31004126f0cc99/icon_upload.png') no-repeat 76rpx center;
+    background-size: 46rpx 34rpx;
+    padding:0 76rpx;
+    border-radius: 100rpx; 
+}

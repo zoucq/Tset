@@ -1,0 +1,81 @@
+<view class="container">
+
+    <view class='room-details'>
+        <view>
+            <text>楼盘名：</text>
+            <text class='name'>{{info.Name}}</text>
+        </view>
+        <view>
+            <text>销售状态：</text>
+            <text wx:if="{{info.Status!=0}}">{{info.Status}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>价格：</text>
+            <text class='price' wx:if="{{info.Price}}">均价{{info.Price}}{{info.PriceUnit}}</text>
+            <text class='price' wx:else>价格待定</text>
+        </view>
+        <view>
+            <text>建筑类型：</text>
+            <text wx:if="{{info.ArchitecturalType!=0}}">{{info.ArchitecturalType}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>装修情况：</text>
+            <text wx:if="{{info.RenovationStatus}}">{{info.RenovationStatus}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>楼盘地址：</text>
+            <text wx:if="{{info.Address}}">{{info.Address}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>售楼处地址：</text>
+            <text wx:if="{{info.SellAddress}}">{{info.SellAddress}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>交房时间：</text>
+            <text wx:if="{{info.ApartmentTime}}">{{info.ApartmentTime}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>开盘时间：</text>
+            <text wx:if="{{info.OpenTime}}">{{info.OpenTime}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>开发商：</text>
+            <text wx:if="{{info.Developer}}">{{info.Developer}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>物业公司：</text>
+            <text wx:if="{{info.PropertyCompany}}">{{info.PropertyCompany}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>产权年限：</text>
+            <text wx:if="{{info.UsageTerm}}">{{info.UsageTerm}}年</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>容积率：</text>
+            <text wx:if="{{info.VolumeRatio}}">{{info.VolumeRatio}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>绿化率：</text>
+            <text wx:if="{{info.GreenRatio}}">{{info.GreenRatio}}</text>
+            <text wx:else>暂无数据</text>
+        </view>
+        <view>
+            <text>物业费用：</text>
+            <text wx:if="{{info.PropertyFee}}">{{info.PropertyFee}}元/㎡/月</text>
+            <text wx:else>暂无数据</text>
+        </view>
+    
+    </view>
+
+</view>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		ol,ul{list-style: none;}
+		a,a:hover{text-decoration: none;}
+
+        .boxs{
+        	width: 200px;height: 400px;background: #1b1d35;
+        	padding: 20px 40px;margin: 20px;
+        }
+        .boxs .title{
+        	color: #8d8e91;font-size: 20px;
+        }
+        .boxs .score{
+        	color: #8d8e91;font-size: 36px;
+        }
+
+        .boxs .group{
+        	color: #8d8e91;font-size: 36px;
+        	display: inline-block;
+        	width: 25px;height: 45px;
+        	float: left;
+        	overflow: hidden;	
+        }
+        .boxs .group span{
+        	display: block;
+        	width: 25px;height: 45px;
+        }
+		.boxs .group.active span:first-child{
+        	display: block;
+        	width: 25px;height: 45px;
+        	overflow: hidden;
+        	transform: translateX(0%);
+        	animation: move 0.3s;
+        	animation-fill-mode: forwards;
+        }
+        .boxs .group.active span:last-child{
+        	display: block;
+        	width: 25px;height: 45px;
+        	overflow: hidden;
+        	transform: translateX(0%);
+        	animation: moveUp 0.3s;
+        	animation-delay: 150ms;
+        	animation-fill-mode: forwards;
+        }
+        .delay200 {
+		    animation-delay: 200ms;
+		    animation-fill-mode: backwards!important;
+		}
+
+        @keyframes move{
+        	from {
+        		transform: translateY(0);
+        	}
+        	to{
+        		transform: translateY(-100%);
+        	}
+        }
+        @keyframes moveUp{
+        	from {
+        		/*transform: translateY(0);*/
+        		opacity: 0;
+        		transform: translateY(-100%);
+        	}
+        	to{
+        		opacity: 1;
+        		transform: translateY(-100%);
+        	}
+        }
+        
+
+
+	</style>
+</head>
+<body>
+
+	<div class="boxs">
+		<div class="title">统计</div>
+		<div class="score">51967</div>
+		<div class="content">
+			<ul class="list">
+
+			</ul>
+		</div>
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+
+		
+        var $main = document.querySelector('.list');
+        var timer=null;
+
+        update('12,345','54,321');
+
+        clearInterval(timer);
+        timer=setInterval(function(){
+        	let olds=ran(1000,100000).toLocaleString();
+        	let news=ran(1000,100000).toLocaleString();
+        	update(olds,news);
+        },4000);
+
+        //随机送
+        function ran(min,max){
+        	return Math.floor( Math.random()*(max-min+1)+min );
+        }
+
+		// 填充数字
+		function update(fromArr, toArr) {
+
+		    // 从个位数开始对齐位数
+		    var fromArr = fromArr.split('').reverse();
+		    var toArr = toArr.split('').reverse();
+		    
+		    if (fromArr.length > toArr.length) {
+		        toArr.length = fromArr.length
+		    } else {
+		        fromArr.length = toArr.length
+		    }
+		    
+		    fromArr = fromArr.reverse();
+		    toArr = toArr.reverse();
+
+		    // 渲染节点并激活动画
+		    var numberHTML = ''
+		    for (var i = 0; i < toArr.length; i++) {
+		        // 如果该位数的数字没有发生变化，则没有过渡效果
+		        if (fromArr[i] !== toArr[i]) {
+	            numberHTML += '<li class="group active">'
+	            				+'<span class="old" style="display:block;">' + fromArr[i] + '</span>'
+		                		+'<span class="new">' + toArr[i] + '</span>'
+	            			+'</li>';
+		        } else {
+		        numberHTML +='<li class="group">'
+	            				+'<span class="old">' + fromArr[i] + '</span>'
+		                		+'<span class="new">' + toArr[i] + '</span>'
+	            			+'</li>';
+		        }
+		    }
+		    
+		    if (numberHTML) {
+		        $main.innerHTML = numberHTML;
+		    }
+		    
+		}
+
+
+	</script>
+	
+</body>
+</html>

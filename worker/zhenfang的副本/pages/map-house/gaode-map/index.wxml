@@ -1,0 +1,219 @@
+<loading wx:if="{{load}}">加载中</loading>
+
+<view class="map_container" > 
+
+    <map class="map" id="map" 
+        longitude="{{longitude}}" latitude="{{latitude}}" 
+        scale="{{scale}}" show-location="true" 
+        controls="{{controls}}" 
+        
+        markers='{{markers}}'
+        circles='{{circles}}' 
+        
+        bindtap='maptap'
+        bindmarkertap="makertap" bindcallouttap="callouttap"
+        bindregionchange='changeMap' bindcontroltap="controltap"
+
+        style='width:100%;height:{{winHeight}}px;' >
+
+
+        <cover-view class='container' >
+            <!-- <cover-view class='from' wx:if="{{false}}"
+                bindtap='handleGo' data-go="../../rooms/search/index/index">
+                 <cover-view class='txt ' >
+                    <cover-image class="see"  src='https://www.91xiangju.com/images/xiangju/loop%20search@2x.png'></cover-image>
+                    <cover-view>输入楼盘搜索</cover-view>
+                 </cover-view> 
+            </cover-view> -->
+            <cover-view class='filter'>
+                <cover-view class='item {{lastIndex==1?"active":""}}' 
+                    bindtap='handContent' data-key="1">
+                    <cover-view>区域</cover-view>
+                    <cover-image class=" gengduo"  src='{{lastIndex==1?"/image/more2.png":"/image/more.png"}}'></cover-image>
+                </cover-view>
+                <cover-view class='item {{lastIndex==2?"active":""}}' 
+                    bindtap='handContent' data-key="2">
+                    <cover-view>价格</cover-view>
+                    <cover-image class=" gengduo"  src='{{lastIndex==2?"/image/more2.png":"/image/more.png"}}'></cover-image> 
+                </cover-view>
+                <cover-view class='item {{lastIndex==3?"active":""}}' 
+                    bindtap='handContent' data-key="3">
+                    <cover-view>户型</cover-view>
+                    <cover-image class=" gengduo"  src='{{lastIndex==3?"/image/more2.png":"/image/more.png"}}'></cover-image>
+                </cover-view>
+                <cover-view class='item {{lastIndex==4?"active":""}}' 
+                    bindtap='handContent' data-key="4">
+                    <cover-view>更多</cover-view>
+                    <cover-image class=" gengduo"  src='{{lastIndex==4?"/image/more2.png":"/image/more.png"}}'></cover-image>
+                </cover-view>
+            </cover-view>
+
+
+            <cover-view class='filter-content {{content==1||content==2||content==3||content==4?"active":""}}' wx:if="{{content!=0 && !totalHouseShow}}">
+                <cover-view class='addr' wx:if="{{content==1}}">
+                    <cover-view class='ad-boxs'>
+                        <cover-view class='left'>
+                            <cover-view class='item-addr active'>
+                                <cover-view class='circle'></cover-view> 
+                                <cover-view>区域</cover-view>
+                            </cover-view> 
+                        </cover-view>
+
+                        <cover-view class='right'>
+                            <block wx:for="{{addr}}" wx:key="addrs">
+                                <cover-view bindtap='handleActive' 
+                                    class='item-addr {{item.active?"active":""}}' 
+                                    data-index="{{index}}" data-type='0' 
+                                    data-id="{{item.Id}}" data-name="{{item.Name}}">
+                                    <cover-view class='circle'></cover-view> 
+                                    <cover-view>{{item.Name}}</cover-view>
+                                </cover-view> 
+                            </block>
+                        </cover-view>
+
+                    </cover-view>
+                    <cover-view class='ad-btn'>
+                        <cover-view class='btn' bindtap='handleSubmit' data-type='0'>
+                            确定
+                        </cover-view>
+                    </cover-view>
+                </cover-view> 
+                <cover-view class='addr price' wx:if="{{content==2}}">
+                    <cover-view class='ad-boxs'>
+                        <cover-view class='left'>
+                            <block wx:for="{{price}}" wx:key="prices">
+                            <cover-view class='item-addr {{index==filter?"active":""}}' 
+                                bindtap='handleFilter' data-key="{{index}}" 
+                                data-name="{{item.name}}">
+                                <cover-view class='circle'></cover-view>
+                                <cover-view>{{item.name}}</cover-view>
+                            </cover-view>  
+                            </block>                
+                        </cover-view>
+                        <cover-view class='right'>
+                            <block wx:for="{{price[filter].attr}}" wx:key="priceClass">
+                                <cover-view class='item-addr {{item.active?"active":""}}' 
+                                    data-id="{{item.id}}"
+                                    bindtap='handleActive' data-index="{{index}}"                                                       data-type='1' data-name="{{item.name}}">
+                                    <cover-view class='circle'></cover-view>
+                                    <cover-view>{{item.name}}</cover-view>
+                                </cover-view> 
+                            </block>
+                        </cover-view>
+                    </cover-view>
+                    <cover-view class='ad-btn'>
+                        <cover-view class='btn' bindtap='handleSubmit'>确定</cover-view>
+                    </cover-view>
+                </cover-view>
+                <cover-view class='addr house-type' wx:if="{{content==3}}">
+                    <cover-view class='ad-boxs'>     
+                        <cover-view class='right'>
+                            <block wx:for="{{houseType}}" wx:key="housetypes">
+                                <cover-view class='item-addr {{item.active?"active":""}}' 
+                                    bindtap='handleActive'
+                                    data-index="{{index}}" data-id="{{item.id}}" 
+                                    data-type='2' data-name="{{item.name}}">
+                                    <cover-view class='circle'></cover-view>
+                                    <cover-view>{{item.name}}</cover-view>
+                                </cover-view>
+                            </block>
+                        </cover-view>
+                    </cover-view>
+                    <cover-view class='ad-btn'>
+                        <cover-view class='btn' bindtap='handleSubmit'>确定</cover-view>
+                    </cover-view>
+                </cover-view>
+                <cover-view class='more' wx:if="{{content==4}}">
+                    <cover-view class='ad-boxs'>
+                        <block wx:for="{{more}}" wx:key="mores">   
+                        <cover-view class='list'>
+                            <cover-view class='title'>{{item.name}}</cover-view>
+                            <cover-view class='list-box'>
+                                <block wx:for="{{item.attr}}" wx:key="mores" 
+                                    wx:for-item="val" wx:for-index="ind"> 
+                                <cover-view class='item-more {{val.active?"active":""}}' 
+                                    bindtap='handleActive'
+                                    data-index="{{index}}-{{ind}}" data-name="{{val.name}}"
+                                    data-id="{{index}}/{{val.id}}" data-type='3'>
+                                    {{val.name}}
+                                </cover-view>
+                                </block>
+                            </cover-view>
+                        </cover-view>
+                        </block>
+                    </cover-view>
+                    <cover-view class='ad-btn'>
+                        <cover-view class='btn' bindtap="handleClearActive">清空</cover-view>
+                        <cover-view class='btn' bindtap='handleSubmit'>确定</cover-view>
+                    </cover-view>
+                </cover-view>
+            </cover-view>
+
+            <cover-view wx:if="{{ !totalHouseShow && content==0 }}">
+                <cover-view class='select-words' wx:if="{{allSelect[0].attr.length>0 || allSelect[1].attr.length>0 || allSelect[2].attr.length>0 || moreSelect.length>0 || txt!=''}}">
+                    <cover-view class='text' wx:if="{{txt.length>0}}"
+                        bindtap="handleDelSelectTxt">
+                        <cover-view>{{txt}}</cover-view>
+                        <cover-image class="img" src="/image/del.png" ></cover-image>
+                    </cover-view>
+                    <block wx:for="{{allSelect}}" wx:key="allwords" wx:if="{{index!=3}}">
+                        <cover-view class='text' wx:for="{{item.attr}}" wx:key="allwordsSecond" 
+                            wx:for-item="v" wx:for-index="i"  bindtap="handleDelSelect" 
+                                data-index="{{index}}-{{i}}" data-type='0'>
+                            <cover-view>{{v}}</cover-view>
+                            <cover-image class="img" src="/image/del.png" ></cover-image>
+                        </cover-view>
+                    </block>
+                    <block wx:for="{{moreSelect}}" wx:key="allwordssss" >
+                        <cover-view class='text' bindtap="handleDelSelect" 
+                            data-id="{{item.id}}" data-index="{{index}}"  data-type='1'>
+                            <cover-view>{{item.name}}</cover-view>
+                            <cover-image class="img" src="/image/del.png" ></cover-image>
+                        </cover-view>
+                    </block>
+                </cover-view>
+            </cover-view>
+
+            <!-- wx:if="{{content==0 && !scrollIf }}" -->
+            <cover-view class="total-detail" wx:if="{{totalHouseShow}}">
+                <cover-view class='td-text'>共找到{{total}}个楼盘</cover-view>
+            </cover-view>
+
+        </cover-view>
+
+        <cover-view class='distance-test' wx:if="{{false}}">
+            <cover-view animation="{{anm1}}" class="left" 
+                bindtap="circleTap" data-distance="5000">5</cover-view>
+            <cover-view animation="{{anm2}}" class="right" 
+                bindtap="circleTap" data-distance="15000">15</cover-view>
+            <cover-view animation="{{anm3}}" class="cen" 
+                bindtap="circleTap" data-distance="10000">10</cover-view>
+
+            <cover-view class='center' catchtap="animateTap">点我</cover-view>
+
+        </cover-view>
+
+
+        <cover-view 
+            wx:if="{{houseShow}}" class="controls"  
+            bindtap="go" data-go="../../index/index">
+            <cover-view class="left">
+                <cover-image class="img" 
+                    src="https://img.xiaopiu.com/userImages/img74516025767768.png" />
+            </cover-view>
+            <cover-view class="right" >
+                <cover-view class="name">{{houseName}}</cover-view>
+                <cover-view class="price">均价：20000/㎡</cover-view>
+                <cover-view class="biaoqian">
+                    <cover-view class='text'>住宅</cover-view>
+                </cover-view>
+                <cover-view class="tel" >
+                    <cover-image class="img" src="../../../image/phone-call.png" />
+                </cover-view>
+            </cover-view>
+        </cover-view>
+
+    </map> 
+    
+
+</view> 

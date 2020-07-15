@@ -1,0 +1,23 @@
+<view class="container">
+
+    <!-- //有数据 -->
+    <view wx:if="{{list.length>0}}" class='room-state'>
+        <block wx:for="{{list}}" wx:key="news">
+            <view class='item' data-id="{{item.Id}}">
+                <view class='title'>{{item.Title}}</view>
+                <view class='desc'>
+                     <rich-text nodes="{{item.Body}}"></rich-text>              
+                </view>
+                <view class='time'>{{item.Ctime}}</view>
+            </view>
+        </block>
+        <!-- //更多数据 -->
+        <view wx:if="{{noMore}}" class='noMore'>无更多数据~~</view>
+    </view>
+
+    <!-- //没有数据 -->
+    <view wx:else class='noList'>
+        暂无数据~~~
+    </view>
+
+</view>

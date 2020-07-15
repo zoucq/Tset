@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+		<title></title>
+		<style type="text/css">
+			body {
+				max-width: 768px;
+				min-width: 320px;
+				font-family: '微软雅黑', 'microsoft yahei', arial;
+				min-height: 100%;
+				position: relative;
+				margin: auto;
+				background: #e9e9e9;
+				width: 100%;
+			}
+			::-webkit-scrollbar {
+				width: 0px
+			}
+			
+			a:link,a:visited,a:hover,a:active {
+				text-decoration: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			ul,li,dl,dd,h1,h2,h3,h4,h5,h6,p,input {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.panel{width: 100%text-align: center;background:#000;margin-top: 30px; }
+		    .panel_zhong{ font-size: 18px; padding-left: 20px;height: 34px; line-height: 34px; color: #fff;}
+		    
+		    /*获奖名单-无缝滚动*/
+			.activity{width: 100%; margin: 0 auto; position: relative; overflow: hidden; height: 165px; text-align: center;background-color: #fff;}
+			.activity ul{top: -15px;padding: 0;color: #666;position: relative;}
+			.activity li{height: 34px;padding:0;font-size: 14px;line-height: 34px;list-style: none;border-bottom: 1px dotted #d2d2d2;}
+			
+			/*获奖名单-停顿滚动*/
+			.maquee{width: 100%; height: 230px; overflow: hidden; background: #fff; }
+			.maquee ul{ width:100%; height:230px;color: #666;}
+			.maquee li{ width:100%; height:45px; background: #fff; line-height:45px; text-align:center; font-size:14px; border-bottom: 1px dashed #aaa;}
+			
+			/*公告栏-新闻滚动*/
+			.apple{ width: 100%; height: 45px; background: #fff; overflow: hidden;}
+			.apple ul li{ height: 45px; line-height: 45px; font-size: 14px;}
+			.apple ul li a{color: #000; display: block; padding-left: 20px;padding-right: 20px;}
+			.apple ul li a:hover{color: red;}
+			.apple ul li a span{ float: right; }
+		</style>
+	</head>
+	<body>
+	<!--新闻滚动-->
+     <div class="panel">
+     	<p class="panel_zhong">新闻列表 - 移到上面可停止公告滚动</p>
+		<div class="apple">
+			<ul>
+				<li><a href="javascript:void(0)" target="_blank">美国换了新总统<span>2016.8.9</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">韩国总统因闺蜜执政辞职<span>2016.8.10</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">今年年假提前放<span>2016.8.11</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">XX高速公路一货车翻倒<span>2016.8.12</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">我是第五条新闻<span>2016.8.13</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">我是第六条新闻<span>2016.8.14</span></a></li>
+				<li><a href="javascript:void(0)" target="_blank">我是第七条新闻<span>2016.8.15</span></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--中奖名单-->
+	 <div class="panel">
+	 	<p class="panel_zhong">中奖名单滚动 - 无缝滚动</p>
+        <div class="activity" id="J_Activity">
+            <ul>
+                <li>user1 获得了7折优惠券</li>
+                <li>user2 获得了8折优惠券</li>
+                <li>user3 获得了7折优惠券</li>
+                <li>user4 获得了5折优惠券</li>
+                <li>user5 获得了4折优惠券</li>
+            </ul>
+        </div>
+     </div>
+	
+	<!--中奖名单-->
+	 <div class="panel">
+	 	<p class="panel_zhong">中奖名单滚动 - 停顿滚动</p>
+        <div class="maquee">
+            <ul>
+                <li>user1 获得了7折优惠券</li>
+                <li>user2 获得了8折优惠券</li>
+                <li>user3 获得了7折优惠券</li>
+                <li>user4 获得了5折优惠券</li>
+                <li>user5 获得了4折优惠券</li>
+            </ul>
+        </div>
+     </div>
+	</body>
+
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+//	    新闻列表滚动
+		function timer(opj){
+			$(opj).find('ul').animate({
+				marginTop : "-45px"  
+				},500,function(){  
+				$(this).css({marginTop : "0px"}).find("li:first").appendTo(this);  
+			})  
+		}
+		$(function(){  
+			var time=setInterval('timer(".apple")',4000);//新闻列表滚动
+			var mit=setInterval('timer(".maquee")',3000);//中奖名单-停顿滚动
+			$('.apple ul').find('li').mousemove(function(){
+				clearInterval(time);
+			}).mouseout(function(){
+				time=setInterval('timer(".apple")',3000);
+			});
+		});
+		
+//      中奖名单-无缝滚动
+		$(function () {
+		    var listPanel = $('.activity ul');
+		    var nubcers = 0;//向上滚动top值
+		    function up() {//向上滚动
+		        listPanel.animate({//中奖结果
+		            'top': (nubcers - 35) + 'px'
+		        }, 1500, 'linear', function () {
+		            listPanel.css({'top': '0px'})
+		            .find("li:first").appendTo(listPanel);
+		            up();
+		    		});
+			}
+		    up();
+    		});
+	</script>
+</html>

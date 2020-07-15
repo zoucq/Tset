@@ -1,0 +1,202 @@
+<!-- {{content==1||content==2||content==3||content==4?"active":""}} -->
+<view class='container ' >
+    <view class='from' bindtap='handleGo' data-go="../index/index">
+        <icon class='iconfont icon-sousuo'></icon>
+        <input type="text" placeholder='找售楼处，用新房007' class='txt' 
+         value="{{txt}}" />
+        <!--bindinput='handleInput'  value="{{txt}}"  -->
+        <!-- <button class='btn' bindtap='handleSearch' data-id='1'>搜索</button> -->
+    </view>
+    <view class='filter'>
+        <view class='item {{1==lastIndex?"active":""}}' bindtap='handContent' data-key="1">
+            区域<icon class='iconfont icon-gengduo'></icon></view>
+        <view class='item {{2==lastIndex?"active":""}}' bindtap='handContent' data-key="2">
+            价格<icon class='iconfont icon-gengduo'></icon></view>
+        <view class='item {{3==lastIndex?"active":""}}' bindtap='handContent' data-key="3">
+            户型<icon class='iconfont icon-gengduo'></icon></view>
+        <view class='item {{4==lastIndex?"active":""}}' bindtap='handContent' data-key="4">
+            更多<icon class='iconfont icon-gengduo'></icon></view>
+    </view>
+
+    <!-- hidden="{{allSelectShow}}" -->
+    <view class='select-words' wx:if="{{allSelect[0].attr.length>0 || allSelect[1].attr.length>0 || allSelect[2].attr.length>0 || moreShow.length>0}}">
+        <block wx:for="{{allSelect}}" wx:key="allwords" wx:if="{{index!=3}}">
+            <view class='text' wx:for="{{item.attr}}" wx:key="allwordsSecond" 
+                wx:for-item="v" wx:for-index="i" >
+                {{v}}
+                <image bindtap="handleDelSelect" 
+                    data-index="{{index}}-{{i}}" data-type='0'
+                    src="../../../../image/del.png"></image>
+            </view>
+        </block>
+        <!-- <block wx:for="{{allSelect[3].attr}}" wx:key="allwordsss"  >
+            <view class='text' wx:for="{{item.attr}}" wx:key="allwordsSecondss" 
+                wx:for-item="v" wx:for-index="i" >
+                {{v}}
+                <image bindtap="handleDelSelect" 
+                    data-index="{{item.name}}-{{i}}" data-type='1'
+                    src="../../../../image/del.png"></image>
+            </view>
+        </block> -->
+        <!-- moreShow -->
+        <block wx:for="{{moreShow}}" wx:key="allwordssss"  >
+            <view class='text'>
+                {{item.attr}}
+                <image bindtap="handleDelSelect" 
+                    data-index="{{item.name}}/{{item.index}}/{{index}}" data-type='1'
+                    src="../../../../image/del.png"></image>
+            </view>
+        </block>
+    </view>
+
+    <view class='filter-content {{content==1||content==2||content==3||content==4?"active":""}}' wx:if="{{content!=0}}">
+        <view class='addr' wx:if="{{content==1}}">
+            <view class='ad-boxs'>
+                <view class='left'>
+                    <view class='active'><text class='circle'></text>区域</view> 
+                </view>
+
+                <view class='right'>
+                    <block wx:for="{{addr}}" wx:key="addrs">
+                        <view bindtap='handleActive' 
+                            class='{{item.active?"active":""}}' 
+                            data-index="{{index}}" data-type='0' 
+                            data-id="{{item.Id}}" data-name="{{item.Name}}">
+                            <text class='circle'></text>{{item.Name}}
+                        </view> 
+                    </block>
+                </view>
+
+            </view>
+            <view class='ad-btn'>
+                <button class='btn' bindtap='handleSubmit' data-type='0'>
+                    确定
+                </button>
+            </view>
+        </view> 
+        <view class='addr price' wx:if="{{content==2}}">
+            <view class='ad-boxs'>
+                <view class='left'>
+                    <block wx:for="{{price}}" wx:key="prices">
+                    <view class='{{index==filter?"active":""}}' 
+                        bindtap='handleFilter' data-key="{{index}}" 
+                        data-name="{{item.name}}">
+                        <text class='circle'></text>{{item.name}}
+                    </view>  
+                    </block>                
+                </view>
+                <view class='right'>
+                    <block wx:for="{{price[filter].attr}}" wx:key="priceClass">
+                        <view class='{{item.active?"active":""}}' 
+                            data-id="{{item.id}}"
+                            bindtap='handleActive' data-index="{{index}}"                                      data-type='1' data-name="{{item.name}}">
+                            <text class='circle'></text>{{item.name}}
+                        </view> 
+                    </block>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn' bindtap='handleSubmit'>确定</button>
+            </view>
+        </view>
+        <view class='addr house-type' wx:if="{{content==3}}">
+            <view class='ad-boxs'>     
+                <view class='right'>
+                    <block wx:for="{{houseType}}" wx:key="housetypes">
+                        <view class='{{item.active?"active":""}}' 
+                            bindtap='handleActive'
+                            data-index="{{index}}" data-id="{{item.id}}" 
+                            data-type='2' data-name="{{item.name}}">
+                            <text class='circle'></text>{{item.name}}
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn' bindtap='handleSubmit'>确定</button>
+            </view>
+        </view>
+        <view class='more' wx:if="{{content==4}}">
+            <view class='ad-boxs'>
+                <block wx:for="{{more}}" wx:key="mores">   
+                <view class='list'>
+                    <view class='title'>{{item.name}}</view>
+                    <view class='list-box'>
+                        <block wx:for="{{item.attr}}" wx:key="mores" 
+                            wx:for-item="val" wx:for-index="ind"> 
+                        <view class='{{val.active?"active":""}}' 
+                            bindtap='handleActive'
+                            data-index="{{index}}-{{ind}}" data-name="{{val.name}}"
+                            data-id="{{index}}/{{val.id}}" data-type='3'>
+                            {{val.name}}
+                        </view>
+                        </block>
+                    </view>
+                </view>
+                </block>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn' bindtap="handleClearActive">清空</button>
+                <button class='btn' bindtap='handleSubmit'>确定</button>
+            </view>
+        </view>
+
+    </view>
+
+    <!--wrapper  -->
+    <view class='wrapper' wx:if="{{list.length!=0}}">
+        <view class='title'>共为您找到{{total}}个楼盘</view>
+        <view class='ul'>
+            <block wx:for="{{list}}" wx:key="list">
+                <view class='li' bindtap='handleGo'  
+                    data-go='../../room-detail/index?id={{item.Id}}'  data-id="{{item.Id}}">
+                    <view class='l-box'>
+                        <image src='{{item.Photo?item.Photo:"http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png"}}' />
+                    </view>
+                    <view class='r-box'>
+                        <view class='tit'>
+                            <text>{{item.Status}}</text>
+                            <text>{{item.Name}}</text>
+                        </view>           
+                        <text class='addr {{showTime?"active":""}}'>{{item.Address}}</text>
+                        <text wx:if="{{item.Price!=0}}" class='price {{showTime?"active":""}}'>均价：{{item.Price}}{{item.PriceUnit}}</text>   
+                        <text class='price {{showTime?"active":""}}' wx:else>价格待定</text>
+                        <view class='date-time' wx:if="{{showTime}}">开盘时间：2017.12.8</view>  
+                        <view class='biaoqian'>
+                            <text wx:if="{{item.RenovationStatus!=0}}">{{item.RenovationStatus}}</text>
+                            <text wx:if="{{item.PropertyType!=0}}">{{item.PropertyType}}</text>
+                            <text wx:if="{{item.ArchitecturalType!=0}}">{{item.ArchitecturalType}}</text>
+                        </view>     
+                    </view> 
+
+                </view>
+
+                <block wx:if="{{roomType}}">
+                    <view class='bottom' wx:if="{{item.Rooms.length>0}}">
+                        <view class='b-tit'>共{{item.Rooms.length}}个房源符合</view>
+                        <view class='center center_2'>
+                            <block wx:for="{{item.Rooms}}" wx:key="desc">
+                                <view class='col'>
+                                    <view>{{item.title}}</view>
+                                    <view>{{item.area}}㎡</view>
+                                    <view>约{{(item.area*item.price)/10000}}万</view>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </block>
+
+                <view class='bg-line'></view>
+
+            </block>
+        </view>
+        <view wx:if="{{noMore}}" class='noMore'>
+            没有更多了~
+        </view>
+    </view>
+    <view wx:else class='noList'>
+            暂无数据~~
+    </view>
+    
+
+</view>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    
+
+
+    <script>
+        var res = {"errCode":0,"data":{"Id":3,"Name":"\u516c\u53f8\u7ba1\u7406\u5236\u5ea6","Description":"\u5947\u601d\u5999\u884c\u5458\u5de5\u5fc5\u8bfb\u624b\u518c","Img":"https:\/\/lxfm-file.malmam.com\/dfs\/18\/59a342ef952205\/_E5_85_AC_E5_8F_B8_E7_AE_A1_E7_90_86_E5_88_B6_E5_BA_A6.png","AdminList":[{"UserId":"3","UserInfo":{"UserName":"nous","Avatar":"https:\/\/lxfm-file.malmam.com\/dfs\/20\/59e46662953637\/blob","Department":0,"DepartmentName":false}},{"UserId":"701","UserInfo":{"UserName":"\u6e05\u6668[\u7ba1\u7406\u5458]","Avatar":"https:\/\/lxfm-file.malmam.com\/dfs\/19\/5aae243feffafc\/blob","Department":0,"DepartmentName":false}},{"UserId":"991","UserInfo":{"UserName":"\u65bd\u7434\u6885","Avatar":"https:\/\/lxfm-file.malmam.com\/dfs\/18\/59e462eae038cf\/blob","Department":0,"DepartmentName":false}}],"DirSort":"[{\u0022id\u0022:56,\u0022label\u0022:\u0022\u5458\u5de5\u624b\u518c\u0022,\u0022children\u0022:[{\u0022id\u0022:111,\u0022label\u0022:\u0022\u524d\u8a00\u0022,\u0022children\u0022:[]},{\u0022id\u0022:14,\u0022label\u0022:\u0022\u7b2c\u4e00\u7ae0\uff1a\u8058\u7528\u0022,\u0022children\u0022:[]},{\u0022id\u0022:117,\u0022label\u0022:\u0022\u7b2c\u4e8c\u7ae0\uff1a\u62a5\u5230\u0022,\u0022children\u0022:[]},{\u0022id\u0022:110,\u0022label\u0022:\u0022\u7b2c\u4e09\u7ae0\uff1a\u8bd5\u7528\u0022,\u0022children\u0022:[]},{\u0022id\u0022:29,\u0022label\u0022:\u0022\u7b2c\u56db\u7ae0\uff1a\u8f6c\u6b63\u0022,\u0022children\u0022:[]},{\u0022id\u0022:27,\u0022label\u0022:\u0022\u7b2c\u4e94\u7ae0\uff1a\u79bb\u804c\u0022,\u0022children\u0022:[]},{\u0022id\u0022:28,\u0022label\u0022:\u0022\u7b2c\u516d\u7ae0\uff1a\u8003\u52e4\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:33,\u0022label\u0022:\u0022\u7b2c\u4e03\u7ae0\uff1a\u85aa\u916c\u798f\u5229\u0022,\u0022children\u0022:[]},{\u0022id\u0022:123,\u0022label\u0022:\u0022\u7b2c\u516b\u7ae0\uff1a\u664b\u5347\u673a\u5236\u0022,\u0022children\u0022:[]},{\u0022id\u0022:115,\u0022label\u0022:\u0022\u7b2c\u4e5d\u7ae0\uff1a\u4fdd\u5bc6\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:116,\u0022label\u0022:\u0022\u7b2c\u5341\u7ae0  \u9644\u5219\u0022,\u0022children\u0022:[]}]},{\u0022id\u0022:57,\u0022label\u0022:\u0022\u529e\u516c\u5ba4\u7ba1\u7406\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:118,\u0022label\u0022:\u0022\u62a5\u9500\u7ba1\u7406\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:119,\u0022label\u0022:\u0022\u56fa\u5b9a\u8d44\u4ea7\u7ba1\u7406\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:120,\u0022label\u0022:\u0022\u5e7f\u5dde\u65b0\u623f\u5206\u6790\u5e08\u7ba1\u7406\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:121,\u0022label\u0022:\u0022\u676d\u5dde\u65b0\u623f\u5206\u6790\u5e08\u7ba1\u7406\u5236\u5ea6\u0022,\u0022children\u0022:[]},{\u0022id\u0022:122,\u0022label\u0022:\u0022\u5c97\u4f4d\u804c\u7ea7\u0022,\u0022children\u0022:[]}]","Ctime":"2019-05-31 18:13","FirstDocId":"86","FirstDirId":115}}
+
+        var dir = JSON.parse(res.data.DirSort)
+
+        console.log(dir)
+
+
+        var index = 0;
+
+
+        console.log(111,getEachArr(dir))
+
+        function getEachArr(arr){
+            if(index>=dir.length-1) return [];
+            let res = getObjChildDir(arr[index])
+            console.log(res)
+            let list = []
+            if(res.length>0){
+                list = res.filter((v,i)=>{
+                    console.log(v.hasDoc)
+                    if(v.hasDoc){
+                        return v.children
+                    }
+                })
+                if(list.length===0){
+                    index++
+                    getEachArr(arr)
+                }
+            }else{
+                index++
+                getEachArr(arr)
+            }
+            return list
+        }
+
+        function getObjChildDir(obj){
+            console.log(obj)
+            let arr = obj.children || [];
+            if(arr.length){
+                return arr.map((v,i)=>{
+                    return getDocList(v.id,v)
+                })
+            }else{
+                return []
+            }
+
+        }
+
+        function getDocList(id,v){
+            v.children = []
+            v.hasDoc = false
+            return v
+        }
+
+
+
+    </script>
+</body>
+</html>

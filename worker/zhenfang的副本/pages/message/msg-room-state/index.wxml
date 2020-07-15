@@ -1,0 +1,73 @@
+<view class='container'>
+
+    <!-- height:{{scrollHeight}}px; -->
+    <!-- scroll-into-view="{{toView}}"  -->
+    <scroll-view scroll-y 
+        scroll-top="{{scrollTop}}" style='height:{{scrollHeight}}px;'
+        bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"                             bindscroll="scroll" scroll-into-view="{{toView}}">
+    <view class="body-view" hidden='{{hidden}}'>
+        {{text}}
+    </view>
+    <view class='boxs' wx:if='{{list.length>0}}' id="list">
+        <block wx:for="{{list}}" wx:key="lists">
+            <view class='now-time'>
+                <text class='text'>{{item.ctime}}</text>
+            </view>
+            <view class='item' 
+                id="{{index==list.length-1?'red':''}}"
+                data-id="{{item.id}}" >
+                <view class='top'>
+                    <view wx:if="{{item.type=='动态'}}">{{item.news.house_name}}</view>
+                    <view wx:else>{{item.room.house_name}}</view>
+                    <text>{{item.type}}</text>
+                </view>
+                <view class='center' wx:if="{{item.type=='动态'}}">
+                    <rich-text nodes="{{item.news.body}}"></rich-text>
+                </view>
+                <view class='center center_2' wx:else>
+                    <block wx:if="{{item.room}}" >
+                        <view class='col'>
+                            <view>{{item.room.title}}</view>
+                            <view>{{item.room.area}}㎡</view>
+                            <view>约{{item.room.total_price}}万</view>
+                        </view>
+                    </block>
+                </view>
+                <view class='bottom' data-id="{{item.id}}" wx:if="{{item.type=='动态'}}"
+                    bindtap="handleGo" 
+                    data-go="../../rooms/room-detail/index?id={{item.news.house_id}}">
+                    <view>查看详情</view>
+                    <view><icon class='iconfont icon-gengduo'></icon></view>
+                </view>
+                <view class='bottom' data-id="{{item.room.id}}" wx:else
+                    bindtap="handleGo" 
+                    data-go="../../rooms/room-detail/index?id={{item.room.house_id}}">
+                    <view>查看详情</view>
+                    <view><icon class='iconfont icon-gengduo'></icon></view>
+                </view>
+            </view>
+            <!-- <view class='item' id="{{index==list.length-1?'red':''}}" wx:else>
+                <view class='top'>
+                    <view>武林一号</view>
+                    <text>动态</text>
+                </view>
+                <view class='center center_2'>
+                    <block wx:for="{{[1,1,1]}}" wx:key="desc">
+                        <view class='col'>
+                            <view>两室两厅</view>
+                            <view>50㎡</view>
+                            <view>约115万</view>
+                        </view>
+                    </block>
+                </view>
+                <view class='bottom'>
+                    <view>查看详情</view>
+                    <view><icon class='iconfont icon-gengduo'></icon></view>
+                </view>
+            </view> -->
+        </block>
+    </view>
+    <view class='noList' wx:else>暂无数据~~</view>
+    </scroll-view>
+
+</view>

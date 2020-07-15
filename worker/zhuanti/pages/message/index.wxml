@@ -1,0 +1,24 @@
+<view class='container'>
+    <view class='boxs'>
+        <view class='item'>
+            <view class='matter'>我的问题</view>
+            <view class='news'>新回答</view>
+            <view class='lt'></view>
+        </view>
+        <view class='item'>
+            <view class='matter'>我的回答</view>
+            <view class='news hidden'>流弊😳</view>
+            <view class='lt'></view>
+        </view>
+        <view class='item'>
+            <view class='matter'>楼盘动态</view>
+            <view class='news'>杭州湾</view>
+            <view class='lt'></view>
+        </view>
+        <view class='item'>
+            <view class='matter'>我的反馈</view>
+            <view class='news hide'>杭州湾</view>
+            <view class='lt'></view>
+        </view>
+    </view>
+</view>

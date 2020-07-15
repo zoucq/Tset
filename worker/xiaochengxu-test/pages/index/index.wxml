@@ -1,0 +1,97 @@
+<import src="../templates/list.wxml"/> 
+
+
+
+<!-- bindtouchstart = "touchStart" bindtouchmove='touchMove' -->
+<view class='container' >
+     <loading wx:if="{{load}}">加载中</loading>  
+    <view class='top'>
+        <view class='up'>
+            <text>真房007</text>
+        </view>
+        <view class='center'>
+            <text>直达售楼处</text>
+        </view>
+         <view class='down'>
+            <input bindtap="toSearch" placeholder='write to ...' />
+        </view>
+        <view class='pos'>{{city}}</view>
+    </view>
+
+    <navigator url='/pages/test1/index?id=1'>
+        <button>跳转1</button>
+    </navigator>
+
+    <button bindtap='zd'>振动</button>
+    <button bindtap='zdCancel'>停止振动</button>
+
+    <view class='nav'>
+        <view class='item'>
+            <image src="http://www.nukq.test.91xiangju.com/images/xiangju/index/zaishou@2x.png" />
+            <text>商品房</text>
+        </view>
+        <view class='item'>
+            <image src="http://www.nukq.test.91xiangju.com/images/xiangju/index/zaishou@2x.png" />
+            <text>商品房</text>
+        </view>
+        <view class='item'>
+            <image src="http://www.nukq.test.91xiangju.com/images/xiangju/index/zaishou@2x.png" />
+            <text>商品房</text>
+        </view>
+        <view class='item'>
+            <image src="http://www.nukq.test.91xiangju.com/images/xiangju/index/zaishou@2x.png" />
+            <text>商品房</text>
+        </view>
+    </view>
+
+
+    <view class='test'>
+        <view class='item {{cur==1?"active":""}}' bindtap="testChange">qweqd</view>
+        <view class='item {{cur==2?"active":""}}' bindtap="testChange">fghgg</view>
+    </view>
+    <view class='test-view'>
+        <template is="list" data="{{list}}" />
+    </view>
+
+
+    <!--wrapper  -->
+    <view class='wrapper'>
+        <view class='title'>热门房源</view>
+        <template is="list" data="{{list}}" />
+        <!-- <scroll-view class="scroll-view_H" scroll-y style="height: {{boxHeight}}"> -->
+        <!-- <view class='ul'>
+            <view class='li' wx:for="{{list}}" wx:key="list">
+                <view class='l-box'>
+                    <image src='{{item.url}}' />
+                </view>
+                <view class='r-box'>
+                    <view class='tit'>{{item.title}}</view>
+                    <text class='addr'>{{item.addr}}</text>
+                    <text class='price'>{{item.price}}</text>
+                    <view class='biaoqian'>
+                        <text wx:for="{{item.bq}}" wx:for-index="i" wx:for-item="v" wx:key="biaoqian">{{v}}</text>
+                    </view>
+                </view>
+            </view>
+        </view> -->
+        <!-- </scroll-view> -->
+    </view>
+
+    <view class='mask' wx:if="{{mask}}"></view>
+    <!-- {{mask?'bar':''}} -->
+    <view class="slide-bar " animation="{{animationData}}">
+        <view class='content'>
+            <view class="userinfo">
+                <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+                <block wx:else>
+                <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+                <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                </block>
+            </view>
+            <view class="usermotto">
+                <text class="user-motto">{{motto}}</text>
+            </view>
+        </view>
+    </view>
+
+</view>

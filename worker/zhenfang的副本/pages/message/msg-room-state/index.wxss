@@ -1,0 +1,105 @@
+page{
+    background: #f1f2f7;
+    border-top: 1px solid rgb(228,230,240); 
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.container scroll-view{
+    width: 100%;height: 100vh;
+}
+.container .body-view{
+    position: fixed;
+    top: 1px;left: 0;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 20rpx 0 20rpx 0;
+    font-size: 28rpx;
+    color: #BBBCCD;
+}
+.container .boxs{
+    display: flex;
+    flex-direction: column;
+    padding: 0 30rpx;
+}
+.container .boxs .now-time{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 24rpx 0 34rpx 0;
+}
+.container .boxs .now-time text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 18rpx;height: 48rpx;
+    background: #E5E6F3;
+    border-radius: 8rpx;
+    color: #BCBDCE;
+    font-size: 28rpx;
+}
+.container .boxs .item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    padding: 32rpx 40rpx;
+    margin-bottom: 36rpx;
+    font-size: 28rpx;
+    color: #666;
+    border-radius: 12rpx;
+}
+.container .boxs .item .top{
+    display: flex;
+    justify-content: space-between;
+    font-size: 32rpx;
+    color: #3B55E7;
+    padding-bottom: 32rpx;
+    border-bottom: 1px solid rgba(228,231,240,0.6);
+}
+.container .boxs .item .top text{
+    color: #828393;
+    font-size: 28rpx;
+}
+
+.container .boxs .item .center{
+    display: flex;
+    font-size: 32rpx;
+    padding: 40rpx 0;
+    color: #3B3A4A;
+    border-bottom: 1px solid rgba(228,231,240,0.6);
+}
+.container .boxs .item .center_2{
+    display: flex;
+    flex-direction: column;
+}
+.container .boxs .item .center_2 .col{
+    display: flex;
+    padding-bottom: 30rpx;
+}
+.container .boxs .item .center_2 .col:last-child{
+    padding-bottom: 0;
+}
+.container .boxs .item .center_2 .col > view{
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 80rpx;
+}
+
+.bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top:32rpx;
+    font-size: 28rpx;
+    color: #828393; 
+}
+.bottom icon{
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #BBBCCD;
+}

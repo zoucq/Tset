@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		.sj{
+			width: 100px;height: 100px;
+			margin: 100px;line-height: 100px;
+		}
+		.sj-up {
+		  position: absolute;
+		  right: 0px;
+		  top: 10px;
+		  content: '';
+		  width: 32px;
+		  height: 32px;
+		  border-top: 8px solid #7f7f7f;
+		  border-right: 8px solid #7f7f7f;
+		  transform: rotate(-45deg);
+		}
+
+		.sj-down {
+		  position: absolute;
+		  right:0px;
+		  top: 50px;
+		  content: '';
+		  width: 32px;
+		  height: 32px;
+		  border-bottom: 8px solid #7f7f7f;
+		  border-right: 8px solid #7f7f7f;
+		  transform: rotate(45deg);
+		}
+	</style>
+</head>
+<body>
+	
+	<div class='sj' style=' position: relative'>
+	   三角形切换
+	   <span class="sj-down"></span>
+	   <span class="sj-up"></span>
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+
+	$(function(){
+		$(window).bind('beforeunload',function(){ 
+   return '您输入的内容尚未保存，确定离开此页面吗？'; 
+}); 
+	});
+	
+		
+	aaa()
+	function aaa(){		
+		// setTimeout(function(){
+		// 	console.log(111);
+		// },0);
+        // setTimeout(console.log(111),0);
+        // setTimeout('console.log(111)',0);
+        setTimeout('console.log("typeof 111")',0);  //typeof 111
+        setTimeout('console.log(typeof 111)',0);    //string
+        setTimeout('console.log(typeof "111")',0);  //number
+		console.log(222);
+	}
+
+
+	</script>
+</body>
+</html>

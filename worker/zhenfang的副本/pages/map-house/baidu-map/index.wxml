@@ -1,0 +1,22 @@
+<view class="map_container"> 
+
+    <map class="map" id="map" 
+        longitude="{{longitude}}" latitude="{{latitude}}" 
+        scale="{{scale}}" show-location="true" 
+        circles='{{circles}}' markers='{{markers}}'
+        controls="{{controls}}"
+        bindtap='maptap'
+        bindmarkertap="makertap" bindcallouttap="callouttap"
+        bindregionchange='changeMap' bindcontroltap="controltap"
+        style='width:100%;height:60vh;'>
+    </map> 
+
+    <canvas wx:if="{{true}}"
+        style="width: 100%; height: 200px;"                                           canvas-id="firstCanvas"
+        bindtouchstart='touchstart' 
+        bindtouchmove='touchmove'
+        bindtouchend='touchend'
+    >
+    </canvas>
+
+</view> 

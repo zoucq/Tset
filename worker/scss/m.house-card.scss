@@ -1,0 +1,61 @@
+@import "base";
+
+/*
+ * 因为这个文件非常小, 所以不作为独立 css 文件, 在使用到的页面, 如 city.mobile.scss 中:
+ *
+ * @import "/xiangju/activity/partial.house.mobile";
+ */
+
+.partial-house {
+  margin-top: 20px;
+
+  .house-image {
+    position: relative;
+    margin: 10px 0;
+
+    img {
+      width: 100%;
+    }
+
+    .house-description {
+      position: absolute;
+      bottom: 0;
+      padding: 10px 20px;
+      width: 100%;
+      color: #fff;
+      font-size: 16px;
+      background-color: rgba(#000, 0.3);
+      @include ellipsis();
+    }
+  }
+
+  $house-padding-left: 0;
+
+  .house-title {
+    padding: 10px $house-padding-left;
+    font-size: 16px;
+  }
+
+  .house-price-address {
+    padding: 0 $house-padding-left 20px $house-padding-left;
+    border-bottom: 1px solid #eee;
+
+    .house-price {
+      float: left;
+      color: $color-price;
+    }
+
+    .house-address {
+      float: right;
+      color: $color-gold;
+      font-size: 12px;
+
+      img {
+        position: relative;
+        bottom: 2px;
+        width: 9px;
+        height: 12px;
+      }
+    }
+  }
+}

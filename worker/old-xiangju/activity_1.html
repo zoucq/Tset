@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+    *{margin: 0;padding: 0;}
+    ul,ol{list-style: none;}
+    a{text-decoration: none;}
+
+    .container{
+        padding:0;
+    }
+    body{
+        width: 100%;
+        height: auto;
+        background: #fff;
+        overflow-x: hidden;
+    }
+    .banner{
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .banner img{
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .nav{
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        border-bottom: 1px solid #dadee2;
+        box-sizing: border-box;
+    }
+    .nav ul{
+        display: flex;
+    }
+    .nav ul li{
+        flex: 1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .nav ul li a{
+        width: 100%;
+        font-size: 14px;
+        color: #333333;
+        text-decoration: none;
+    }
+    .nav .item::after{
+        content: "";
+        width: 1px;
+        height: 15px;
+        background: rgb(229,229,229);
+        position: absolute;
+        right: 0;
+    }
+    .nav .item:last-child::after{
+        display: none;
+    }
+
+    .nav .active a{
+        color: #f39800;
+    }
+    .nav .active::before{
+        content: "";
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #f39800;
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        margin-left: -10px;
+    }
+
+    .desc{
+        width:100%;
+        height:auto;
+        background: rgb(243,247,252);
+    }
+    .desc li{
+        padding:10px 10px 0px 10px;
+        box-sizing:border-box;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+    .desc li:last-child{
+        margin-bottom: 0px;
+    }
+    .desc .desc_up {
+    	width: 100%;
+    	height: auto;
+    	overflow: hidden;
+    }
+    .desc .desc_up dt{
+        height:122px;
+        max-width: 50%;
+        float: left;
+        margin-right: 10px;
+    }
+    .desc .desc_up img{
+        width:100%;
+        height:100%;
+    }
+    .desc .desc_up dd{
+        height:100%;
+        padding:0;
+    }
+    .desc .desc_up dd h2{
+        font-size:18px;
+        color: #333;
+        margin:0;
+        margin-bottom:10px;
+    }
+    .desc .desc_up dd p span{
+        color: rgb(243,152,0);
+    }
+    .desc .desc_up .mt_10{
+        margin-bottom:5px;
+    }
+    .desc .desc_up dd .biaoqian{
+        margin-top:10px;
+    }
+    .desc .desc_up dd .biaoqian span{
+        width:auto;
+        padding:0 3px;
+        height：20px;
+        display: inline-block;
+        border:1px solid #e60012;
+        margin-right:9px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-size:12px;
+        color: #e81122;
+        float: left;
+        margin-bottom:4px;
+    }
+    .desc .desc_up dd .biaoqian span:last-child{
+        margin-right:0;
+    }
+
+    .desc .desc_down{
+        padding:10px 20px 10px 16px;
+        background: #f8f7fc;
+    }
+    .desc .desc_down .title{
+        font-size:18px;
+        color: #333;
+        font-weight: bold;
+    }
+    .desc .desc_down .title span{
+        font-size:12px;
+        color: #999;
+        margin-left:10px;
+    }
+    .desc .desc_down .text{
+        margin:0;
+    }
+    .desc .desc_btn{
+        text-align: right;
+        padding:15px 0 14px 0;
+    }
+    .desc .desc_btn a{
+        text-align: center;
+        display: inline-block;
+        width:99px;
+        height:44px;
+        line-height: 44px;
+        border:1px solid rgb(242,152,0);
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        color: rgb(242,152,0);
+        font-weight: 500;
+        font-size: 14px;
+        margin-right:15px;
+    }
+    .desc .desc_btn a:last-child{
+        margin-right:0;
+    }
+    .desc .desc_btn .tg{
+        border:1px solid rgb(230,0,18);
+        color: rgb(230,0,18);
+    }
+    .desc .line_bg{
+        height:10px;
+        width:100%;
+        background: rgb(243,247,252);
+    }
+</style>
+</head>
+<body>
+	
+	<div class="banner">
+    <img class="img_item" src="https://ssl.malmam.com/xiangju-static/dfs/7/1e629d19aec324/banner.png" />
+    <img class="img_item" src="https://ssl.malmam.com/xiangju-static/dfs/8/1e629ed3a3e68a/pic1.png" />
+    <img class="img_item" src="https://ssl.malmam.com/xiangju-static/dfs/5/1e0c8056f38a54/u_3D3019871958_2C886237246_26fm_3D173_26s_3D927270815843F6C62609F485030080C1_26w_3D600_26h_3D401_26img.jpeg" />
+    <img class="img_item" src="https://ssl.malmam.com/xiangju-static/dfs/7/1e0c7fcfd80c7d/u_3D1911982037_2C139668013_26fm_3D173_26s_3DF08345B04023AAF04E110AA703003006_26w_3D639_26h_3D459_26img.jpeg" />
+    <img class="img_item" src="https://ssl.malmam.com/xiangju-static/dfs/8/1e629ed3a3e68a/pic1.png" />
+</div>
+
+<div class="nav">
+    <ul>
+        <li class="item active"><a href="javascript:;">长三角</a></li>
+        <li class="item"><a href="javascript:;">上海周边</a></li>
+        <li class="item"><a href="javascript:;">杭州周边</a></li>
+        <li class="item"><a href="javascript:;">千岛湖</a></li>
+        <li class="item"><a href="javascript:;">苏州周边</a></li>
+
+    </ul>
+</div>
+<div class="desc">
+    <ul>
+        <li class="col">
+            <dl class="desc_up row">
+                <dt class="col-xs-6"><img src="https://ssl.malmam.com/xiangju-static/dfs/8/1e629ed3a3e68a/pic1.png" /></dt>
+                <dd class="col-xs-6">
+                    <h2>绿城富春玫瑰园</h2>
+                    <p class="mt_10">均价：<span class="color1">30000元/㎡</span></p>
+                    <p class="mt_10">地址：杭州富阳市</p>
+                    <div class="biaoqian">
+                        <span>绿城品质</span>
+                        <span>中式院墅</span>
+                        <span>不限购</span>
+                    </div>
+                </dd>
+            </dl>
+            <div class="desc_down">
+                <p class="title">最新消息<span>2017.11.20</span></p>
+                <p class="text">11月20号开始人认筹啊是的范德萨范德萨范德萨范德萨撒地方是的范德萨法师打发第三发的说法阿双方都是分</p>
+            </div>
+            <div class="desc_btn">
+                <a href="javascript:;" class="btn1">电话咨询</a>
+                <a href="javascript:;" class="btn1 tg">参加团购</a>
+            </div>
+        </li>
+        <li class="col">
+            <dl class="desc_up row">
+                <dt class="col-xs-6"><img src="https://ssl.malmam.com/xiangju-static/dfs/8/1e629ed3a3e68a/pic1.png" /></dt>
+                <dd class="col-xs-6">
+                    <h2>绿城富春玫瑰园</h2>
+                    <p class="mt_10">均价：<span class="color1">30000元/㎡</span></p>
+                    <p class="mt_10">地址：杭州富阳市</p>
+                    <div class="biaoqian">
+                        <span>绿城品质</span>
+                        <span>中式院墅</span>
+                        <span>不限购</span>
+                    </div>
+                </dd>
+            </dl>
+            <div class="desc_down">
+                <p class="title">最新消息<span>2017.11.20</span></p>
+                <p class="text">11月20号开始人认筹啊是的范德萨范德萨范德萨范德萨撒地方是的范德萨法师打发第三发的说法阿双方都是分</p>
+            </div>
+            <div class="desc_btn">
+                <a href="javascript:;" class="btn1">电话咨询</a>
+                <a href="javascript:;" class="btn1 tg">参加团购</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        $(".item").on('click',function(){
+            let index=$(this).index();
+            $(this).addClass('active').siblings('.item').removeClass('active');
+            $('.img_item').eq(index).show().siblings('.img_item').hide();
+        })
+    })
+
+</script>
+
+</body>
+</html>

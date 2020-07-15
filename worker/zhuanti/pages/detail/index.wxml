@@ -1,0 +1,240 @@
+<view class='container'>
+
+    <view class='slider'>
+        <swiper 
+            current="{{current}}" bindchange="_slider" circular="{{circular}}"
+            indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 
+            interval="{{interval}}" duration="{{duration}}" >
+            <block wx:for="{{house.photo_urls_array}}" wx:key="{{index}}">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="text">{{current+1}} / {{house.photo_urls_array.length}}</view>
+    </view>
+
+    <view class="content">
+        <view class="title">
+            <view class="name">
+                <text>{{house.house_status_sting}}</text>
+                <text>{{house.house_name}}</text>
+            </view>
+            <view class="addr">地址: {{house.house_address}}</view>
+        </view>
+        <view class="house">
+            <view class='h-title pub-title'>今日房源</view>
+            <view class="h-list">
+                <block wx:for="{{house.rooms.jinri_rooms}}" wx:key="{{index}}">
+                    <view class="item" wx:if="{{more1?true:index<3}}">
+                        <view>{{item.title}}</view>
+                        <view>{{item.area}}㎡</view>
+                        <view><text>约{{item.total_price}}万</text> ({{item.unit_price}}/m²)</view>
+                    </view>
+                </block>
+            </view>
+            <view class="h-more">
+                <view class='mores' bindtap='_more' data-type="more1">
+                    <view>更多房源</view><image class="{{more1?'open':''}}" src="http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png"></image>
+                </view>
+            </view>
+            <view class="dijia">
+                <view class='left'>
+                    <text>以上价格为开发商的报价，可联系</text>
+                    <text>职业顾问咨询最低底价</text>
+                </view>
+                <view class='right'>
+                    <button catchtap='_showDialog' data-type="0">询底价</button>
+                </view>
+            </view>
+
+            <view class='new-msg'>
+                <view class='n-title'>
+                    <view class='pub-title'>最新消息</view>
+                    <view class='date'>{{house.news.ctime}}</view>
+                </view> 
+                <view class='desc'>
+                    <rich-text nodes="{{house.news.body}}" ></rich-text>
+                </view>
+                <view class='btns'>
+                    <view class="btn" catchtap='_showDialog' data-type="1">有新消息通知我</view>
+                </view>
+            </view>
+
+            <view class='room-type'>
+                <view class='pub-title'>户型介绍</view>
+                <scroll-view scroll-x class='scroll' style="width:100%;">
+                    <view class='list'>
+                    <block wx:for="{{house.rooms.rooms}}" wx:key="{{index}}">
+                        <view class="r-item">
+                            <view class='top'>
+                                <image src='{{item.photo_urls[0]}}'></image>
+                            </view>
+                            <view class='bottom'>
+                                <view class='name'>
+                                    <text wx:if="{{item.is_on_sale>0}}">{{item.is_on_sale==1?'在售':''}}</text>
+                                    <text>{{item.title}}({{item.habitable}})</text>
+                                </view>
+                                <view class='desc'>
+                                    <view class=''>• {{item.area}}㎡</view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                    </view>
+                </scroll-view>
+            </view>
+
+            <view class="romm-detail">
+                <view class='pub-title'>楼盘详情</view>
+                <view class="d-list">
+                    <view class='d-item' wx:if="{{house.house_detail.property_right}}">
+                        <text>产权年限：</text>
+                        <text class='value'>{{house.house_detail.property_right}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.decoration_standard}}">
+                        <text>装修标准：</text>
+                        <text class='value'>{{house.house_detail.decoration_standard}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.property_fee}}">
+                        <text>物业费：</text>
+                        <text class='value'>{{house.house_detail.property_fee}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.company_name}}">
+                        <text>开发商：</text>
+                        <text class='value'>{{house.house_detail.company_name}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.house_address}}">
+                        <text>楼盘地址：</text>
+                        <text class='value'>{{house.house_detail.house_address}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.feature_string}}">
+                        <text>项目特色：</text>
+                        <text class='value'>{{house.house_detail.feature_string}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.sales_address}}">
+                        <text>售楼处地址：</text>
+                        <text class='value'>{{house.house_detail.sales_address}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.build_type_string}}">
+                        <text>建筑类型：</text>
+                        <text class='value'>{{house.house_detail.build_type_string}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.green_rate}}">
+                        <text>绿化率：</text>
+                        <text class='value'>{{house.house_detail.green_rate}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.area_covered}}">
+                        <text>占地面积：</text>
+                        <text class='value'>{{house.house_detail.area_covered}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.volume_ratio}}">
+                        <text>容积率：</text>
+                        <text class='value'>{{house.house_detail.volume_ratio}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.planning_households}}">
+                        <text>规划户数：</text>
+                        <text class='value'>{{house.house_detail.planning_households}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.property_company}}">
+                        <text>物业公司：</text>
+                        <text class='value'>{{house.house_detail.property_company}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.parking_ratio}}">
+                        <text>车位配比：</text>
+                        <text class='value'>{{house.house_detail.parking_ratio}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.heating_method}}">
+                        <text>供暖方式：</text>
+                        <text class='value'>{{house.house_detail.heating_method}}</text>
+                    </view>
+                    <view class='d-item' wx:if="{{house.house_detail.parking}}">
+                        <text>车位：</text>
+                        <text class='value'>{{house.house_detail.parking}}</text>
+                    </view>
+                </view>
+                <view class="h-more">
+                    <view class='mores' bindtap='_more' data-type="more2">
+                        <view>更多</view>
+                        <image class="{{more2?'open':''}}" src="http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class='space'></view>
+
+            <view class='liangdian' wx:if="{{house.house_spotlight}}">
+                <view class='l-title'>楼盘亮点</view>
+                <view class='l-content'>
+                    <view class='l-tab'>
+                        <block wx:for="{{[0,1,2]}}" wx:key="{{index}}">
+                            <text class="{{tabCurrent==index?'active':''}}"         bindtap="_tab" data-index="{{index}}">{{item}}</text>
+                        </block>
+                    </view>
+                    <view class='l-tabpane'>
+                        <view class='pane' hidden="{{tabCurrent==0?false:true}}">{{tabCurrent}}</view>
+                        <view class='pane' hidden="{{tabCurrent==1?false:true}}">{{tabCurrent}}</view>
+                        <view class='pane' hidden="{{tabCurrent==2?false:true}}">{{tabCurrent}}</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class='youhui'>
+                <view class='y-content'>
+                    <view class='y-title'>预约看房享优惠</view>
+                    <view class='y-desc'>
+                    {{house.activity.des}}</view>
+                </view>
+            </view>
+
+            <view class='liangdian h-desc'>
+                <view class='l-title'>楼盘详情</view>
+                <view class='h-content'>
+                    <rich-text nodes="{{house.house_intro.body}}"></rich-text>
+                    
+                </view>
+            </view>
+
+        </view>  
+    
+    </view>
+
+
+    <view class='nav'>
+        <view class='n-left' bindtap='_call' data-phone="13674256451">
+              电话咨询
+        </view>
+        <view class='n-right' catchtap='_showDialog' data-type="2">
+            预约看房
+        </view>
+    </view>
+
+</view>
+
+
+<view class='dialog' hidden="{{dialogShow}}" bindtap='_closeDialog'>
+    <view class='dialog-content' catchtap='_place'>
+        <view class='dialog-header'>
+            <view class='title'>{{dialogCurrent==0?'询底价':(dialogCurrent==1?'订阅通知':'预约看房')}}</view>
+            <view class='close' catchtap="_closeDialog">× </view>
+        </view>
+        <view class='good' wx:if="{{dialogCurrent==2?true:false}}">
+            <view class='good1'>10万认筹优先选房</view>
+            <view class='good2'>(仅限网上报名客户专享)</view>
+        </view>
+        <view class='dialog-body' >
+            <view class='form-wrap' wx:if="{{dialogCurrent!=1?true:false}}">
+                <view>姓名</view>
+                <input type="text" placeholder='请输入姓名' cursor-spacing="200"                             adjust-position="true" bindinput="_inputName" />
+            </view>
+            <view class='form-wrap'>
+                <view>手机号</view>
+                <input type="number" placeholder='请输入电话' maxlength="11"                                 cursor-spacing="250" adjust-position="true" 
+                    bindinput='_inputPhone'/>
+            </view>
+        </view>
+        <view class='dialog-footer'>
+            <button catchtap='_submit'>确定</button>
+        </view>
+    </view>
+</view>

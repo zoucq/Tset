@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+// 不要在此处放任何输出代码, 把它们放在 _layout.scss 中
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// 因为有部分同名 mixin , 把 compass 放在 bootstrap 后面, 覆盖 bootstrap 的 mixin
+@import "compass/utilities";
+@import "compass/css3";
+
+@import "variables";

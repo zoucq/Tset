@@ -1,0 +1,39 @@
+<view class='container'>
+    <view class='boxs'>
+        <block wx:if="{{false}}">
+            <view class='item' bindtap="handleGo" data-go='../msg-question/index'>
+                <view class='matter'>我的问题</view>
+                <view class='news'>新回答</view>
+                <view class='lt'></view>
+            </view>
+            <view class='item' bindtap="handleGo" data-go='../msg-answer/index'>
+                <view class='matter'>我的回答</view>
+                <view class='news hidden'>流弊😳</view>
+                <view class='lt'></view>
+            </view>
+            <view class='item' bindtap="handleGo" data-go='../msg-request/index'>
+                <view class='matter'>邀请回答</view>
+                <view class='news hidden'>有一个新邀请</view>
+                <view class='lt'></view>
+            </view>
+        </block>
+
+        <view class='item' data-type='0'
+            bindtap="handleGo" data-go='../msg-room-state/index'>
+            <view class='matter {{dongtai?"active":""}}'>楼盘动态</view>
+            <view class='news' wx:if="{{list && list.Name}}">{{list.Name}}</view>
+            <view class='lt'><icon class='iconfont icon-gengduo'></icon></view>
+        </view>
+        <view class='item' data-type='1'
+            bindtap="handleGo" data-go='../msg-back/index'>
+            <view class='matter {{report?"active":""}}'>通知</view>
+            <view class='lt'><icon class='iconfont icon-gengduo'></icon></view>
+        </view>
+        <view class='item'>
+            <button open-type="contact" session-from="xiaochengxu" >
+                <view class='matter'>联系客服</view>
+                <view class='lt'><icon class='iconfont icon-gengduo'></icon></view>
+            </button>
+        </view>
+    </view>
+</view>

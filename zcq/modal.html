@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+
+		.boxs{
+			margin: 30px;
+			width: 100px;height: 100px;border: 1px solid #ccc;
+			transform: rotate(45deg);
+			box-shadow: 0 0 4px #ccc;
+			overflow: hidden;
+		}
+		.boxs img{
+			transform: rotate(-45deg) scale(2);
+		}
+
+		@keyframes wrapper-gradient {
+		  0% {
+		    transform: translateY(-100%);
+		  }
+		  100% {
+		    transform: translateY(0);
+		  }
+		}
+		@keyframes img-gradient {
+		  0% {
+		    transform: translateY(100%);
+		  }
+		  100% {
+		    transform: translateY(0);
+		  }
+		}
+		.gradient-wrapper {
+		  display: inline-block;
+		  overflow: hidden;
+		  animation: wrapper-gradient 2s linear;
+		}
+		.gradient-wrapper>img {
+		  animation: img-gradient 2s linear;
+		}
+
+		.list{
+			display: block;
+			height: 40px;
+			line-height: 40px;
+			border: 1px solid #ccc;
+			margin: 10px;
+			background: linear-gradient(0deg, #0a63a6 20%, #01487b 45%, #0a63a6 80%);
+		}
+		.list li{
+			display: inline-block;
+			text-align: center;
+			padding: 0 15px;
+			color: #fff;
+			position: relative;
+		}
+		.list li::after{
+			content: "";
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 1px;
+			height: 100%;
+			background: linear-gradient(0deg, #044c82 10%, #fff 50%, #044c82 90%);
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="boxs">
+			<img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3040356750,2015712890&fm=58">
+		</div>
+	</div>
+
+	<div class="search">
+		<input type="text" name="" id="txt">
+		<p>那你很棒棒油，加油你是最胖的！！</p>
+	</div>
+
+	<ul class="list">
+		<li>123</li>
+		<li>123</li>
+	</ul>
+	
+
+	<div class="gradient-wrapper">
+	  <img src="img/banner.png">
+	</div>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+
+	<script>
+
+		var myModules=(function(){
+			var modules={};
+			function define(name,deps,impl){
+				for(var i=0;i<deps.length;i++){
+					deps[i]=modules[deps[i]];
+				}
+				modules[name]=impl.apply(impl.deps);
+			}
+			function get(name){
+				return modules[name];
+			}
+			return {
+				define :define,
+				get:get
+			};
+		})();
+
+		myModules.define("bar",[],function(){
+			function hello(who){
+				return 'let me:'+who;
+			}
+			return {
+				hello:hello
+			};
+		});
+
+		var foo=myModules.get('bar');
+		console.log(foo.hello('1222'));
+
+		
+	$(function(){
+
+		var a = [5,7,1,4,3];
+		var b = [
+		    {id: 4},
+		    {id: 1},
+		    {id: 5},
+		    {id: 3},
+		    {id: 7}
+		];
+		var res=[];
+		// $.each(a,function(i,v){
+		// 	$.each(b,function(j,k){
+		// 		if(a[i]==k.id){
+		// 			res.push(k);
+		// 		}
+		// 	});	
+		// });
+		// console.log(res);
+
+
+		$('#txt').on('input',function(e){
+			var str=$(this).val();
+			var ps=$('p').text();
+			if(ps.indexOf(str)>=0)
+				var ps2=ps.replace(str,'<b style="color:red;">'+str+'</b>')
+				console.log(ps2);
+			$('p').html(ps2);
+		});
+
+
+	})
+
+	</script>
+</body>
+</html>

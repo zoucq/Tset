@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<title></title>
+	<link href="http://www.zcq.test.91xiangju.com/js/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+    	ul,ol{list-style: none;}
+    	a,a:hover,a:focus{text-decoration: none;}
+    	div{box-sizing: border-box;}
+
+    	body{
+    		font-family: Arial, Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    		font-size: 14px;
+    		color: #333;
+    	}
+    	.container{
+    		width: 100%;
+    		height: 100%;
+    		background: #fff;
+    		padding: 0;margin: 0;
+    		-webkit-overflow-scrolling: touch;
+    	}
+    	.tops{
+    		width: 100%;height:auto;overflow: hidden;
+    		margin-bottom: 6px;position: relative;
+    	}
+    	.tops img{
+    		width: 100%;height: 150px;
+    	}
+    	.tops .swipe{
+    		height: 150px;
+    	}
+    	.tops .swipe-wrap{
+    		position: relative;
+    	}
+    	.tops .swipe-wrap>div{
+    		float: left;
+    	}
+    	.dots{
+	        position: absolute;
+	        bottom:6px;
+	        z-index: 999;
+	        width:100%;
+	        text-align: center;
+	        /*background: #ebdec7;*/
+	        margin-left:-2px;
+	    }
+	    .dots span{
+	        display: inline-block;
+	        border-radius: 50%;
+	        height: 8px;
+	        width: 8px;
+	        background-color: #faeae2;
+	        border:1px solid #739ed3;
+	    }
+	    .dots span.active {
+	        background-color: #739ed3;
+	    }
+
+
+
+
+    	.content{
+    		width: 100%;height: auto;
+    	}
+    	.list{
+    		width: 100%;height: auto;
+    	}
+    	.list .title{
+    		padding: 10px 15px;
+    		width: 100%;
+    		box-sizing: border-box;
+    		position: relative;
+    	}
+    	.list .title::before{
+    		content: "";
+    		position: absolute;
+    		left: 0;
+    		
+    	}
+    	.title span{
+    		border-left: 8px solid #f85959;
+    		padding-left: 10px;
+    		font-size: 18px;
+    		line-height: 1.5;
+    		height: 27px;
+    		display: inline-block;
+    	}
+
+    	.list .item{
+    		margin: 0 10px;
+    		position: relative;
+    	}
+    	.list .item a{
+    		width: 100%;
+    		padding: 14px 0;
+    		display: inline-block;
+    	}
+    	.list .item .desc{
+    		font-size: 18px;
+		    font-weight: 400;
+		    line-height: 1.315;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    color: #222;
+		    white-space: nowrap;
+    	}
+    	.list .item .imgs{
+    		width: 100%;
+    		height: 78px;
+    		margin: 8px 0;
+    	}
+    	.list .item .imgs img{
+    		width: 32.6%;
+    		height: 78px;
+    		float: left;
+    		margin-right: 3px;
+    	}
+    	.list .item .imgs img:last-child{
+    		margin-right: 0;
+    	}
+    	.list .item .addr{
+    		font-size: 12px;
+		    line-height: 14px;
+		    height: 14px;
+		    margin-top: 8px;
+		    color: #999;
+    	}
+    	.list .item .addr .hot{
+    		font-size: 10px;
+		    line-height: 14px;
+		    display: block;
+		    float: left;
+		    height: 14px;
+		    margin-right: 5px;
+		    text-align: center;
+		    border-radius: 3px;
+		    padding: 0 2px;
+		    border: 1px solid #fff;
+		    color: #999;
+    		border-color: rgba(153,153,153, 0.5);
+    		box-sizing: border-box;
+    		margin-top: -1px;
+    	}
+		.list .item .border-bottom{
+			position: absolute;
+		    bottom: 0;
+		    width: 100%;
+		    height: 1px;
+		    left: 0;
+		    border: none;
+		    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, transparent), color-stop(50%, transparent), color-stop(100%, #e8e8e8));
+		    background-image: -webkit-linear-gradient(top, transparent 50%, #e8e8e8 50%, #e8e8e8 100%);
+		    background-image: linear-gradient(to bottom, transparent 50%, #e8e8e8 50%, #e8e8e8 100%);
+		    background-size: 100% 1px;
+		    background-repeat: no-repeat;
+		    background-position: bottom;
+		}
+
+		.list .margin-bottom{
+			width: 100%;height: 7px;
+			background: #f4f3f6;
+		}
+
+		.list .item.row a{
+			height: auto;
+		}
+		.list .item.row a .left{
+			float: left;
+			width: 70%;
+		}
+		.list .item.row a .right{
+			width: 30%;
+			float: right;
+		}
+		.list .item.row a .left .desc{
+			float: left;
+			width: 100%;
+			display: block;
+			white-space: normal;
+			margin-bottom: 7px;margin-top: 2px;
+		}
+		.list .item.row a .left .addr{
+			display: block;
+		}
+		.list .item.row a .right .imgs{
+			width: 100%;
+			margin: 0;
+		}
+		.list .item.row a .imgs img{
+			display: inline-block;
+			width: auto;
+			float: right;
+		}
+		
+
+
+
+
+		.bottom{
+	        width:100%;
+	        height:auto;
+	        background: #fff;
+	        padding: 10px 15px;
+	        box-sizing: border-box;
+	    }
+	    .bottom .items{
+	        margin-bottom: 10px;
+	        width:100%;
+	    }
+	    .bottom .items label{
+	        color: #787878;
+	        font-weight: 300;
+	        color: #808080;
+	        font-size: 12px;
+	    }
+	    .bottom .items label span{
+	        color: red;
+	        padding-left:3px;
+	    }
+	    .bottom .items input,.bottom .items select{
+	        border-radius: 5px!important;
+	        width:100%;height: 40px;
+	        border-color: #c5c5c5;
+	    }
+	    .bottom .items select{
+	    	padding: 6px 12px;
+		    font-size: 14px;
+		    line-height: 1.42857143;
+		    color: #555;
+		    background-color: #fff;
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+	    }
+	    .bottom .tj{
+	        width:100%;
+	        height:42px;
+	        color: #fff;
+	        background: #f74e4f;
+	        border-radius: 4px!important;
+	        margin-top:15px;
+	        line-height: 42px;
+		    text-align: center;
+		    box-sizing: border-box;
+		    text-decoration: none;
+		    font-size: 14px;
+		    padding: 0;
+		    border: none;
+	    }
+
+
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+
+		<div class="tops">
+            <div class="swipe" id="top-slider3">
+                <div class="swipe-wrap">
+                    <div class="js-link ga" >
+                        <img src="http://p0.pstatp.com/origin/44420007cbfa8f487817"  class="img-responsive" alt="...">
+                    </div>
+                    <div class="js-link ga" >
+                        <img src="http://p0.pstatp.com/origin/44420007cbfa8f487817"  class="img-responsive" >
+                    </div>
+                    <div class="js-link ga" >
+                        <img src="img/banner.png"  class="img-responsive" >
+                    </div>
+                </div>
+            </div>
+            <div class="dots" id="banner-dots3">
+                <span class="active"><!----></span>
+                <span><!----></span>
+                <span><!----></span>
+            </div>
+        </div>
+
+        <div class="content">
+        	<div class="list">
+        		<div class="title">
+        			<span>杭州湾核心</span>
+        		</div>
+        		
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				错过不再！年底冲量8500元/平惊爆价，再现江湖
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/9/22905e2b2df7ce/_E5_90_88_E7_94_9F3.png" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/7/22905d18d81c37/_E5_90_88_E7_94_9F2.jpg" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/6/22905cf5ebad02/_E5_90_88_E7_94_9F1.jpg" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>合生杭州湾国际新城
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item row">
+        			<a href="#">
+	        			<div class="left">
+	        				<div class="desc">
+		        				掘金杭州湾，四期新品28日开盘，精装交付
+		        			</div>
+		        			<div class="addr">
+		        				<span class="hot">热</span>绿地海湾
+		        			</div>
+	        			</div>
+	        			<div class="right">
+		        			<div class="imgs">
+		        				<img src="https://ssl.malmam.com/xiangju-static/dfs/8/22905b48cba7c2/_E7_BB_BF_E5_9C_B0_E6_B5_B7_E6_B9_BE.jpg" />
+		        			</div>
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				性价比之选！联排别墅卖出高层价格，160万买一栋
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/9/22906bf53eafab/_E4_B8_AD_E5_8D_973.png" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/5/22906a5ceabf88/_E4_B8_AD_E5_8D_972.png" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/6/22906986fc427d/_E4_B8_AD_E5_8D_971.jpg" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>中南海悦湾
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				双河景、低容积率的洋房社区。投资自住皆宜
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/10/229062365b85f4/_E6_98_9F_E6_B2_B33.png" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/9/2290611d39c8b0/_E6_98_9F_E6_B2_B32.png" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/7/22905f6f99c1d4/_E6_98_9F_E6_B2_B31.jpg" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>杭州湾星河荣御
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				首付低至15万，入手门槛低，抢占价值洼地
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/5/229067350b7ab9/_E8_B6_8A_E6_BA_AA3.jpeg" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/8/2290667f8cb803/_E8_B6_8A_E6_BA_AA2.jpeg" />
+	        				<img src="https://ssl.malmam.com/xiangju-static/dfs/6/2290656a6f96d5/_E8_B6_8A_E6_BA_AA1.jpeg" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>越溪湖畔
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="margin-bottom"></div>
+        	</div>
+        	<div class="list">
+        		<div class="title">
+        			<span>杭州湾腹地</span>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				山拥水绕多层电梯洋房，轻轨无缝对接沪杭
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>桃李春风景苑
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				三面环山，别墅一半以上的面积都是赠送的
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>金凤城
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				双轨道、杭州湾跨海大桥直达，可自住、宜投资
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>阳光城翡丽海岸
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="item">
+        			<a href="#">
+	        			<div class="desc">
+	        				爆款！“上海眼皮底下”的价格洼地，均价16000元
+	        			</div>
+	        			<div class="imgs">
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        				<img src="img/pic1.png" />
+	        			</div>
+	        			<div class="addr">
+	        				<span class="hot">热</span>融创江南悦
+	        			</div>
+        				<div class="border-bottom"></div>
+        			</a>
+        		</div>
+        		<div class="margin-bottom"></div>
+
+        	</div>
+        	<div class="list">
+        		<div class="title">
+        			<span>预约看房</span>
+        		</div>
+        		<div class="bottom">
+			        <div>
+			            <div class="items input-group">
+			                <label for="user">姓名<span>*</span></label>
+			                <input type="text" class="form-control" id="user">
+			            </div>
+			            <div class="items input-group">
+			                <label for="phone">电话<span>*</span></label>
+			                <input type="text" class="form-control" id="phone">
+			            </div>
+			            <div class="items input-group">
+			                <label for="phone">意向楼盘<span>*</span></label>
+			                <div class="selectMulti-wrapper" >
+			                <div class="select-wrapper select-list1 showing" style="">
+			                <select class="form-control" class="form-control" id="address">
+			                <option data-id="0" value="null">--请选择--</option>
+			                <option data-id="0-1" value="国茂·清水湾">国茂·清水湾</option>
+			                <option data-id="0-2" value="君和君泰·和园">君和君泰·和园</option>
+			                <option data-id="0-3" value="新奇世界·半山半岛">新奇世界·半山半岛</option>
+			                <option data-id="0-4" value="广粤锦泰·首座">广粤锦泰·首座</option>
+			                <option data-id="0-5" value="东方·海域阳光">东方·海域阳光</option>
+			                <option data-id="0-6" value="香格里温泉小镇">香格里温泉小镇</option>
+			                <option data-id="0-7" value="观澜湖观园">观澜湖观园</option>
+			                <option data-id="0-8" value="恒大御海天下">恒大御海天下</option>
+			                <option data-id="0-9" value="海棠湾·海棠华著">海棠湾·海棠华著</option>
+			                <option data-id="0-10" value="海南绿地城">海南绿地城</option>
+			                <option data-id="0-11" value="碧桂园·珊瑚宫殿">碧桂园·珊瑚宫殿</option>
+			                <option data-id="0-12" value="中海神州半岛海公馆">中海神州半岛海公馆</option>
+			                </select>
+			                </div>
+			                </div>
+			            </div>
+			            <button type="" class="btn tj">立即提交</button>
+			        </div>
+			    </div>
+
+        	</div>
+        </div>
+
+	</div>
+
+	<script src="http://www.zcq.test.91xiangju.com/js/jquery/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="http://www.zcq.test.91xiangju.com/js/swipe.sina.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script>
+		$(function(){
+			function swiper(id, dot) {
+	            Swipe(id, {
+	                startSlide: 0,
+	                speed: 400,
+	                auto: false,
+	                continuous: true,
+	                disableScroll: false,
+	                stopPropagation: false,
+	                callback(index) {
+	                    dot.find("span")
+	                        .removeClass("active")
+	                        .each(function(_index, elem) {
+	                            (_index === index) && $(elem).addClass("active")
+	                        })
+	                }
+	            });
+	        }
+        	swiper(document.getElementById("top-slider3"), $("#banner-dots3"));
+		});
+	</script>
+
+</body>
+</html>

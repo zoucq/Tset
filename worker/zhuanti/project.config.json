@@ -1,0 +1,26 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "wxd1d02854d181e9c9",
+	"projectname": "%E6%B1%9F%E6%B5%99%E6%B2%AA%E5%A5%BD%E7%9B%98%E7%B2%BE%E9%80%89",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

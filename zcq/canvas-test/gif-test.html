@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    
+    <div class="demo">
+        <div class="images">
+            <img class='original' src="http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E3JTJDMTM1ZDExNmYzYzc0ZTUmdz0zMDA-/img.jpg" alt="">
+            <img class='original' src="http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E4JTJDMTM1NDJkNTg5MGU1MGUmdz0zMDA-/img.jpg" alt="">
+            <img class='original' src="http://lxfm-file.malmam.com/sie/aD0zMDAmbT1RJnVybD1kZnMlM0E3JTJDMTMyZGRjNTE1OGE5Zjcmdz0zMDA-/img.jpg" alt="">
+            <img class="render">
+        </div>
+        <div class="controls">
+              <p class="info">
+                <pre>Loading...</pre>
+              </p>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.bootcss.com/gif.js/0.2.0/gif.js"></script>
+    <script>
+
+        // 问题
+        // 1：gif.js怎么使用，初始化，addFrame可以是img，canvas，ctx，finash-blob展示
+        // 2：worker必须在服务器上运行，本地不让运行线程好像
+        // 3：img imgData跨域取不到，需要加 img.crossOrigin = ''
+
+
+        var loadImage = function(src, callback) {
+            var img;
+            img = new Image();
+            img.crossOrigin = ''; 
+            img.onload = function() {
+                return callback(null, img);
+            };
+            img.onerror = function() {
+                return callback(new Error("Could load " + src));
+            };
+            return img.src = src;
+        };
+
+        var setupDemo = function() {
+          var delay, gif, images, logel, qslider, qvalue, ref3, renderimg, repeat, startTime;
+
+          renderimg = document.querySelector('img.render');
+
+          gif = new GIF({
+            debug: true,
+            quality: 10,
+            workerScript:'https://cdn.bootcss.com/gif.js/0.2.0/gif.worker.js'
+          });
+
+          startTime = null;
+
+          gif.on('start', function() {
+            return startTime = Date.now();
+          });
+
+          gif.on('finished', function(blob, data) {
+            var delta;
+            renderimg.src = URL.createObjectURL(blob);
+            // if (blobURLSupport) {
+            //   renderimg.src = URL.createObjectURL(blob);
+            // } else {
+            //   renderimg.src = buildDataURL(data);
+            // }
+            delta = Date.now() - startTime;
+          });
+
+          gif.on('progress', function(p) {
+            console.log(Math.round(p * 100) + "%");
+          });
+
+          images = [];
+          document.querySelectorAll('img.original').forEach(function(img) {
+            images.push(img.src);
+          });
+
+          count = 0;
+          images.map(function(v,i){
+            loadImage(v,function(empty, image){
+                count++;
+                images[i] = image;
+                    console.log(image,images)
+                if(count==images.length){
+                    var image, j, len;
+                    for (j = 0, len = images.length; j < len; j++) {
+                      image = images[j];
+                      console.log(image)
+                      gif.addFrame(image, {
+                        delay: 500,
+                        copy: true
+                      });
+                    }
+                    gif.render();
+                }
+            })
+          })
+        }
+
+
+        setupDemo()
+
+
+
+    </script>
+</body>
+</html>

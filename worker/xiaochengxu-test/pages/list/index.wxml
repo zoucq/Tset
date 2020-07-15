@@ -1,0 +1,191 @@
+
+
+<view class='container'>
+    <view class='from'>
+        <input type="text" placeholder='请输入关键词' class='txt' bindinput='handleInput' bindfocus='handleTrim' value="{{txt}}" />
+        <button class='btn'>搜索</button>
+    </view>
+    <view class='filter'>
+        <view class='item' bindtap='handContent' data-key="1">区域</view>
+        <view class='item' bindtap='handContent' data-key="2">价格</view>
+        <view class='item' bindtap='handContent' data-key="3">户型</view>
+        <view class='item' bindtap='handContent' data-key="4">更多</view>
+    </view>
+
+    <view class='filter-content' >
+        <view class='addr' wx:if="{{content==1}}" animation="{{animationData}}">
+            <view class='ad-boxs'>
+                <view class='left'>
+                    <view>区域</view> 
+                    <view class='{{filter==1?"active":""}}' bindtap='handleFilter' data-key="1">杭州</view>                    
+                    <view class='{{filter==2?"active":""}}' bindtap='handleFilter' data-key="2">海南</view>                    
+                </view>
+                <view class='right'>
+                    <view>不限</view> 
+                    <radio-group wx:if="{{filter==1}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            江干<radio value="1" checked='checked' />
+                        </label>
+                        <label class="radio" >
+                            江干<radio value="2" />
+                        </label>
+                        <label class="radio" >
+                            江干<radio value="3" />
+                        </label>   
+                    </radio-group>
+                    <radio-group wx:if="{{filter==2}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            海南<radio value="4" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="5" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="6" />
+                        </label>   
+                    </radio-group>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn'>确定</button>
+            </view>
+        </view> 
+        <view class='addr price' wx:if="{{content==2}}" animation="{{animationData}}">
+            <view class='ad-boxs'>
+                <view class='left'>
+                    <view>价格</view> 
+                    <view class='{{filter==1?"active":""}}' bindtap='handleFilter' data-key="1">杭州</view>                    
+                    <view class='{{filter==2?"active":""}}' bindtap='handleFilter' data-key="2">海南</view>                    
+                </view>
+                <view class='right'>
+                    <view>不限</view> 
+                    <radio-group wx:if="{{filter==1}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            江干<radio value="1" checked='checked' />
+                        </label>
+                        <label class="radio" >
+                            江干<radio value="2" />
+                        </label>
+                        <label class="radio" >
+                            江干<radio value="3" />
+                        </label>   
+                    </radio-group>
+                    <radio-group wx:if="{{filter==2}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            海南<radio value="4" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="5" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="6" />
+                        </label>   
+                    </radio-group>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn'>确定</button>
+            </view>
+        </view>
+        <view class='addr house-type' wx:if="{{content==3}}" animation="{{animationData}}">
+            <view class='ad-boxs'>     
+                <view class='right'>
+                    <view>不限</view> 
+                    <radio-group wx:if="{{filter==1}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            江干
+                            <radio value="1" checked='checked' />
+                        </label>
+                        <label class="radio" >
+                            江干
+                            <radio value="2" />
+                        </label>
+                        <label class="radio" >
+                            江干
+                            <radio value="3" />
+                        </label>   
+                    </radio-group>
+                    <radio-group wx:if="{{filter==2}}" class="radio-group" bindchange="radioChange">
+                        <label class="radio" >
+                            海南<radio value="4" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="5" />
+                        </label>
+                        <label class="radio" >
+                            海南<radio value="6" />
+                        </label>   
+                    </radio-group>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn'>确定</button>
+            </view>
+        </view>
+        <view class='addr more' wx:if="{{content==4}}" animation="{{animationData}}">
+            <view class='ad-boxs'>     
+                <view class='list'>
+                    <view class='title'>类型：</view>
+                    <view class='list-box'>
+                        <view>住宅</view>
+                        <view>别墅</view>
+                        <view>写字楼</view>
+                    </view>
+                </view>
+                <view class='list'>
+                    <view class='title'>面积：</view>
+                    <view class='list-box'>
+                        <view>50平以下</view>
+                        <view>50-80</view>
+                        <view>80-120</view>
+                        <view>120-150</view>
+                    </view>
+                </view>
+                <view class='list'>
+                    <view class='title'>装修情况：</view>
+                    <view class='list-box'>
+                        <view>毛坯</view>
+                        <view>简装</view>
+                        <view>精装</view>
+                    </view>
+                </view>
+            </view>
+            <view class='ad-btn'>
+                <button class='btn'>清空条件</button>
+                <button class='btn'>确定</button>
+            </view>
+        </view>
+
+    </view>
+
+    <!--wrapper  -->
+    <view class='wrapper'>
+        <view class='title'>共为您找到{{list.length}}个楼盘</view>
+        <scroll-view class="scroll-view_H" scroll-y style="height: {{boxHeight}}">
+        <view class='ul'>
+            <view class='li' wx:for="{{list}}" wx:key="list">
+                <view class='l-box'>
+                    <image src='{{item.url}}' />
+                </view>
+                <view class='r-box'>
+                    <view class='tit'>{{item.title}}</view>
+                    <text class='addr'>{{item.addr}}</text>
+                    <text class='price'>{{item.price}}</text>
+                    <view class='biaoqian'>
+                        <text wx:for="{{item.bq}}" wx:for-index="i" wx:for-item="v" wx:key="biaoqian">{{v}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        </scroll-view>
+    </view>
+
+    
+
+</view>
+
+<!-- <contact-button 
+  type="default-light" 
+  size="20"
+  session-from="weapp--zcq">
+</contact-button> -->

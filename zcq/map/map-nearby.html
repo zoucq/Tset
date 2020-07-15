@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		#allmap{width:100%;height:500px;}
+		p{margin-left:5px; font-size:14px;}
+      #results{width:100%;height:300px;overflow:auto;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0jFt2SXxVikl2ycnx9alQd0n3r3LDP9Z"></script>
+	<title>根据关键字本地搜索</title>
+</head>
+<body>
+	<div id="allmap"></div>
+  	<div id="results"></div>
+</body>
+</html>
+<script type="text/javascript">
+  	// 百度地图API功能
+  	var map = new BMap.Map("allmap");          
+  	    map.centerAndZoom(new BMap.Point(120.015053, 30.084941), 13);
+  	var local = new BMap.LocalSearch(map, {
+  		  renderOptions:{map: map,panel: "results",selectFirstResult: false,autoViewport: false}
+  	});
+  	var houseLocation = new BMap.Point(
+                    120.015053,30.084941
+                );
+  	var houseLabel = new BMap.Label('绿城富春玫瑰园', {
+                    offset: new BMap.Size(-60, -36)
+                });
+  	  	houseLabel.setStyle({
+                fontSize: "13px",
+                margin: "6px 0px 0px -22px",
+                padding: "4px 25px 5px 25px",
+                backgroundColor: "#39ac6a",
+                border: "2px solid #FFFFFF",
+                borderRadius: "10px",
+                position: "absolute",
+                left: "-90px"
+            });
+    var houseMarker = new BMap.Marker(houseLocation);
+    var houseSearch = new BMap.LocalSearch(map);
+  
+    houseMarker.setLabel(houseLabel);
+    map.addOverlay(houseMarker);
+    
+    houseSearch.search('绿城富春玫瑰园');
+    
+    local.searchNearby("公交",houseLocation, 5000);   
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+
+
+    <script>
+
+
+        var data = [
+            { name: '' },
+            { name: 2 }
+        ];
+
+        test(data);
+
+        function test(data){
+
+            var stop1 = objAttrNull(data,'name');
+
+            console.log(11111,stop1);
+
+            if(stop1) return ;
+
+            console.log(22222,stop1);
+
+        }
+
+        function objAttrNull(obj,attr){
+            var stop = false;
+            obj.forEach( function(element, index) {
+                if(!element[attr] || element[attr].length<=0){
+                    stop = true;
+                }
+            });
+            return stop;
+        };
+
+
+        function objAttrAllNull(obj){
+            var obj = Array.isArray(obj) ? [] : {};
+            console.log(obj);
+            var temp = false;
+            for(var key in obj){
+                if(typeof obj[key] == 'object'){
+                    objAttrAllNull(obj[key]);
+                }else{
+                    if(!ele || ele.length==0){
+                        temp = true;
+                    }
+                }
+            }
+            return temp;
+        }
+
+
+        var t3 = objAttrAllNull(data);
+
+        console.log('t3',t3);
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

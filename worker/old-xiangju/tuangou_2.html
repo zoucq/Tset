@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+
+		*{margin: 0;padding: 0;}
+    	ul,ol{list-style: none;}
+    	a,a:hover,a:focus{text-decoration: none;}
+    	.l{float: left;}
+    	.r{float: right;}
+    	.t_l{text-align: left;}
+    	.t_r{text-align: right;}
+
+    	body{
+            width: 100%;height: auto;overflow-x: hidden;
+            background: rgb(243,247,252);
+        }
+        .box{
+            width: 100%;height: auto;overflow-x: hidden;
+        }
+        .box .top{
+            width: 100%;height: 200px;
+            overflow: hidden;
+            background: #eee;
+            box-sizing: border-box;
+        }
+        .box .top img{
+            width: 100%;height: 100%;
+            border: 0;
+        }
+
+        .box .list,.box .list ul{
+            width: 100%;height: auto;
+        }
+        .box .list{
+            margin-bottom: 50px;
+        }
+        .box .list .item{
+            height: auto;
+            box-sizing: border-box;
+            overflow: hidden;
+            background: #fff;
+            border-bottom: 1px solid rgb(218,222,226);
+        }
+        .box .list .item a{
+            display: block;
+            width: 100%;
+            height: 100%;           
+        }
+        .box .list .item h2{
+            color: #333;font-size: 14px;
+            height: 49px;line-height: 49px;
+            overflow: hidden;text-overflow: ellipsis;
+            white-space: nowrap;
+            background: #f8f7fc;
+            padding: 0px 10px;
+        }
+        .box .list .item h2 .title{
+            display:inline-block;
+            /*width:60%;overflow: hidden;text-overflow: ellipsis;
+            white-space: nowrap;*/
+        }
+        .box .list .item h2 img{
+            width: 23px;
+            height: 8px;
+            vertical-align: middle;
+            margin-top: -4px;
+            margin-left: 4px;
+        }
+        .box .list .item .title:last-child img{
+            display: none;
+        }
+        .box .list .item h2 .col_1{
+            color: rgb(102,102,102);
+        }
+
+        .box .list .item .item_down{
+            padding: 0 10px;
+            height: 158px;
+            position: relative;
+        }
+        .box .list .item .item_down .user_total{
+            position: absolute;
+            right: 0;
+            top: 15px;
+            width: 90px;height: 35px;line-height: 35px;text-align: center;
+            color: #fff;background: #e62635;font-size: 14px;
+            border-bottom-left-radius: 18px;
+            border-top-left-radius: 18px;
+        }
+        .box .list .item .item_down p{
+            padding-top: 14px;color: #333;font-size: 16px;
+        }
+        .box .list .item .item_p1 b{
+            color: rgb(243,152,0);font-weight: 400;
+        }
+        .box .list .item .item_down .item_p3{
+            font-size:14px;font-weight: bold;color: #333;
+        }   
+        .box .list .item .biaoqian{
+            margin-top: 14px;
+            box-sizing: border-box;
+        }
+        .box .list .item .biaoqian button{
+            border: 0;
+            border: 1px solid #488ec8;
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            width: 54px;
+            color: #488ec8;
+            box-sizing: border-box;
+            background: #fff;
+            margin-right: 10px;
+            font-size: 12px;
+            white-space: nowrap;
+            float: left;
+            border-radius: 3px;
+        }
+
+
+        /*描述区域*/
+        .box .list .desc{
+            width: 100%;height: auto;
+            background: #fff;
+        }
+        
+
+        .box .list .desc .desc_tabs{
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            box-sizing: border-box;
+            background: #fff;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            border-bottom: 1px solid rgb(218,222,226);
+        }
+        .box .list .desc .desc_tabs li{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            text-align: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: relative;
+        }
+        .box .list .desc .desc_tabs a{
+            width: 100%;
+            font-size: 17px;
+            color: #333333;
+            text-decoration: none;
+        }
+        .box .list .desc .desc_tabs .tab::after{
+            content: "";
+            width: 1px;
+            height: 24px;
+            background: rgb(229,229,229);
+            position: absolute;
+            right: 0;
+        }
+        .box .list .desc .desc_tabs .tab:last-child::after{
+            display: none;
+        }
+
+        .box .list .desc .desc_tabs .active a{
+            color: #f39800;
+        }
+        .box .list .desc .desc_tabs .active::before{
+            content: "";
+            width: 18px;
+            height: 3px;
+            border-radius: 2px;
+            background-color: #f39800;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            margin-left: -9px;
+        }
+
+        .box .list .desc .desc_boxs{
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+        .box .list .desc .desc_boxs>div{
+            height: auto;
+            display: none;
+        }
+
+        .box .list .desc .desc_boxs .active{
+            display: block;
+        }
+        .box .list .desc .desc_boxs .item_box{
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        .box .list .desc .desc_boxs .item_box .pos{
+            position: absolute;
+            left: 6px;top: 102px;
+        }
+        .box .list .desc .desc_boxs .item_box .pos img{
+            width: 12px;height: 15px;
+            float: left;padding-top: 2px;
+            margin-right: 5px;
+        }
+        .box .list .desc .desc_boxs .item_box .pos span{
+            float: left;font-size: 15px;color: #999;
+        }
+        .box .list .desc .desc_boxs .item_box .dian_up{
+            position: absolute;
+            left: 29px;top: 0px;
+            height: 102px;width: 4px;
+            background: url(img/dian.png) repeat-y 0px 0px;
+            background-size: 4px 8px;
+        }
+        
+
+        .box .list .desc .desc_boxs .item_box .title{
+            text-align: center;
+            height: 88px;
+            position: relative;
+        }
+        .box .list .desc .desc_boxs .item_box .title h3{
+            font-size: 18px;color: #666;
+            position: absolute;
+            left: 50%;margin-left: -27px;
+            top: 50%;margin-top: -12px;
+
+        }
+        .box .list .desc .desc_boxs .item_box .title span{
+            font-size: 65px;color: #f3f7fc;
+        }
+
+        .box .list .desc .desc_boxs .item_box .content{
+            height: auto;
+            padding-left: 61px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .box .list .desc .desc_boxs .item_box .content .dian_down{
+            position: absolute;
+            left: 29px;top: 36px;
+            width: 4px;height: 100%;
+            background: url(img/dian.png) repeat-y 0px 22px;
+            background-size: 4px 8px;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list{
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 15px;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-img{
+            height: 102px;
+            width: 130px;
+            float: left;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-img img{
+            width: 100%;height: 100%;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item{
+            float: left;
+            margin-left: 10px;
+            width: 45%;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item .name{
+            font-size: 17px;color: #333;font-weight: bold;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item .item_p1{
+            font-size: 16px;color: #333;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item .item_p1 b{
+            font-size: 16px;color: rgb(243,152,0);font-weight: 400;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item .biaoqian{
+            margin-top:10px;
+        }
+        .box .list .desc .desc_boxs .item_box .content .c_list .l-item .biaoqian span{
+            width:auto;
+            padding:0 3px;
+            height：20px;
+            display: inline-block;
+            border:1px solid #e60012;
+            margin-right:9px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            font-size:12px;
+            color: #e81122;
+            float: left;
+            margin-bottom:4px;
+        }
+
+
+
+        /*底部固定*/
+    	.box .bottom{
+    		position: fixed;
+    		bottom: 0;left: 0;
+    		width: 100%;
+    		height:50px;
+    		line-height: 50px;
+    		background: #fff;
+    		box-sizing: border-box;
+    	}
+    	.box .bottom .b_left{
+    		width: 50%;
+		    height: 100%;
+		    text-align: center;
+		    float: left;
+    	}
+    	.box .bottom .b_right{
+    		width: 50%;
+		    height: 100%;
+		    text-align: center;
+		    float: right;
+		    background: rgb(202,0,26);
+    	}
+    	.box .bottom .b_left a{
+            display: inline-block;
+            width: 100%;height: 100%;
+    		color: #fff;
+            background: #e62635;
+            font-size: 18px;
+    	}
+    	.box .bottom .b_right a{
+    		display: inline-block;
+    		width: 100%;height: 100%;
+    		background: #f39800;
+    		color: #fff;
+            font-size: 18px;
+    	}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		
+		<div class="top">
+            <img src="img/banner.png"/>
+        </div>
+
+		<div class="list">
+			<ul>
+				<li class="item">
+                    <a href="javascript:;">
+                        <h2>
+                            <div class="title">         
+                                <span>海口<img src="img/arrow_right.png"/><span>
+                                <span>兰昌<img src="img/arrow_right.png"/><span>
+                                <span>陵水<img src="img/arrow_right.png"/><span>
+                                <span>三亚<span>
+                            </div>
+                            <span class="col_1">(投资度假主题看房团)</span>
+                        </h2>
+                        <div class="item_down">
+                            <p class="t_l item_p1">
+                                均价：<b>1300元/㎡</b>
+                            </p>
+                            <p class="t_l item_p2">
+                                活动时间：11月20号-12月20号
+                            </p>
+                            <p class="t_l item_p3">
+                                全程16个楼盘
+                            </p>
+                            <div class="user_total">3人已报名</div>
+                            <div class="biaoqian">
+                                <button>海景</button>
+                                <button>环境优美</button>
+                                <button>体量大</button>
+                                <button>升值空间</button>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+			</ul>
+            <div class="desc">
+                <ul class="desc_tabs">
+                    <li class="tab active"><a href="javascript:;">行程</a></li>
+                    <li class="tab"><a href="javascript:;">路线</a></li>
+                    <li class="tab"><a href="javascript:;">说明</a></li>
+                </ul>
+                <div class="desc_boxs">
+                    <div class="bx active">
+                        <div class="item_box">
+                            <div class="title">
+                                <h3>第一天</h3>
+                                <span>D1</span>
+                            </div>
+                            <div class="content">
+                                <div class="dian_down"></div>
+                                <div class="c_list">
+                                    <div class="l-img">
+                                        <img src="img/pic1.png" />
+                                    </div>
+                                    <div class="l-item">
+                                        <div class="name">鲁能三海天</div>
+                                        <p class="t_l item_p1">
+                                            均价：<b>1300元/㎡</b>
+                                        </p>
+                                         <div class="biaoqian">
+                                            <span>绿城品质</span>
+                                            <span>中式院墅</span>
+                                            <span>不限购</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c_list">
+                                    <div class="l-img">
+                                        <img src="img/pic1.png" />
+                                    </div>
+                                    <div class="l-item">
+                                        <div class="name">鲁能三海天</div>
+                                        <p class="t_l item_p1">
+                                            均价：<b>1300元/㎡</b>
+                                        </p>
+                                         <div class="biaoqian">
+                                            <span>绿城品质</span>
+                                            <span>中式院墅</span>
+                                            <span>不限购</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="dian_up"></div>
+                            <div class="pos">
+                                <img src="img/pos.png" />
+                                <span>文昌</span>
+                            </div>
+                        </div>
+
+                        <div class="item_box">
+                            <div class="title">
+                                <h3>第一天</h3>
+                                <span>D2</span>
+                            </div>
+                            <div class="content">
+                                <div class="dian_down"></div>
+                                <div class="c_list">
+                                    <div class="l-img">
+                                        <img src="img/pic1.png" />
+                                    </div>
+                                    <div class="l-item">
+                                        <div class="name">鲁能三海天</div>
+                                        <p class="t_l item_p1">
+                                            均价：<b>1300元/㎡</b>
+                                        </p>
+                                         <div class="biaoqian">
+                                            <span>绿城品质</span>
+                                            <span>中式院墅</span>
+                                            <span>不限购</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c_list">
+                                    <div class="l-img">
+                                        <img src="img/pic1.png" />
+                                    </div>
+                                    <div class="l-item">
+                                        <div class="name">鲁能三海天</div>
+                                        <p class="t_l item_p1">
+                                            均价：<b>1300元/㎡</b>
+                                        </p>
+                                         <div class="biaoqian">
+                                            <span>绿城品质</span>
+                                            <span>中式院墅</span>
+                                            <span>不限购</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="dian_up"></div>
+                            <div class="pos">
+                                <img src="img/pos.png" />
+                                <span>海口</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="bx">路线</div>
+                    <div class="bx">说明</div>
+                </div>
+            </div>
+		</div>
+
+		<div class="bottom">
+			<div class="b_left">
+				<a href="javascript:;" >报名团购</a>
+			</div>
+			<div class="b_right">
+				<a href="javascript:;" >免费电话咨询</a>
+			</div>
+		</div>
+
+	</div>
+
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+
+    <script>
+        
+        $(function(){
+            $('.desc_tabs li').on('click',function(){
+                var index=$(this).index();
+                $(this).addClass('active').siblings('li').removeClass('active');
+                $('.desc_boxs .bx').eq(index).show().siblings('div').hide();
+            })
+        })
+
+    </script>
+
+	
+</body>
+</html>

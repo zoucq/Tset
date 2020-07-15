@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+	</head>
+	<body>
+
+		<div class="slider-left" >
+            <div class="s-title">
+                <span>客户管理后台</span>
+                <img src="/images/admin/new-add/menu.png" alt="" class="menu">
+            </div>
+            <div class="s-nav">
+                <ul>
+                    <li class="active">
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/nav_icon1.png" alt=""><span>销售管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/nav_icon2.png" alt=""><span>客户管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/icon_house.png" alt=""><span>房源管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/nav_icon4.png" alt=""><span>推广管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/icon_news.png" alt=""><span>新闻管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/icon_activity.png" alt=""><span>活动管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" >
+                            <img src="/images/admin/new-add/icon_other.png" alt=""><span>其他</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+        	
+        	//  侧边栏导航
+            $('.menu').on('click',function(){
+                $('.slider-left').hide();
+                $('.content ').css({'padding-left':0});
+                $('.menu-btn').show();
+            });
+            $('.menu-btn').on('click',function(){
+                $('.slider-left').show();
+                $('.content ').css({'padding-left':240});
+                $('.menu-btn').hide();
+            });
+            $('.s-nav li').on('click',function(e){
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+
+        </script>
+
+
+		
+	</body>
+	</html>	

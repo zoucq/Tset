@@ -1,0 +1,19 @@
+
+<template name="list">
+    <view class='ul'>
+        <view class='li' wx:for="{{list}}" wx:key="list">
+            <view class='l-box'>
+                <image src='{{item.url}}' />
+            </view>
+            <view class='r-box'>
+                <view class='tit'>{{item.title}}</view>
+                <text class='addr'>{{item.addr}}</text>
+                <text class='price'>{{item.price}}</text>
+                <view class='biaoqian'>
+                    <text wx:for="{{item.bq}}" wx:for-index="i" wx:for-item="v" wx:key="biaoqian">{{v}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+

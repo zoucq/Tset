@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="">
+		<style type="text/css" media="screen">
+			*{margin:0;padding: 0;}
+
+			.icon-box{
+				display: inline-block;
+				width: 40px;height: 40px;
+				border-radius: 50%;
+				overflow: hidden;
+				position: relative;
+				background: #32ac86;
+
+				margin: 100px;
+			}
+			.icon-box span{
+				position: absolute;
+				left: 0;top: 0;
+				width: 100%;height: 100%;
+				border-radius: 50%;
+				background: url(https://ssl.malmam.com/xiangju-static/dfs/6/31004126f0cc99/icon_upload.png) no-repeat center center;
+				background-size: 30px 20px;
+			}
+			.icon-box i::after,
+			.icon-box i::before{
+				position: absolute;
+				left:0;top: 0;
+				content: "";
+				width: 100%;height: 100%;
+				border-radius: 50%;
+				transform: scale(0);
+			}
+			.icon-box i::before{
+				background: #41d0b0;
+				transition: all 0.2s ease-in;
+			}
+
+			.icon-box:hover i::before{
+				transform: scale(1);
+			}
+
+
+		</style>
+	</head>
+	<body>
+
+		<a class="icon-box">
+			<i></i>
+			<span></span>
+		</a>
+		
+	</body>
+	</html>	

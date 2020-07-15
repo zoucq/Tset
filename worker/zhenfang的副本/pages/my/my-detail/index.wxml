@@ -1,0 +1,47 @@
+<view class='container' >
+    <loading wx:if="{{load}}">加载中</loading> 
+
+    <!--wrapper  -->
+    <view class='wrapper'>
+        <!-- <scroll-view wx:if='list.length>0' class="scroll-view_H" scroll-y style="height: {{boxHeight}}"> -->
+        <view class='ul' wx:if='list.length>0'>
+            <block wx:for="{{list}}" wx:key="list">
+            <view class='title'>
+                <view class='date'>{{item.mtime[0]}}</view>
+                <view class='date'>{{item.mtime[1]}}</view>
+                <!-- <view class='types'>{{types}}</view> -->
+            </view>
+            <view class='li' bindtap='handleGo'  
+                data-go='../../rooms/room-detail/index?id={{item.house.Id}}'  data-id="{{item.house.Id}}">
+                <view class='l-box'>
+                    <image src='{{item.house.Photo?item.house.Photo:"http://lxfm-file.malmam.com/dfs/9/321f3c010c44d1/B2E28BB5C1CFE916C0A7B1B2A6CAD09B.png"}}' />
+                </view>
+                <view class='r-box'>
+                    <view class='tit'>
+                        <text wx:if="{{item.house.Status!=0}}">{{item.house.Status}}</text>
+                        <text>{{item.house.Name}}</text>
+                    </view>           
+                    <text class='addr'>{{item.house.Address}}</text>
+                    <text class='price' wx:if="{{item.house.Price!=0}}">均价：{{item.house.Price}}{{item.house.PriceUnit}}</text>
+                    <text class='price' wx:else>价格待定</text>  
+                    <view class='biaoqian'>
+                        <text wx:if="{{item.house.RenovationStatus!=0}}">{{item.house.RenovationStatus}}</text>
+                        <text wx:if="{{item.house.PropertyType!=0}}">{{item.house.PropertyType}}</text>
+                        <text wx:if="{{item.house.ArchitecturalType!=0}}">{{item.house.ArchitecturalType}}</text>
+                    </view>     
+                </view>
+            </view>
+            </block>
+            <view wx:if="{{noMore}}" class='noMore'>
+                无更多数据~~
+            </view>
+        </view>
+        <!-- </scroll-view> -->
+        <view wx:else class='noList'>
+            暂无数据
+        </view>
+
+    </view>
+    
+
+</view>

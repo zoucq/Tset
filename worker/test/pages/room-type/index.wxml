@@ -1,0 +1,171 @@
+<view class='container'>
+
+    <view class='top' wx:if="{{false}}">
+        户型详情（{{current+1}}/{{house.rooms.rooms.length}}）
+    </view>
+    
+    <view class='slider'>
+        <swiper 
+            current="{{current}}" bindchange="_slider" circular="{{circular}}"
+            indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 
+            interval="{{interval}}" duration="{{duration}}" >
+            <block wx:for="{{imgs}}" wx:key="{{index}}">
+                <swiper-item>
+                    <image src="{{item}}" mode="aspectFit" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class='place'></view>
+
+    <view class='content'>
+        <view class='list'>
+        <!-- house.rooms.rooms[current] -->
+            <view class='item'>
+                <view class='title'>{{house.rooms.rooms[current].title}}</view>
+                <view class='label'>
+                    <view>价格</view>
+                    <view class='value'>约{{house.rooms.rooms[current].total_price}}万元/套</view>
+                </view>
+                <view class='label'>
+                    <view>面积</view>
+                    <view class='value'>{{house.rooms.rooms[current].area}}㎡</view>
+                </view>
+                <view class='label'>
+                    <view>户型</view>
+                    <view class='value'>{{house.rooms.rooms[current].habitable}}</view>
+                </view>
+                <view class='label'>
+                    <view>更新时间</view>
+                    <view class='value'>{{house.rooms.rooms[current].update_time}}</view>
+                </view>
+            </view>
+        </view>
+    
+    </view>
+
+
+    <view class='nav'>
+        <view class='n-left' bindtap='_call' data-phone="13674256451">
+              电话咨询
+        </view>
+        <view class='n-right' catchtap='_showDialog' data-type="2">
+            预约看房
+        </view>
+    </view>
+
+    <block wx:if="{{plan_type==1}}">
+        <view class='hongbao'>
+            <view class='con'>
+                <view class='text' wx:if="{{can_take_count==0?false:true}}">{{can_take_count}}</view>
+                <image src='../../image/icon_hongbao3.png'></image>
+                <button open-type="getUserInfo" class='share' bindgetuserinfo="_userInfo"></button>
+            </view>
+        </view>
+    </block>
+    <view wx:else class='hongbao' hidden="{{scroll}}">
+        <view class='con'>
+            <image src='../../image/icon_hongbao3.png' bindtap='_Bhongbao'></image>
+        </view>
+    </view> 
+    
+
+</view>
+
+
+<view class='dialog' hidden="{{dialogShow}}" bindtap='_closeDialog'>
+    <view class='dialog-content' catchtap='_place'>
+        <view class='dialog-header'>
+            <view class='title'>{{dialogCurrent==0?'询底价':(dialogCurrent==1?'订阅通知':'预约看房')}}</view>
+            <view class='close' catchtap="_closeDialog">× </view>
+        </view>
+        <view class='good' wx:if="{{dialogCurrent==2?true:false}}">
+            <view class='good1'>10万认筹优先选房</view>
+            <view class='good2'>(仅限网上报名客户专享)</view>
+        </view>
+        <view class='dialog-body' >
+            <view class='form-wrap' wx:if="{{dialogCurrent!=1?true:false}}">
+                <view>姓名</view>
+                <input type="text" placeholder='请输入姓名' cursor-spacing="100"                             adjust-position="true" bindinput="_inputName" />
+            </view>
+            <view class='form-wrap'>
+                <view>手机</view>
+                <input type="text" placeholder='请输入电话' maxlength="11"                                 cursor-spacing="100" adjust-position="true" bindinput='_inputPhone'/>
+            </view>
+
+            <!-- <block wx:if="{{plan_type==1}}">
+                <view class='form-wrap bar' 
+                    bindtap='_handleGO' data-go='../my-redpacket/index'>
+                    <view>购房红包：<text class='color'>{{house.hpjx_red_packet_money}}元</text></view>
+                    <view><text class='b-more'>领取更多</text><image src='http://www.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png'></image></view>
+                </view>
+            </block>
+
+            <view class='form-wrap bar' wx:else
+                bindtap='_Bhongbao' >
+                <view>购房红包：<text class='color'>5000元</text></view>
+                <view><text class='b-more'>领取更多</text><image src='http://www.91xiangju.com/images/xiangju/commodity-house/xiangqing_more@2x.png'></image></view>
+            </view> -->
+
+        </view>
+        <view class='dialog-footer'>
+            <button catchtap='_submit'>确定</button>
+        </view>
+    </view>
+</view>
+
+
+<!-- 预约返回  -->
+<view class='dialog dialog-back' hidden="{{dialogShow3}}" bindtap='_closeDialog2'>
+    <view class='dialog-content' catchtap='_place'>
+        <view class='dialog-body' >
+            <view class='form-wrap' >
+                <image src="http://www.91xiangju.com/images/xiangju/icon_check.png"></image>
+            </view>
+            <view class='form-wrap text' >
+                <text>提交成功</text>
+            </view>
+            <view class='form-wrap back' >
+                <text>{{backText}}</text>
+            </view>
+        </view>
+        <view class='dialog-footer'>
+            <button catchtap='_closeDialog3' data-type='dialogShow3'>知道了</button>
+        </view>
+    </view>
+</view>
+
+
+
+<block wx:if="{{plan_type==1}}">
+    <view class='modal' hidden="{{dialogShow2}}" 
+        bindtap='_closeDialog2' data-type='dialogShow2'>
+        <view class='content' catchtap='_place'>
+            <view class='close' 
+                catchtap='_closeDialog2' data-type='dialogShow2'></view>
+            <view wx:if="{{open}}" class='btn {{ani?"animate":""}}'  
+                bindtap='_handleGO' data-go="../my-redpacket/index">
+                <image src='../../image/btn.png' />
+            </view> 
+            <image class='opens' catchtap='_open' src='{{open?"../../image/success_hongbao2.png":"../../image/hongbao_big2.png"}}'  ></image>
+        </view>
+    </view>
+</block>
+<view class='modal' hidden="{{dialogShow2}}" wx:else
+    bindtap='_closeDialog2' data-type='dialogShow2'>
+    <view class='content' catchtap='_place'>
+        <view class='close' id='b-close'
+            catchtap='_closeDialog2' data-type='dialogShow2'></view>
+        <block wx:if="{{!open}}">
+            <button open-type='share' class='btn' id='b-btn' >
+                <image src="../../image/b/b-big-btn.png" />
+            </button> 
+        </block>
+        <button class='btn' wx:else
+            bindtap='_goKanfang' data-go="/pages/kanfang/index">
+            <image src='../../image/b/b-open-btn.png' />
+        </button> 
+        <image class='opens' id='{{open?"b-open":""}}' src='{{!open?"../../image/b/b-big.png":"../../image/b/b-open.png"}}'  ></image>
+    </view>
+</view>

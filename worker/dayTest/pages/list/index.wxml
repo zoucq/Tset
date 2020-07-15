@@ -1,0 +1,24 @@
+
+<view class='main'>
+
+    <view class='list'>
+    
+        <view class='item' wx:for='{{dataObj.list}}' wx:key='{{index}}'>
+            <image class='pic' mode='widthFix' 
+                src='https://ssl.malmam.com/xiangju-static/dfs/20/5df20d0026ba94/wyh.jpeg'></image>
+            <view class='desc'>
+                js:Promise的简单理解;
+                Canvas小球自由落体效果;
+                前端面试之简历篇;
+                做人，不要自作多情，生活中真的没有人在乎你;
+            </view>
+        </view>
+
+        <button class='default_btn tips'
+            wx:if='{{pageData.bottomTip}}'
+            loading='{{pageData.loading}}'
+            hover-class="none"> {{pageData.text}} </button>
+    
+    </view>
+
+</view>

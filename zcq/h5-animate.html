@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding: 0}
+
+
+		.container {
+		  width: 200px;
+		  margin: 0 auto;
+		}
+		.aninode {
+		  visibility: hidden;
+		}
+		.animated .aninode {
+		  visibility: visible;
+		}
+		.targets {
+		  margin: 20px 0;
+		}
+		.targets .item {
+		    border: 1px solid #ccc;
+		    margin: 10px 0;
+		    line-height: 2;
+		    padding: 2px 6px;
+		    border-radius: 4px;
+		    text-align: center;
+		}
+		.animated .topIn {
+		  animation: topIn 1s ease;
+		}
+		.animated .leftIn {
+		  animation-name: leftIn;
+		  animation-duration: 1s;
+		}
+		.btn {
+		  width: 100px;
+		  height: 30px;
+		  border: 1px solid #ccc;
+		  outline: none;
+		  transition: 0.1s;
+		}
+		.btn:active {
+		  border: none;
+		  background: orange;
+		  color: #fff;
+		}
+		@keyframes topIn {
+		  from { transform: translateY(-50px) }
+		  to { transform: translateY(0px) }
+		}
+		@keyframes leftIn {
+		  from { 
+		    transform: translateX(-50px);
+		    opacity: 0; 
+		  }
+		  to { 
+		    transform: translateX(0px);
+		    opacity: 1; 
+		  }
+		}
+		.delay200 {
+		    animation-delay: 200ms;
+		    animation-fill-mode: backwards!important;
+		}
+		.delay400 {
+		    animation-delay: 400ms;
+		    animation-fill-mode: backwards!important;
+		}
+		.delay600 {
+		    animation-delay: 600ms;
+		    animation-fill-mode: backwards!important;
+		}
+		.delay800 {
+		    animation-delay: 800ms;
+		    animation-fill-mode: backwards!important;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="targets aninode">
+			<div class="item topIn">DIV</div>
+			<div class="item leftIn delay200">MARGIN</div>
+			<div class="item leftIn delay400">PADDING</div>
+			<div class="item leftIn delay600">BORDER</div>
+			<div class="item leftIn delay800">CONTENT</div>
+	  	</div>
+  		<button class="btn show">show</button>
+  		<button class="btn hide">hide</button>
+	</div>
+
+	<script>
+		
+		var show = document.querySelector('.show');
+		var hide = document.querySelector('.hide');
+		var container = document.querySelector('.container');
+		show.addEventListener('click', function() {
+		  container.classList.add('animated');
+		}, !1);
+		hide.addEventListener('click', function() {
+		  container.classList.remove('animated');
+		}, !1);
+
+
+	</script>
+	
+</body>
+</html>

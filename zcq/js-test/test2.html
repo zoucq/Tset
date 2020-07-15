@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/iNotify/1.1.0/iNotify.min.js"></script>
+    <script type="text/javascript">
+        var iN = new iNotify({
+            effect: 'flash',
+            interval: 500,
+            message:"有消息拉!",
+            notification:{
+                title:"通知！",
+                icon:"http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/footer_bg.png",
+                body:''
+            }
+        });
+        iN.notify({
+            title:"通知",
+            body:'您有一条新通知！'
+        });
+    </script>
+
+    <script src="https://pushjs.org/scripts/push.min.js"></script>
+    <script>
+
+        // PushTongzhi();
+
+        // 浏览器通知
+        function PushTongzhi() {
+            console.log(Push);
+           // Push.Permission.request();
+            Push.create("Hello world!", {
+                body: "测试下",
+                // icon: 'http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/footer_bg.png',
+                timeout: 4000
+            });
+        };
+
+        // demo();
+
+        function demo() {
+            Push.create('通知', {
+                body: '您有一条新通知！',
+                icon: 'http://www.zcq.test.91xiangju.com/images/xiangju/commodity-house/footer_bg.png',
+                link: '/#',
+                timeout: 4000,
+                onClick: function () {
+                    console.log("Fired!");
+                    window.focus();
+                    this.close();
+                },
+                vibrate: [200, 200, 200]
+            });
+        }
+
+    </script>
+    
+</body>
+</html>

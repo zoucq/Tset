@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin: 0;padding: 0;}
+
+		.box{
+			display: table-cell;
+			vertical-align: middle;
+    		width: 200px;
+    		height: 200px;
+    		text-align: center;
+    		border: 1px solid #F00;
+		}
+
+		.box2{
+			display: table-cell;
+			vertical-align: middle;
+    		width: 200px;
+    		height: 200px;
+    		text-align: center;
+    		border: 1px solid #F00;   		
+		}
+		.box2 span{
+			display: block;
+		}
+
+		.box3{
+			display: table-cell;
+			vertical-align: middle;
+    		width: 200px;
+    		height: 200px;
+    		text-align: center;
+    		border: 1px solid #F00;   		
+		}
+
+		.wrapper div{
+			border: 1px solid #F00; 
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div class="box">
+		<p>123</p>
+		<p>aaaaa</p>
+	</div>
+
+	<div class="box2">
+		<span>123</span>
+		<span>aaaaa</span>
+	</div>
+
+	<div class="box3">
+		123<br>
+		aaaaa
+	</div>
+
+	<div class="box3 wrapper" id="wrap">
+		
+	</div>
+
+	<script src="js/public.js"></script>
+	<script>
+		console.log($cq);
+
+		var str='';
+		var a=[]
+		for(let i=0;i<10;i++){
+			str+='<div onclick="a['+i+']()">'+i+'</div>';
+			a[i] = function () {
+		        console.log(i);
+		    }
+		}
+		document.getElementById('wrap').innerHTML=str;
+
+
+	</script>
+</body>
+</html>

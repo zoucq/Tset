@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <div class='box'>
+        <h1>111</h1>
+        <h2>222</h2>
+        <p>skdjaksdajkdakdkadkadsjadkad</p>
+        <h2>333</h2>
+        <p>skdjaksdajkdakdkadkadsjadkad</p>
+    </div>
+
+    <script>
+        
+
+    var ele = document.querySelector('.box');
+    console.log(ele);
+    console.log(ele.childNodes);
+    // console.log(ele.childNodes[0]);
+
+    var sel = eleChildIsTitle(ele);
+
+    console.log(sel);
+
+    function eleChildIsTitle(ele){
+        ele = ele.childNodes || [];
+        var titleArr = ['H1','H2','H3','H4','H5','H6'];
+        var arr = [];
+        for(var i=0;i<ele.length;i++){
+            titleArr.map((v,ii)=>{
+                // console.log(v,i);
+                console.log(ele[i],ele[i].nodeName);
+                if(ele[i].nodeName==v){
+                    // arr.push(ele[i]);
+                    arr.push({
+                        nodeName:ele[i].nodeName,
+                        nodeType:ele[i].nodeType,
+                        nodeValue:ele[i].nodeValue,
+                        childNodes:ele[i].childNodes,
+                        textContent:ele[i].textContent,
+                        tagName:ele[i].tagName
+
+                    });
+                }
+            });
+        }
+            
+        return arr;
+    }
+
+
+    </script>
+    
+</body>
+</html>

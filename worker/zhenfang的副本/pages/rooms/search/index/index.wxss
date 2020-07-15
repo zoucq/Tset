@@ -1,0 +1,316 @@
+page{
+    background: #fff;
+    border-top: 1px solid #E4E7F0;
+}
+
+.search{
+    display: flex;
+    flex-direction: column;
+    width: 100%;height: 100%;
+    position: relative;
+    background: #fff;
+}
+.search .from{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 136rpx;
+    width: 100%;
+    padding: 28rpx 0rpx 28rpx 30rpx;
+    background: #fff;
+    position: relative;
+}
+.search .from .icon-sousuo{
+    position: absolute;
+    left:58rpx;
+    display: flex;
+    align-items: center;
+    color: #b5b5c6;
+}
+.search .from .txt{
+    width: 78%;
+    height:72rpx;
+    border-radius: 32rpx;
+    background: #F1F2F7;
+    font-size: 28rpx;
+    padding-left:28rpx;
+    color: #3B3A4A;
+}
+.search .from .btn{
+    width: 20%;
+    color: #3B55E7;
+    font-size: 32rpx;
+    background: #fff;
+}
+.search .from .btn::after{
+    border: 0;
+}
+
+.search .bg-line{
+    display: flex;
+    width: 100%;height: 8rpx;
+    background: #f1f2f7;
+}
+
+
+
+.search .history{
+    display: flex;
+    flex-direction: column;
+}
+.search .history .title{
+    display: flex;
+    width: 100%;
+    padding: 40rpx;
+    font-size: 28rpx;
+    color: #3B3A4A;
+}
+.search .history .list{
+    display: flex;
+    padding:0 40rpx;
+}
+.search .history .list view{
+    display: flex;
+    justify-content: center;align-items: center;
+    width: 192rpx;height: 64rpx;
+    border: 1px solid #E7E7E7;
+    border-radius: 34rpx;
+    margin-right: 24rpx;
+    font-size: 24rpx;
+    color: #828393;
+}
+
+
+.search .alert{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 100%;height: 100%;
+    min-height: 750rpx;
+    position: absolute;
+    top: 144rpx;left: 0;
+    z-index: 9999;
+    padding: 0 40rpx;
+}
+.search .alert view{
+    display: flex;
+    background: #fff;
+    color: #BBBCCD;
+    padding: 20rpx 0rpx;
+    font-size: 28rpx;
+    border-bottom: 1px solid rgba(228,231,240,0.5);
+}
+.search .alert view rich-text{
+    color: #BBBCCD;
+}
+
+
+
+
+.container .filter{
+    display: flex;
+    padding: 20rpx 20rpx;
+    font-size: 28rpx;
+}
+.container .filter .item{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.container .filter .item:after{
+    content: '';
+    width: 0;height: 0;
+    position: absolute;
+    top: 0;margin-top: 14rpx;
+    margin-left: 10rpx;
+    border: 12rpx solid transparent;
+    border-top-color:#999; 
+}
+
+.filter-content{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20rpx;
+    width: 100%;
+    position: absolute;
+    top:160rpx; 
+    z-index: 9999;
+    background: #fff;
+}
+.filter-content .addr{
+    display: flex;
+    flex-direction: column;
+}
+.filter-content .addr .ad-boxs{
+    display: flex;
+}
+.filter-content .addr .ad-boxs > view{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.filter-content .addr .ad-boxs .left view{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-right: 0;
+    font-size: 28rpx;
+    padding: 10rpx 0;
+    margin-bottom: -1px;
+}
+.filter-content .addr .ad-boxs .left .active{
+    background: #eee;
+}
+
+
+.filter-content .addr .ad-boxs .right .radio,
+.filter-content .addr .ad-boxs .right view{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 28rpx;
+    padding: 10rpx 0;
+    margin-bottom: -1px;
+    box-sizing: border-box;
+}
+.filter-content .addr .ad-boxs .right .radio-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.filter-content .addr .ad-boxs .right .radio-group radio{
+    padding-left: 20rpx;
+}
+
+
+
+.filter-content .addr .ad-btn{
+    display: flex;
+    justify-content:flex-end;
+    width: 100%;
+    padding: 40rpx 0;
+}
+.filter-content .addr .ad-btn .btn{
+    display: flex;
+    margin: 0;
+    font-size: 30rpx;
+}
+
+
+.filter-content .house-type{
+    margin-top: 20rpx;
+}
+.filter-content .house-type .ad-boxs .right view,
+.filter-content .house-type .ad-boxs .right .radio
+{
+    border: 0;
+    justify-content: flex-start;
+    padding-left: 70rpx;
+}
+.filter-content .house-type .ad-boxs .right .radio-group label{
+    justify-content: space-between;
+    padding-left: 70rpx;
+}
+
+
+.filter-content .more .ad-boxs{
+    flex-direction: column;
+    font-size: 30rpx;
+}
+.filter-content .more .ad-boxs .list{
+    flex-direction: row;
+    padding: 20rpx 0;
+    display: flex;
+    align-items: center;
+}
+.filter-content .more .ad-boxs .list .title{
+    margin: 0 10rpx;
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 160rpx;
+}
+.filter-content .more .ad-boxs .list .list-box{
+    display: inline-block;
+    padding-top: 15rpx;
+}
+.filter-content .more .ad-boxs .list .list-box view{
+    display: inline-block;
+    padding: 10rpx 30rpx;
+    border-radius: 6rpx;
+    background: #999;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    color: #fff;
+    font-size: 28rpx;
+}
+.filter-content .more .ad-btn .btn{
+    margin-right: 20rpx;
+}
+
+
+
+.container .wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.container .wrapper .title{
+    display: flex;
+    font-size: 32rpx;
+    color: #333;
+    font-weight: bold;
+    padding: 20rpx;
+}
+.container .wrapper .ul{
+    display: flex;
+    flex-direction: column;
+}
+.container .wrapper .ul .li{
+    flex: 1;
+    display: flex;
+    padding: 0rpx 20rpx 20rpx 20rpx;
+}
+.container .wrapper .ul .l-box{
+    display: flex;
+    flex: 0 0 356rpx;
+    height: 268rpx;
+}
+.container .wrapper .ul .l-box image{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.container .wrapper .ul .r-box{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-left: 30rpx;
+    font-size: 32rpx;
+    line-height: 2;
+}
+.container .wrapper .ul .r-box .tit{
+    font-size: 32rpx;
+}
+.container .wrapper .ul .r-box .addr{
+    font-size: 28rpx;
+}
+.container .wrapper .ul .r-box .price{
+    font-size: 28rpx;
+}
+.container .wrapper .ul .r-box .biaoqian{
+    display: flex;
+    margin-top: 8rpx;
+}
+.container .wrapper .ul .r-box .biaoqian text{
+    display: flex;
+    padding:2rpx 10rpx;
+    border: 1px solid rgb(42, 130, 228);
+    font-size: 24rpx;
+    color: rgb(42, 130, 228);
+    border-radius: 6rpx;
+    margin-right: 10rpx;
+}

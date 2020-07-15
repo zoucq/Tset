@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+
+	<!-- {
+        "pagePath": "pages/daily/house_circle/index",
+        "text": "视频看房",
+        "iconPath": "image/circle.png",
+        "selectedIconPath": "image/circle-active.png"
+    }, -->
+
+
+    <!-- 发布 -->
+	<view class='action_sheet' wx:if="{{showAction}}">
+	    <view class='action_sheet_bg' catchtap='_showActionHide'></view>
+	    <view class='action_sheet_content'>
+	        <view class='as_list'>
+	            <!-- catchtap='_record' -->
+	            <view class='as_item' catchtap='handleGo' data-is='1'
+	                data-go="/pages/daily/house_day_upload/index?paishe=true&house_id={{id}}&detail=true">
+	                <view>拍摄</view>
+	                <!-- <view class='as_tips'>视频最大30秒！</view> -->
+	            </view>
+	            <view class='as_item' catchtap='uploadVideo'>
+	                <view>从手机相册选择</view>
+	            </view>
+	            <view class='as_item' catchtap='_showActionHide'>
+	                <view>取消</view>
+	            </view>
+	        </view>
+	        <!-- <view class='as_cancel' catchtap='_showActionHide'>取消</view> -->
+	    </view>
+	</view>
+
+	
+</body>
+</html>
+
+
+
+
+<script >
+
+	wx:if="{{is_zygw}}" bindtap='_showAction'
+	wx:else bindtap='_noZygw'
+
+	_showAction() {
+        if (this.data.showAction) {
+            this.showAction = false;
+        } else {
+            this.showAction = true;
+        }
+        this.setData({
+            showAction: this.showAction
+        });
+    },
+
+    _noZygw() {
+        app.alert('置业顾问才能发布视频哟~');
+    },
+	
+	uploadVideo() {
+
+        this._showActionHide();
+
+        let that = this;
+        wx.chooseVideo({
+            sourceType: ['album'],
+            maxDuration: 30,
+            compressed: false,
+            camera: 'back', //默认拉起后置摄像头
+            success: (res) => {
+                console.log(res);
+
+                if (res.duration < 1) {
+                    app.alert('视频录制时间需大于1S！');
+                    return;
+                }
+                if (res.duration > this.data.maxDuration) {
+                    app.alert('视频录制时间需小于' + this.data.maxDuration + 'S！');
+                    return;
+                }
+                if (res.size > 100 * 1024 * 1024) {
+                    app.alert('视频大小需小于100M！');
+                    return;
+                }
+
+                let videoArr = [];
+                videoArr.push(res);
+                wx.navigateTo({
+                    url: '/pages/daily/house_day_upload/index?video=' + JSON.stringify(videoArr) + '&house_id=' + this.data.id +'&detail=true',
+                });
+
+            }
+        });
+    },
+
+    _showActionHide() {
+        this.setData({
+            showAction: false
+        });
+    },
+
+
+</script>
+
+
+<script>
+	
+const api = require('../../../utils/api.js')
+const util = require('../../../utils/util.js')
+const VodUploader = require('../../../utils/vod-web-sdk-v5.1')
+
+//获取应用实例
+const app = getApp()
+
+Page({
+    data: {
+        navConf: {
+            title: '发布短视频',
+            isHome: true,
+            isBack: true,
+            isTitle: true
+        },
+        statusH: app.globalData.statusH,
+        isIpx: app.globalData.isIpx ? true : false,
+        isIos: app.globalData.iphone,
+        systemInfo:app.globalData.systemInfo,
+
+        imgWh:[],
+
+        tab:0,
+
+        imgs:[],
+        imgRes: [],
+
+        video:[],
+
+        isImg: false,
+        isVideo:false,
+        maxDuration:60,
+
+        videoControl: false,
+
+        text:'',
+        txtShow:true,
+
+        result:[],
+
+        startView:true,
+        videoBack:false,
+        timestamp:30,
+        status:'拍摄',
+        start:false,
+
+        authCamera:false,
+
+    },
+
+    onLoad: function (opt) {
+        console.log('发布页参数', opt);
+
+        this.setData({
+            detail: opt.detail || '',
+            house_id: opt.house_id || ''
+        });
+
+        if(opt && opt.video){
+            this.setData({
+                isVideo: true,
+                isImg: false,
+                video: JSON.parse(opt.video) || []
+            });
+        }
+        if (opt && opt.paishe){
+            this.setData({
+                paisheMask: true
+            });
+            this._record();
+        }
+        
+    },
+
+    onReady(res) {
+        this.camera = wx.createCameraContext();
+        this.videoContext = wx.createVideoContext('myVideo');
+    },
+
+    onShow() {
+
+    },
+
+    onHide(){
+        
+    },
+
+    _record(){
+        this.setData({
+            showAction:false,
+            txtShow:false,
+            paisheMask: false,
+            record:true
+        });
+    },
+
+    _circle(){
+        let videoBack = this.data.videoBack;
+        if (videoBack){
+            videoBack = false;
+        }else{
+            videoBack = true;
+        }
+        this.setData({
+            videoBack: videoBack
+        });
+    },
+
+    _closeRecord(){
+        this.setData({
+            start: false,
+            record: false,
+            txtShow: true,
+            timestamp: 30,
+            status:'拍摄'
+        });
+    },
+
+    timer:null,
+
+    _startVideo() {
+        console.log('_startVideo', this.data.start)
+        let that = this;
+
+        if (that.data.start){
+            this._stopVideo();
+            return ;
+        }
+
+        this.camera.startRecord({
+            success(res) {
+                console.log('startRecord', res);
+                that.setData({
+                    start: true,
+                    status: '结束',
+                    _startTime: new Date().getTime(),
+                });
+
+                that.timer = setInterval(() => {
+                    if (that.data.timestamp <= 2) {
+                        clearInterval(that.timer);
+                        that.setData({
+                            timestamp:0
+                        });
+                        that._stopVideo();
+                    } else {
+                        that.setData({
+                            timestamp: that.data.timestamp - 1
+                        });
+                    }
+                }, 1000);
+                
+            },
+            fail(err) {
+                console.log('startRecord', err);
+            }
+        });
+
+    },
+
+    _stopVideo() {
+        console.log('_stopVideo');
+        let that = this;
+
+        if ((that.data.maxDuration - that.data.timestamp) <= 1) {
+            return;
+        }
+
+        clearInterval(that.timer);
+
+        this.camera.stopRecord({
+            success(res) {
+                console.log('stop', res);
+
+                let lastTime = (new Date().getTime() - 3000 - that.data._startTime) / 1000;
+                console.log(lastTime);
+
+                that._closeRecord();
+
+                // that.setData({
+                //     status: '上传',
+                //     start: false,
+                //     record:false,
+                //     showAction:false,
+                //     _endTime: new Date().getTime(),
+                //     _lastTime: lastTime
+                // });
+
+                let arr = [];
+                res.tempFilePath = res.tempVideoPath;
+                arr.push(res);
+                that.setData({
+                    isVideo: true,
+                    isImg: false,
+                    video: arr
+                });
+
+            },
+            fail(err) {
+                console.log('stopRecord-err',err);
+            }
+        });
+    },
+
+    // 上传返回url和id
+    getImg(obj,fn) {
+        let that = this;
+        wx.uploadFile({
+            url: api.api.detail.upload, //仅为示例，非真实的接口地址
+            filePath: obj.url,
+            method: 'POST',
+            header: {
+                'content-type': 'multipart/form-data',
+                'Cookie': `XFUID=${wx.getStorageSync('cookie')}`
+            },
+            name: 'file',
+            formData: {
+                ot: 'xiaochengxu_url',
+                xfuid: wx.getStorageSync('cookie')
+            },
+            success: function (res) {
+                console.log(res);
+                if (res.statusCode == 200) {
+                    if (res.data.indexOf('http')==-1){
+                        app.alert('上传失败：', res.data);
+                        return ;
+                    }
+                    let url = res.data;
+                    that.data.imgRes.push({
+                        index: obj.index,
+                        url: url
+                    });
+                    that.setData({
+                        imgRes: that.data.imgRes
+                    });
+                    console.log('last', that.data.imgRes);
+                    if (that.data.imgs.length == that.data.imgRes.length) {
+                        (typeof fn == 'function') && fn();
+                    }
+                }else{
+                    app.alert('上传statusCode!=200：',res);
+                }
+            },
+            fail: (err) => {
+                console.log(err);
+            }
+        });
+    },
+
+    _showActionHide() {
+        this.setData({
+            showAction: false
+        });
+    },
+
+    _showAction() {
+        if (this.data.showAction) {
+            this.showAction = false;
+        } else {
+            this.showAction = true;
+        }
+        this.setData({
+            showAction: this.showAction
+        });
+    },
+
+    imgLoad(e) {
+        console.log('imgLoad',e);
+        let index = e.currentTarget.dataset.index;
+        let varData = e.currentTarget.dataset.var;
+        let that = this;
+
+        // console.log(that.data[varData][index]);
+
+        let systemInfo = app.globalData.systemInfo || wx.getSystemInfo();
+        if (e.detail.width >= e.detail.height) {
+            that.data[varData][index].swidth = (e.detail.width / (e.detail.width / systemInfo.windowWidth)) / 1.5 || '';
+            that.data[varData][index].sheight = that.data[varData][index].swidth * (e.detail.height / e.detail.width);
+
+        } else {
+            that.data[varData][index].sheight = (e.detail.height / (e.detail.height / systemInfo.windowHeight)) / 1.5 || '';
+            that.data[varData][index].swidth = that.data[varData][index].sheight * (e.detail.width / e.detail.height);
+        }
+        that.data[varData][index].show = true;
+        that.setData({
+            [varData]: that.data[varData]
+        });
+
+    },
+
+    _input(e){
+        console.log(e);
+        let type = e.currentTarget.dataset.type;
+        let val = e.currentTarget.detail.value;
+        this.setData({
+            [type]: val
+        });
+    },
+
+    _backUpload(){
+        if (this.data.video.length == 0) {
+            app.noIconToast('请上传视频！', true);
+            return;
+        }
+
+        app.globalData.uploadVideo = true;
+        wx.setStorageSync('uploadVideo', true);
+
+        // let pages = getCurrentPages();
+        // pages.length > 0 && pages.map((v, i) => {
+        //     if (v.route == 'pages/daily/house_circle/index'
+        //         || v.route == 'pages/daily/house_day/index'
+        //     ) {
+        //         pages[i].setData({
+        //             uploadVideo: true
+        //         });
+        //     }
+        // });
+
+        if (this.data.house_id){
+            if (this.data.detail){
+                // wx.navigateTo
+                wx.redirectTo({
+                    url: '/pages/daily/house_day/index?house_id=' + this.data.house_id,
+                    complete: () => {
+                        this._submit();
+                    }
+                });
+            }else{
+                wx.navigateBack({
+                    complete: () => {
+                        this._submit();
+                    }
+                });
+            }
+        }else{
+            wx.switchTab({
+                url: '/pages/daily/house_circle/index',
+                complete: () => {
+                    this._submit();
+                }
+            });
+        }
+        
+    },
+
+    _submit(){
+
+        if (this.data.video.length == 0) {
+            app.noIconToast('请上传视频！', true);
+            return;
+        }
+
+        // wx.showLoading({
+        //     title: '正在发布',
+        // });
+        let data = {
+            action_name:'wxSaveMoment',
+            title: this.trim(this.data.text)
+        };
+        if (this.data.isVideo) {
+            this._txyUpload(this.data.video[0],(res)=>{
+                console.log(999,res);
+                res.url = '';
+                data.content = JSON.stringify({
+                    video: res
+                });
+                this._submitData(data);
+            });
+        } else if (this.data.isImg){
+            this.data.imgs.map((v, i) => {
+                v.index = i;
+                this.getImg(v,()=>{
+                    this.data.imgRes.sort((a,b)=>{
+                        return a.index - b.index;
+                    });
+                    console.log(this.data.imgRes);
+                    data.content = JSON.stringify({
+                        imgs: this.data.imgRes
+                    });
+                    this._submitData(data);
+                });
+            });
+        }else{
+            // if (!data.title || data.title == '' || data.title == ' '
+            //     || data.title == undefined || data.title.length==0
+            // ){
+            //     this.setData({
+            //         text:''
+            //     });
+            //     app.toast('请发点什么吧！');
+            //     return;
+            // }
+            // this._submitData(data);
+        }
+    },
+
+    trim(s) {
+        return s.replace(/(^s*)|(s*$)/g, "");
+    },
+
+    _submitData(data) {
+        api.req.post(api.api.circle, data)
+        .then((res) => {
+            console.log(res);
+            wx.hideLoading();
+            if (res.data.ret == 0) {
+                
+                app.globalData.uploadVideo = false;
+                wx.setStorageSync('uploadVideo', false);
+
+                wx.navigateTo({
+                    url: '/pages/daily/house_upload_success/index?id=' + res.data.data.id + '&&text=' + JSON.stringify(res.data.data),
+                });
+
+            } else {
+                app.globalData.uploadVideo = false;
+                wx.setStorageSync('uploadVideo', false);
+                app.alert(res.data);
+            }
+        }, (err) => {
+            wx.hideLoading();
+            console.log(err);
+        });
+    },
+
+    _video(e) {
+        let src = e.currentTarget.dataset.src;
+        let poster = e.currentTarget.dataset.poster;
+        let index = e.currentTarget.dataset.index;
+        wx.showLoading({
+            title: '加载中',
+        });
+        this.setData({
+            videoSrc: src,
+            videoPoster: poster || '',
+            current:index,
+            videoControl: true
+        });
+        this.videoContext.play();
+    },
+
+    videoPause() {
+        this.videoContext.pause();
+        // this.videoContext.exitFullScreen();
+    },
+    videoPlay(e) {
+        // console.log(111, e);
+        wx.hideLoading();
+        if (e.type == 'play') {
+            this.videoEdit = true;
+            this.videoContext.requestFullScreen({
+                direction: 0
+            });
+        } else {
+            this.videoEdit = false;
+            this.videoPause();
+        }
+    },
+    videoChange(e) {
+        // console.log(e);
+        if (e.detail && !e.detail.fullScreen) {
+            this.videoContext.stop();
+            this.setData({
+                videoControl: false
+            });
+        }
+    },
+    videoClick(e) {
+        // console.log('点击视频', e);
+        if (this.videoEdit) {
+            this.videoPause();
+            this.videoContext.exitFullScreen();
+        } else {
+            this.videoContext.play();
+        }
+    },
+
+    getSignature(callback){
+        api.req.post(api.api.circle, {
+            action_name: 'wxGetVideoSignature'
+        }).then(res=>{
+            if (res.data && res.data.data.signature) {
+                callback(res.data.data.signature);
+            } else {
+                return '获取签名失败';
+            }
+        });
+    },
+
+    delVideo(e){
+        let index = e.currentTarget.dataset.index;
+        this.data.video.splice(index, 1);
+        this.setData({
+            video: this.data.video
+        });
+    },
+
+    delPng(e) {
+        let index = e.currentTarget.dataset.index;
+        this.data.imgs.splice(index, 1);
+        console.log(index, this.data.imgs);
+        this.setData({
+            imgs: this.data.imgs
+        });
+    },
+
+    // 选取Video
+    uploadVideo(){
+        let that = this;
+        // , 'camera'
+        wx.chooseVideo({
+            sourceType: ['album'],
+            maxDuration: 30,
+            compressed:false,
+            camera: 'back', //默认拉起后置摄像头
+            success:(res) => {
+                console.log(res);
+
+                if (res.duration < 1) {
+                    app.alert('视频录制时间需大于1S！');
+                    return;
+                }
+                if (res.duration > this.data.maxDuration) {
+                    app.alert('视频录制时间需小于' + this.data.maxDuration +'S！');
+                    return;
+                }
+                if (res.size > 100 * 1024 * 1024){
+                    app.alert('视频大小需小于100M！');
+                    return;
+                }
+                
+                that.data.video.push(res);
+                that.setData({
+                    showAction:false,
+                    isVideo: true,
+                    isImg: false,
+                    video: that.data.video
+                }); 
+
+            }
+        });
+    },
+
+    _txyUpload(res,fn) {
+        let This = this;
+        VodUploader.start({
+            videoFile: res, //必填，把chooseVideo回调的参数(file)传进来
+            //选填，视频名称，强烈推荐填写(如果不填，则默认为“来自微信小程序”)
+            fileName: wx.getStorageSync('id') + '_' + new Date().getTime(),
+            getSignature: This.getSignature, //必填，获取签名的函数
+            success: function (result) {
+                console.log('success');
+                console.log(result);
+            },
+            error: function (result) {
+                console.log('error');
+                console.log(result);
+                wx.showModal({
+                    title: '上传失败',
+                    content: JSON.stringify(result),
+                    showCancel: false
+                });
+            },
+            progress: function (result) {
+                console.log('progress');
+                console.log(result); 
+
+                let percent = result.percent == 1 ? '99%' : percent * 100 + '%';
+                let pages = getCurrentPages(); 
+                pages.length>0 && pages.map((v,i)=>{
+                    if( v.route == 'pages/daily/house_circle/index' ||
+                        v.route == 'pages/daily/house_day/index'
+                    ){
+                        pages[i].setData({
+                            progress: percent
+                        });
+                    }
+                });
+
+            },
+            finish: function (result) {
+                console.log('finish');
+                console.log(result);
+                let obj;
+                if (result){
+                    obj = {
+                        name : result.videoName,
+                        file_id : result.fileId,
+                        url : result.videoUrl
+                    };
+                }
+                This.setData({
+                    result: obj
+                });
+
+                (typeof fn == 'function') && fn(obj)
+
+            }
+        });
+    },
+
+    getPoster(result){
+        api.req.post(api.api.circle, {
+            action_name: 'wxGetMovieCoverUrl',
+            file_id: result.fileId
+        }).then(res => {
+            console.log(res);
+            if (res.data && res.data.ret == 0) {
+                this.setData({
+                    poster:res.data
+                });
+            } else {
+                console.log(res.data)
+            }
+        });
+    },
+
+    // 选取Img
+    uploadImg() {
+        let that = this;
+        let count = 9 - that.data.imgs.length;
+        wx.chooseImage({
+            count: count, // 默认9
+            sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: (res) => {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                let tempFilePaths = res.tempFilePaths;
+                console.log(tempFilePaths);
+                
+                tempFilePaths.map((v, i) => {
+                    that.data.imgs.push({
+                        url: v
+                    });
+                });
+                that.setData({
+                    isImg:true,
+                    isVideo: false,
+                    imgs: that.data.imgs
+                });
+
+            }
+        });
+    },
+
+    _input(e) {
+        let type = e.currentTarget.dataset.type;
+        let val = e.detail.value;
+
+        this.setData({
+            [type]: val
+        });
+    },
+
+    _tab(e){
+        let type = e.currentTarget.dataset.type;
+        this.setData({
+            tab:type
+        });
+    },
+
+    previewImage: function (e) {
+        let url = e.currentTarget.dataset.url;
+        let arr = [];
+        this.data.imgs.forEach((v,i)=>{
+            arr.push(v.url);
+        });
+        wx.previewImage({
+            current: url,
+            urls: arr
+        });
+    },
+
+    _getFocus(){
+        // if(this.data.focus) return ;
+        this.setData({
+            focus: !this.data.focus
+        });
+    },
+
+    // 跳转
+    handleGo(e) {
+        let url = e.currentTarget.dataset.go;
+        wx.navigateTo({
+            url: url
+        });
+    },
+
+    // 转发
+    onShareAppMessage(options) {
+        let share = app.share();
+        if (options.from == 'menu') {
+            share.title = '新房007';
+            share.path = '/pages/index/index';
+            share.imageUrl = 'https://ssl.malmam.com/xiangju-static/dfs/12/4d78cdfcde1ffe/007.png';
+            return share;
+        }
+    },
+
+    sendDot(e) {
+        console.log('sendDot')
+        app.sendDotted1(e);
+    },
+
+    _error(e){
+        console.log('camera-err:',e);
+        this.setData({
+            showAction:false,
+            authCamera:true
+        });
+        console.log(this.data.authCamera);
+    },
+
+    cameraCb(e){
+        console.log('camera-Cb',e);
+        if (e.detail.authSetting['scope.camera'] && e.detail.authSetting['scope.record']){
+            this.setData({
+                authCamera: false
+            });
+        }else{
+            app.alert('请开启摄像头和录音功能！');
+        }
+    },
+
+    _openSetting(){
+        console.log(111)
+        wx.openSetting({
+            success(res){
+                if (res.authSetting['scope.camera']) {
+                    this.setData({
+                        authCamera: false
+                    });
+                }
+            }
+        });
+    },
+
+    videoEnd(e) {
+        this.videoContext.pause();
+        this.videoContext.exitFullScreen();
+    }
+
+
+})
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script>
+        (function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if(clientWidth < 320) {
+                        docEl.style.fontSize = 50 + 'px'
+                    } else if(clientWidth > 750) {
+                        docEl.style.fontSize = 100 + 'px'
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+            recalc();
+            if(!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+        })(document, window);
+	</script>
+
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		body{width: 100%;height:100%;overflow: hidden;}
+		#myCanvas{
+			position: relative;transform: scale(2);
+		}
+	</style>
+</head>
+<body>
+
+	<canvas id="myCanvas" style="width:100%;height:auto;">
+		
+	</canvas>
+
+	<script>
+		
+		var myImage=document.getElementById("myCanvas");
+		var cxt=myImage.getContext("2d");
+		var img=new Image();
+		img.src="img/banner.png";
+		img.onload=function(){
+			cxt.drawImage(img,0,0,375,200);
+		}
+
+
+		cxt.beginPath();  
+        cxt.arc(150,45,35,0,Math.PI*2,false);  
+        cxt.fillStyle="rgba(192,80,77,0.7)";//半透明的红色  
+        cxt.fill();  
+        cxt.strokeStyle="rgba(192,80,77,1)";//红色  
+        cxt.stroke();  
+        //圆2  
+        cxt.beginPath();  
+        cxt.arc(125,95,35,0,Math.PI*2,false);  
+        cxt.fillStyle="rgba(155,187,89,0.7)";//半透明绿色  
+        cxt.fill();  
+        cxt.strokeStyle="rgba(155,187,89,1)";//绿色  
+        cxt.stroke();  
+        //圆3  
+        cxt.beginPath();  
+        cxt.arc(175,95,35,Math.PI*2,false);  
+        cxt.fillStyle="rgba(128,100,162,0.7)";//半透明的紫色  
+        cxt.fill();  
+        cxt.strokeStyle="rgba(128,100,132,1)";//紫色  
+        cxt.stroke();  
+
+
+
+		var block = document.getElementById("myCanvas");
+	    var oW,oH;
+	    // 绑定touchstart事件
+	    block.addEventListener("touchstart", function(e) {
+	        console.log(e);
+	        var touches = e.touches[0];
+	        oW = touches.clientX - block.offsetLeft;
+	        oH = touches.clientY - block.offsetTop;
+	        //阻止页面的滑动默认事件
+	        document.addEventListener("touchmove",defaultEvent,false);
+	    },false)
+
+	    block.addEventListener("touchmove", function(e) {
+	        var touches = e.touches[0];
+	        var oLeft = touches.clientX - oW;
+	        var oTop = touches.clientY - oH;
+
+	        block.style.left = oLeft + "px";
+	        block.style.top = oTop + "px";
+
+	    },false);
+
+	    block.addEventListener("touchend",function() {
+	        document.removeEventListener("touchmove",defaultEvent,false);
+	    },false);
+	    function defaultEvent(e) {
+	        e.preventDefault();
+	    }
+
+
+	    if(navigator.userAgent.indexOf('UCBrowser')>-1){
+	    	alert('uc浏览器打扰了，请及时更换浏览器，谢谢！')
+	    }
+
+
+	</script>
+
+
+	
+</body>
+</html>

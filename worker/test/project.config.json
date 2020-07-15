@@ -1,0 +1,55 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.7.4",
+	"appid": "wxd1d02854d181e9c9",
+	"projectname": "test",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "群聊",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "Pv9dImSBXtUshz0SepQNaEy4nhJMckoMbpJza04bGEM@cr4dev",
+						"shareKey": "PuTjH_3c4I6Y7tyZ_H_Q-lmBVuBws3iLUKS5XtU7S7broSbdMU_Gpx1Ppu2WGRSD6Efzi5GZriCOGkrY5sdHSQ~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "单人聊天会话中的小程序消息卡片",
+					"pathName": "pages/my-redpacket/index",
+					"query": "",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "单人聊天会话中的小程序消息卡片",
+					"pathName": "pages/my-redpacket/index",
+					"query": "",
+					"scene": "1007"
+				}
+			]
+		}
+	}
+}

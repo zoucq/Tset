@@ -1,0 +1,23 @@
+<view class='container'>
+    <!-- <image mode="aspectFit" src='https://ssl.malmam.com/xiangju-static/dfs/17/48f4304a3908d6/_E6_B4_BB_E5_8A_A8.png'></image> -->
+    <view class='m1'>
+        <image  src='{{list.activity_1}}'></image>   
+        <button class='btn btn1' bindtap='_handleGO' data-go="../my-redpacket/index">点击参与</button>
+    </view>
+    <view class='m2'>
+        <image src='{{list.activity_2}}'></image>
+    </view>
+    <view class='m3'>
+        <view class='info'>
+            <text class='wx'>微信号 : 13858079177</text>
+            <text class='copy' bindtap='_copy' data-wx='13858079177'>复制</text>
+        </view>
+        <view class='code' bindtap='_previewImg' data-url='https://ssl.malmam.com/xiangju-static/dfs/15/492085e0c10d1a/code.png'>
+            <image src='https://ssl.malmam.com/xiangju-static/dfs/15/492085e0c10d1a/code.png'></image>
+        </view>
+        <!-- <image src='{{list.activity_3}}'></image> -->
+        <image src='/image/activity/activity_33.png'></image>
+        <button class='btn btn2' bindtap='_handleGO' data-go="../my-redpacket/index">点击参与</button>
+    </view>
+    
+</view>

@@ -1,0 +1,253 @@
+admin -> index.html
+
+<div style="display: none;" class="filter-basic" >
+    <div class="filter-row text-left col-md-offset-2">
+        <div class="form-group">
+            <label for="name">客户姓名: </label>
+            <input type="text"
+                   class="form-control filter-item"
+                   name="name"
+                   id="name"
+                   value="<?= $this->get_name?>">
+        </div>
+        <div class="form-group">
+            <label for="customer-status">客户状态: </label>
+            <select class="form-control filter-item " name="status" id="customer-status" >
+                <option value="" id="customer-status-default" selected="">请选择</option>
+                <?php foreach(CustomerTypes::_STATUS_MAP as $k => $v):?>
+                    <option value="<?= $k;?>" <?= $this->status == $k?'selected':''?>><?= $v;?></option>
+                <?php endforeach;?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mobile">手机号: </label>
+            <input type="number" class="form-control filter-item" name="mobile" id="mobile" placeholder="可以尾号查询"
+                   value="<?= $this->get_mobile?>">
+        </div>
+        <div class="form-group">
+            <label for="house">楼盘: </label>
+            <input type="text" class="form-control filter-item" name="house" id="house" value="<?= $this->get_house?>">
+        </div>
+    </div>
+</div>
+
+
+<!-- 展开高级筛选 -->
+        <div style="display: none;" class="filter-advanced from-group" id="filter-advanced" >
+        <div class="filter-row row text-left col-md-offset-2">
+<!--                <div class="form-group">-->
+<!--                    <label for="intention_area">意向区域: </label>-->
+<!--                    <input type="text"-->
+<!--                           class="form-control filter-item" name="intention_area"-->
+<!--                           id="intention_area" placeholder=""-->
+<!--                           value="--><?//= $this->intention_area?><!--">-->
+<!--                </div>-->
+            <div class="form-group ">
+                <label for="customer-tag">客户级别: </label>
+                <select class="form-control filter-item " name="tag" id="customer-tag">
+                    <option value="" id="customer-status-default" selected="">请选择</option>
+                    <?php foreach(CustomerTypes::_TAG_MAP as $k => $v):?>
+                        <option value="<?= $k;?>" <?= $this->tag == $k?'selected':''?>><?= $k;?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mobile-location">归属地: </label>
+                <input type="text"
+                       class="form-control filter-item advanced" name="mobile-location" id="mobile-location"
+                       value="<?= $this->mobile_location ?>">
+            </div>
+
+            <div class="form-group form-cps">
+                <label for="cps-id">CPS: </label>
+                <select id="cps-id" multiple="multiple" class="multiselect" name="cps-id[]">
+                    <?php foreach($this->cps_ids as $_id){?>
+                        <option value="<?=intval($_id)?>" <?=in_array($_id,$this->cps_id)?"selected":""?>><?=intval($_id);?></option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+        <div class="filter-row text-left col-md-offset-2">
+            <div class="form-group">
+                <label for="keywords">备注信息: </label>
+                <input type="text"
+                       class="form-control filter-item advanced"
+                       id="keywords"
+                       name="keywords"
+                       placeholder="关键词"
+                       value="<?= $this->keywords?>">
+            </div>
+            <div class="form-group">
+                <label for="guider">来源类型: </label>
+                <select class="form-control filter-item advanced"
+                        title="source_type"
+                        name="source_type"
+                        id="source_type">
+                    <option value="" id="log-operator-default">请选择</option><?php // id判断是否选择 ?>
+                    <?php foreach(CustomerTypes::_TYPE_MAP as $k=>$v): ?>
+                        <option value="<?= $k ?>" <?= $this->source_type != "" && $this->source_type == $k ? 'selected' : '' ?>>
+                            <?= $v ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group form-long-group" id="guide-datepicker2">
+                <label>登记时间: </label>
+                <div class="input-daterange input-group" id="datepicker2">
+                    <span class="input-group-addon">从</span>
+                    <input type="text"
+                           class="form-control filter-item advanced"
+                           name="ctime_begin"
+                           title="开始时间"
+                           value="<?= $this->ctime_begin; ?>"/>
+                    <span class="input-group-addon">到</span>
+                    <input type="text"
+                           class="form-control filter-item advanced"
+                           name="ctime_stop"
+                           title="结束时间"
+                           value="<?= $this->ctime_stop; ?>"/>
+                </div>
+            </div>
+        </div>
+        <div class="filter-row text-left col-md-offset-2">
+            <div class="form-group">
+                <label for="department">销售部门: </label>
+                <select class="form-control filter-item "
+                        title="销售部门"
+                        name="department"
+                        id="department">
+                    <option value="" id="department-operator-default">请选择</option><?php // id判断是否选择 ?>
+                    <?php foreach($this->department_map as $did=>$department):?>
+                        <option value="<?= $did ?>" <?= ($this->department==$did)?"selected":""; ?>><?= $department ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="saleman">销售人员: </label>
+                <select class="form-control filter-item "
+                        title="销售人"
+                        name="saleman"
+                        id="saleman">
+                    <option value="" id="saleman-operator-default">请选择</option><?php // id判断是否选择 ?>
+                    <option value="0" id="no-saleman" <?= ($this->saleman === "0")?'selected':'';?>>无销售人员</option><?php // 该房源暂时没有销售人员 ?>
+                    <?php foreach($this->salemans as $saleman): ?>
+                        <option value="<?= $saleman->getId(); ?>" <?= ($this->saleman==$saleman->getId())?"selected":""; ?> department="<?=$saleman->getDepartment();?>">
+                            <?= $saleman->getUserName(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+_wx.get({
+            url: "/user/profile",
+            ok: (res) => {
+                if (res.data.data.account.Role == '销售内勤'){
+                    app.globalData.isRole = true;
+                }
+                _wx.log("是否是销售内勤", app.globalData.isRole);
+            }
+        });
+
+if (app.globalData.isRole){
+                    customers.map((v,i)=>{
+                        v.isMobileVisible=false;
+                    });
+                }  
+
+    
+<div class="row row-list table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td></td>
+                <td>客户级别</td>
+                <td>客户姓名</td>
+                <td>客户电话</td>
+                <td>意向楼盘</td>
+                <td>售前</td>
+                <td>销售</td>
+                <td>提醒备注</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="notification-wrap" data-id="<?= $notification->getId() ?>" style="display: none;">
+    
+    <div class="notification">
+        <div class="name">
+            <?= $customer->getName() ?>
+            <a href="<?= $this->url([
+                "controller" => "customer",
+                "action" => "add",
+                "id" => $customer->getId()], "admin.default") ?>"
+               target="_blank">
+                <i class="fa fa-external-link-square"><!----></i>
+            </a>
+        </div>
+        <div class="info">客户级别: <?= $customer->getAttr(Customer::COLUMN_TAG) ?></div>
+        <div class="info">联系电话: <a href="tel:<?= $customer->getMobile() ?>">
+                <?= $customer->getMobile() ?></a>
+        </div>
+        <div class="info">意向楼盘:
+            <?php if ($customer->getAttr(Customer::COLUMN_HOUSE_ID)): ?>
+                <a href="<?= $this->url([
+                    "controller" => "commodity-house",
+                    "action" => "add",
+                    "id" => $customer->getAttr(Customer::COLUMN_HOUSE_ID)
+                ], "admin.default") ?>"
+                   target="_blank"><?= $customer->getAttr(Customer::COLUMN_HOUSE_ID, 3) ?></a>
+            <?php else: ?>
+                无
+            <?php endif; ?>
+        </div>
+        <div class="info">客户状态: <?= $customer->getAttr(Customer::ATTR_STATUS, true) ?></div>
+        <div class="info">提醒备注: <?= $notification->getRemark() ?: '无' ?></div>
+        <div class="info">截止时间: <?= $notification->getExpiresTime('Y-m-d H:i') ?></div>
+        <div class="checkbox info completed">
+            <label>
+                <?php if ($notification->getStatus() === NotificationTypes::STATUS_COMPLETED): ?>
+                    <input type="checkbox" checked> 已完成标记 (<?= NotificationTypes::getType($notification->getType()) ?>)
+                <?php else: ?>
+                    <input type="checkbox"> 已完成标记
+                <?php endif; ?>
+            </label>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+

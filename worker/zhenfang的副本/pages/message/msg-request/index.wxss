@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.container .boxs{
+    display: flex;
+    flex-direction: column;
+}
+.container .boxs .item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    padding: 20rpx 20rpx;
+    margin-top: 10rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+.container .boxs .item > view:not(:last-child){
+    margin-bottom: 20rpx;
+}
+.container .boxs .item .top{
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+}
+.container .boxs .item .center{
+    display: flex;
+    font-size: 32rpx;
+}
+.container .boxs .item .down{
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+}
+.container .boxs .item .down view:last-child{
+    color: #5555ff;
+}

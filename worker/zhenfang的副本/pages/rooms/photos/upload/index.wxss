@@ -1,0 +1,138 @@
+page{
+    background: #f1f2f7;
+    border-top: 1px solid #E4E7F0;
+}
+.container{
+    width: 100%;height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 60rpx 28rpx;
+}
+.imgs{
+    display: flex;
+    margin-right: 10rpx;
+}
+.imgs .img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160rpx;height: 160rpx;
+    margin-right: 26rpx;
+    margin-bottom: 24rpx;
+    background: #fff;
+    position: relative;
+}
+.imgs .img image:first-child{
+    width: 48rpx;height: 42rpx;
+    position: absolute;
+    right: 0;top: 0;
+    z-index: 99;
+}
+.imgs .img image{
+    width: 100%;height: 100%;
+    
+}
+.imgs .img:nth-child(4n){
+    margin-right:0;
+}
+
+
+.upload-box{
+    display: flex;
+}
+.upload-box .file{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160rpx;height: 160rpx;
+    border: 1px dashed #ccc;
+    position: relative;
+}
+.upload-box .file:before{
+    content: '';
+    position: absolute;
+    width: 70rpx;
+    height: 2px;
+    background: #b3b5b6;
+}
+.upload-box .file:after{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 70rpx;
+    background: #b3b5b6;
+}
+
+
+
+
+
+.nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav .top{
+    height:88rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    font-size:32rpx;
+    color: #3B3A4A;
+    padding: 0 40rpx;
+    margin-top: 20rpx;
+    margin-bottom: 100rpx;
+    position: relative;
+}
+.nav .top .right text{
+    padding: 12rpx 40rpx;
+    border-radius: 32rpx;
+    background: #EFEEF8;
+    color: #828393;
+    font-size: 28rpx;
+}
+.nav .top .list{
+    position: absolute;
+    top: 97rpx;
+    right: 40rpx;
+    width: 180rpx;
+    height: 280rpx;
+    background: url(https://ssl.malmam.com/xiangju-static/dfs/8/33259bcdb92b16/0DDCA2F968964F4EB65CA8A71C3DB044.png) no-repeat;
+    background-size:cover; 
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+}
+.nav .top .list .item{
+    margin: 0 24rpx;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28rpx;
+    color: #828393;
+    border-bottom: 1px solid #E4E7F0;
+}
+.nav .top .list .item:last-child{
+    border-bottom: 0;
+}
+.nav .top .list .item.active{
+    display: none;
+}
+
+
+
+.nav .down{
+    display: flex;
+}
+.nav .down button{
+    width: 540rpx;
+    height: 88rpx;
+    background: #5555FF;
+    border-radius: 45rpx;
+    font-size: 36rpx;
+    color: #fff;
+}

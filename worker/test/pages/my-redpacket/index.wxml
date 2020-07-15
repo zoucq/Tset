@@ -1,0 +1,107 @@
+
+<view class="container">
+    <image class='bg' src='/image/hongbao_bg.png'></image>
+
+      <!-- <view class='slider'  >
+        <swiper indicator-dots="{{indicatorDots}}" 
+        vertical="{{true}}" circular="{{true}}" autoplay="{{autoplay}}" 
+        interval="{{interval}}" duration="{{duration}}" bindchange="_change"
+         >
+            <block wx:for="{{list}}" wx:key="{{index}}" >
+                <swiper-item animation="{{num==index?animationData3:animationData}}">
+                    <view class='avtor'>
+                        <image src="{{item.avatar}}" class="slide-image" />
+                    </view>
+                    <view class='info'>
+                        <view>{{item.username}}</view>
+                        <view>领取了{{item.money}}元</view>
+                    </view>
+                </swiper-item>
+            </block>
+
+        </swiper>
+    </view>    -->
+
+<!-- animation="{{num==index?animationData3:animationData}}" -->
+    <block wx:for="{{list}}" wx:key="{{index}}">
+        <view class="slider2 {{num==index?'current':''}}"  >
+            <view >
+                <view class='avtor'>
+                    <image src="{{item.avatar}}" class="slide-image" />
+                </view>
+                <view class='info'>
+                    <view>{{item.username}}</view>
+                    <view>领取了{{item.money}}元</view>
+                </view>
+            </view>
+        </view> 
+    </block>  
+
+    <view class='top'>
+        <text wx:if="{{all.total_money>=5000}}">红包已领完</text>
+        <text wx:else >红包领取资格 : {{all.can_take_count}}次</text>
+    </view>
+
+    <view class='panel'>
+        <view class='ul'>
+            <view wx:for="{{all.list}}"  wx:key="{{index}}" 
+                class='li {{item.Status==1?"open":""}}'  
+                data-id="{{item.Id}}" data-index="{{index}}" >   
+                <view class='money' wx:if="{{item.Status==1?true:false}}">
+                    <text class='m1'>{{item.Money}}</text><text class='m2'>¥</text>
+                </view>
+                <image wx:if="{{item.Status==1}}" src='../../image/icon_open_hongbao2.png' />
+                <image wx:else src="../../image/icon_no_hongbao2.png" 
+                    bindtap='_open' data-id="{{item.Id}}" />
+            </view>
+            <block wx:for="{{[0,1,2,3,4,5,6,7,8,9]}}" wx:key="{{index}}">   
+                <block wx:if="{{index+1>all.list.length}}">
+                    <view class='li disabled' data-index="{{index}}" > 
+                        <button open-type='share' class='disable-btn'>
+                            <image src="../../image/icon_no_hongbao2.png" />
+                        </button>
+                    </view>
+                </block>
+            </block>
+
+        </view>
+    </view>
+
+    <!-- <view class='desc'>
+        <view class='d1'>选择小程序内任意楼盘，成功购房后，都可用红包兑换现金</view>
+        <view class='d2'>红包可累加，领取成功后，永久可用</view>
+    </view> -->
+
+    <view class='act-imgs' bindtap='_handleGO' data-go='../activity/index'>
+        <image src='/image/activity/card.png'></image>
+    </view>
+
+    <view class='total'>
+        <view class='money'>总金额:{{all.total_money}}元</view>
+        <view class='use' bindtap='_goMoney'>
+            <view>去找房</view><image src="../../image/arrow-right2.png"></image>
+        </view>
+        <!-- <button open-type='share' class='btn'>分享到群，免费领红包</button> -->
+        <button open-type='share' class='btn {{ani?"animate":""}}' >
+            <image src='../../image/btn2.png'></image>
+        </button>
+        <view class='text'>分享一次，获得一次领红包资格</view>
+    </view>
+
+
+    <!-- <view class='back-index' bindtap='_backHome'>
+        <image src='../../image/icon_index.png'></image>
+    </view> -->
+
+
+</view>
+
+
+
+<!-- <view class='modal modal-auth' hidden="{{useDialog}}" bindtap='_closeDialog' data-type='useDialog'>
+    <view class='content' catchtap='_place'>
+        <view class='close' catchtap="_closeDialog" data-type='useDialog'>× </view>
+        <view class='tit'>选择小程序内楼盘预约看房，成功购房后，即可领取红包</view>
+        <view class='btn' bindtap='_goMoney'>去找房</view>
+    </view>
+</view>  -->
